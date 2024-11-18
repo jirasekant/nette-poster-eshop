@@ -1,7 +1,14 @@
-- [ ] Vytvořit schéma DB
+# Ukoly cvičení 18.11.2024
+- [ ] Vytvořit schéma DB (Tonda)
+- [ ] Vytvořit WIREFRAMES pro náš eshop (2 breakpointy: pc, mobile) (Matouš)
+  - [ ] Návrh jak bude vypadat stránka s přehledem produktů
+  - [ ] Homepage
+  - [ ] Detail produktu
+
 - [x] Vymyslet komplexnější věc pro eshop (víceúrovňové kategorie, hierarchické kategorie atd.)
   - Naše komplexnější funkcionalita budou víceúrovňové kategorie (3 úrovně)
-    - Umělecké směry
+    <details>
+    <summary>Umělecké směry</summary>
       - Impresionismus
         - Krajiny
         - Portréty
@@ -9,12 +16,15 @@
       - Abstraktní umění
         - Geometrické vzory
         - Expresivní abstrakce
-        - Minimalismus
+        - Minimalismus  
       - Pop-art
         - Filmové plakáty
         - Hudební plakáty
         - Reklamní plakáty
-    - Tématické kolekce
+    </details>
+    <details>
+    <summary>Tématické kolekce</summary>
+      
       - Příroda
         - Botanické ilustrace
         - Zvířata
@@ -27,7 +37,10 @@
         - Světové metropole
         - Národní parky
         - Historické mapy
-    - Speciální edice
+    </details>
+    <details>
+    <summary>Speciální edice</summary>
+      
       - Limitované série
         - Autorské tisky
         - Číslované edice
@@ -40,7 +53,4 @@
         - Personalizované plakáty
         - Firemní design
         - Události a výročí
-- [ ] Vytvořit WIREFRAMES pro náš eshop (2 breakpointy: pc, mobile)
-  - [ ] Návrh jak bude vypadat stránka s přehledem produktů
-  - [ ] Homepage
-  - [ ] Detail produktu
+    </details>
