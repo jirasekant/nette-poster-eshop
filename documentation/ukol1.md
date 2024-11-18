@@ -1,0 +1,46 @@
+- [ ] Vytvořit schéma DB
+- [x] Vymyslet komplexnější věc pro eshop (víceúrovňové kategorie, hierarchické kategorie atd.)
+  - Naše komplexnější funkcionalita budou víceúrovňové kategorie (3 úrovně)
+    - Umělecké směry
+      - Impresionismus
+        - Krajiny
+        - Portréty
+        - Městské scenérie
+      - Abstraktní umění
+        - Geometrické vzory
+        - Expresivní abstrakce
+        - Minimalismus
+      - Pop-art
+        - Filmové plakáty
+        - Hudební plakáty
+        - Reklamní plakáty
+    - Tématické kolekce
+      - Příroda
+        - Botanické ilustrace
+        - Zvířata
+        - Podmořský svět
+      - Architektura
+        - Moderní stavby
+        - Historické památky
+        - Industriální objekty
+      - Cestování
+        - Světové metropole
+        - Národní parky
+        - Historické mapy
+    - Speciální edice
+      - Limitované série
+        - Autorské tisky
+        - Číslované edice
+        - Sběratelské kousky
+      - Sezónní kolekce
+        - Jarní motivy
+        - Letní motivy
+        - Zimní motivy
+      - Zakázková tvorba
+        - Personalizované plakáty
+        - Firemní design
+        - Události a výročí
+- [ ] Vytvořit WIREFRAMES pro náš eshop (2 breakpointy: pc, mobile)
+  - [ ] Návrh jak bude vypadat stránka s přehledem produktů
+  - [ ] Homepage
+  - [ ] Detail produktu
