@@ -1,1 +1,3 @@
-config/
+config/local.neon
+.idea/
+.vscode/
