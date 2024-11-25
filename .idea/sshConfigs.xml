@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="eso.vse.cz" id="f118b39a-6794-42b3-a35e-325a946b9575" port="22" nameFormat="DESCRIPTIVE" username="jira18" useOpenSSHConfig="false" />
+    </configs>
+  </component>
+</project>

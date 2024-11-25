@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="366fd47c-4a12-48a2-8d52-1b8a29b8258f" name="eso.vse.cz">
+        <fileTransfer rootFolder="/home/httpd/html/users/jira18" accessType="SFTP" host="eso.vse.cz" port="22" sshConfigId="f118b39a-6794-42b3-a35e-325a946b9575" sshConfig="jira18@eso.vse.cz:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
