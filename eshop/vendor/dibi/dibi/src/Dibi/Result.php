@@ -457,22 +457,16 @@ class Result implements IDataSource
 			if ($type === null || $format === 'native') {
 				$row[$key] = $value;
 
-			} elseif ($type === Type::Text) {
+			} elseif ($type === Type::TEXT) {
 				$row[$key] = (string) $value;
 
-			} elseif ($type === Type::Integer) {
+			} elseif ($type === Type::INTEGER) {
 				$row[$key] = is_float($tmp = $value * 1)
 					? (is_string($value) ? $value : (int) $value)
 					: $tmp;
 
-			} elseif ($type === Type::Float) {
-				if (!is_string($value)) {
-					$row[$key] = (float) $value;
-					continue;
-				}
-
-				$negative = ($value[0] ?? null) === '-';
-				$value = ltrim($value, '0-');
+			} elseif ($type === Type::FLOAT) {
+				$value = ltrim((string) $value, '0');
 				$p = strpos($value, '.');
 				$e = strpos($value, 'e');
 				if ($p !== false && $e === false) {
@@ -485,31 +479,27 @@ class Result implements IDataSource
 					$value = '0' . $value;
 				}
 
-				if ($negative) {
-					$value = '-' . $value;
-				}
-
 				$row[$key] = $value === str_replace(',', '.', (string) ($float = (float) $value))
 					? $float
 					: $value;
 
-			} elseif ($type === Type::Bool) {
+			} elseif ($type === Type::BOOL) {
 				$row[$key] = ((bool) $value) && $value !== 'f' && $value !== 'F';
 
-			} elseif ($type === Type::DateTime || $type === Type::Date || $type === Type::Time) {
+			} elseif ($type === Type::DATETIME || $type === Type::DATE || $type === Type::TIME) {
 				if ($value && !str_starts_with((string) $value, '0000-00')) { // '', null, false, '0000-00-00', ...
 					$value = new DateTime($value);
 					$row[$key] = $format ? $value->format($format) : $value;
 				} else {
 					$row[$key] = null;
 				}
-			} elseif ($type === Type::TimeInterval) {
+			} elseif ($type === Type::TIME_INTERVAL) {
 				preg_match('#^(-?)(\d+)\D(\d+)\D(\d+)\z#', $value, $m);
 				$value = new \DateInterval("PT$m[2]H$m[3]M$m[4]S");
 				$value->invert = (int) (bool) $m[1];
 				$row[$key] = $format ? $value->format($format) : $value;
 
-			} elseif ($type === Type::Binary) {
+			} elseif ($type === Type::BINARY) {
 				$row[$key] = is_string($value)
 					? $this->getResultDriver()->unescapeBinary($value)
 					: $value;

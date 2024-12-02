@@ -79,7 +79,7 @@ abstract class Component extends Nette\ComponentModel\Container implements Signa
 		$res = parent::createComponent($name);
 		if ($res && !$res instanceof SignalReceiver && !$res instanceof StatePersistent) {
 			$type = get_class($res);
-			trigger_error("It seems that component '$name' of type $type is not intended to be used in the Presenter.");
+			trigger_error("It seems that component '$name' of type $type is not intended to be used in the Presenter.", E_USER_NOTICE);
 		}
 
 		return $res;
@@ -106,7 +106,7 @@ abstract class Component extends Nette\ComponentModel\Container implements Signa
 		if (!$rc->hasMethod($method)) {
 			return false;
 		} elseif (!$rc->hasCallableMethod($method)) {
-			$this->error('Method ' . Nette\Utils\Reflection::toString($rc->getMethod($method)) . ' is not callable.');
+			throw new Nette\InvalidStateException('Method ' . Nette\Utils\Reflection::toString($rc->getMethod($method)) . ' is not callable.');
 		}
 
 		$rm = $rc->getMethod($method);

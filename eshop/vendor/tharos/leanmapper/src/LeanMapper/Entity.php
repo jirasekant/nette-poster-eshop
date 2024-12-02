@@ -70,7 +70,13 @@ abstract class Entity
 
     protected static function getReflectionProvider(): IEntityReflectionProvider
     {
-        return DefaultEntityReflectionProvider::getInstance();
+        static $reflectionProvider = null;
+
+        if ($reflectionProvider === null) {
+            $reflectionProvider = new DefaultEntityReflectionProvider;
+        }
+
+        return $reflectionProvider;
     }
 
 
@@ -523,13 +529,7 @@ abstract class Entity
                 return $value;
             }
 
-            try {
-                $value = Helpers::convertType($value, $property->getType());
-
-            } catch (InvalidValueException $e) {
-                throw new InvalidValueException("Property '$name' in entity " . get_called_class() . " is expected to contain an {$property->getType()}, " . Helpers::getType($value) . " given.", 0, $e);
-            }
-
+            settype($value, $property->getType());
             if ($property->containsEnumeration() and !$property->isValueFromEnum($value)) {
                 throw new InvalidValueException(
                     "Given value is not from possible values enumeration in property '{$property->getName()}' in entity " . get_called_class() . '.'
@@ -648,14 +648,13 @@ abstract class Entity
         $column = $property->getColumn();
 
         if ($property->isBasicType()) {
-            if ($value !== null && !Helpers::isType($value, $property->getType())) {
+            if ($pass !== null) {
+                $value = $this->$pass($value);
+            } elseif ($value !== null && !Helpers::isType($value, $property->getType())) {
                 $givenType = Helpers::getType($value);
                 throw new InvalidValueException(
                     "Unexpected value type given in property '{$property->getName()}' in entity " . get_called_class() . ", {$property->getType()} expected, $givenType given."
                 );
-            }
-            if ($pass !== null) {
-                $value = $this->$pass($value);
             }
             if ($value !== null and $property->containsEnumeration() and !$property->isValueFromEnum($value)) {
                 throw new InvalidValueException(
@@ -887,7 +886,7 @@ abstract class Entity
 
 
     /**
-     * @return iterable<Entity>
+     * @return Entity[]
      * @throws InvalidValueException
      */
     private function getHasManyValue(
@@ -958,7 +957,7 @@ abstract class Entity
 
 
     /**
-     * @return iterable<Entity>
+     * @return Entity[]
      */
     private function getBelongsToManyValue(Property $property, Relationship\BelongsToMany $relationship, ?Filtering $filtering = null)
     {

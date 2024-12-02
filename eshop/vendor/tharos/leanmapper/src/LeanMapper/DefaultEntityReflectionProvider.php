@@ -25,9 +25,6 @@ class DefaultEntityReflectionProvider implements IEntityReflectionProvider
     /** @var array<string> */
     protected $internalGetters = ['getData', 'getRowData', 'getModifiedRowData', 'getCurrentReflection', 'getReflection', 'getHasManyRowDifferences', 'getEntityClass'];
 
-    /** @var self|null */
-    private static $instance;
-
 
     /**
      * @return Property[]
@@ -92,16 +89,6 @@ class DefaultEntityReflectionProvider implements IEntityReflectionProvider
             $line[] = $member;
         }
         return array_reverse($line);
-    }
-
-
-    public static function getInstance(): self
-    {
-        if (self::$instance === null) {
-            self::$instance = new self;
-        }
-
-        return self::$instance;
     }
 
 }

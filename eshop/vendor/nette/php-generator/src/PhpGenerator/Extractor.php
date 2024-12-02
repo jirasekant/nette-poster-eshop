@@ -47,7 +47,8 @@ final class Extractor
 		}
 
 		$this->code = Nette\Utils\Strings::normalizeNewlines($code);
-		$parser = (new ParserFactory)->createForNewestSupportedVersion();
+		$lexer = new PhpParser\Lexer\Emulative(['usedAttributes' => ['startFilePos', 'endFilePos', 'comments']]);
+		$parser = (new ParserFactory)->create(ParserFactory::ONLY_PHP7, $lexer);
 		$stmts = $parser->parse($this->code);
 
 		$traverser = new PhpParser\NodeTraverser;
@@ -94,7 +95,7 @@ final class Extractor
 	private function getReformattedContents(array $nodes, int $level): string
 	{
 		$body = $this->getNodeContents(...$nodes);
-		$body = $this->performReplacements($body, $this->prepareReplacements($nodes, $level));
+		$body = $this->performReplacements($body, $this->prepareReplacements($nodes));
 		return Helpers::unindent($body, $level);
 	}
 
@@ -103,12 +104,11 @@ final class Extractor
 	 * @param  Node[]  $nodes
 	 * @return array<array{int, int, string}>
 	 */
-	private function prepareReplacements(array $nodes, int $level): array
+	private function prepareReplacements(array $nodes): array
 	{
 		$start = $this->getNodeStartPos($nodes[0]);
 		$replacements = [];
-		$indent = "\n" . str_repeat("\t", $level);
-		(new NodeFinder)->find($nodes, function (Node $node) use (&$replacements, $start, $level, $indent) {
+		(new NodeFinder)->find($nodes, function (Node $node) use (&$replacements, $start) {
 			if ($node instanceof Node\Name\FullyQualified) {
 				if ($node->getAttribute('originalName') instanceof Node\Name) {
 					$of = match (true) {
@@ -122,64 +122,30 @@ final class Extractor
 						Helpers::tagName($node->toCodeString(), $of),
 					];
 				}
-
-			} elseif (
-				$node instanceof Node\Scalar\String_
-				&& in_array($node->getAttribute('kind'), [Node\Scalar\String_::KIND_SINGLE_QUOTED, Node\Scalar\String_::KIND_DOUBLE_QUOTED], true)
-				&& str_contains($node->getAttribute('rawValue'), "\n")
-			) { // multi-line strings -> single line
-				$replacements[] = [
-					$node->getStartFilePos() - $start,
-					$node->getEndFilePos() - $start,
-					'"' . addcslashes($node->value, "\x00..\x1F\"") . '"',
-				];
-
-			} elseif (
-				$node instanceof Node\Scalar\String_
-				&& in_array($node->getAttribute('kind'), [Node\Scalar\String_::KIND_NOWDOC, Node\Scalar\String_::KIND_HEREDOC], true)
-				&& Helpers::unindent($node->getAttribute('docIndentation'), $level) === $node->getAttribute('docIndentation')
-			) { // fix indentation of NOWDOW/HEREDOC
-				$replacements[] = [
-					$node->getStartFilePos() - $start,
-					$node->getEndFilePos() - $start,
-					str_replace("\n", $indent, $this->getNodeContents($node)),
-				];
-
-			} elseif (
-				$node instanceof Node\Scalar\Encapsed
-				&& $node->getAttribute('kind') === Node\Scalar\String_::KIND_DOUBLE_QUOTED
-			) { // multi-line strings -> single line
-				foreach ($node->parts as $part) {
-					if ($part instanceof Node\Scalar\EncapsedStringPart) {
-						$replacements[] = [
-							$part->getStartFilePos() - $start,
-							$part->getEndFilePos() - $start,
-							addcslashes($part->value, "\x00..\x1F\""),
-						];
-					}
+			} elseif ($node instanceof Node\Scalar\String_ || $node instanceof Node\Scalar\EncapsedStringPart) {
+				// multi-line strings => singleline
+				$token = $this->getNodeContents($node);
+				if (str_contains($token, "\n")) {
+					$quote = $node instanceof Node\Scalar\String_ ? '"' : '';
+					$replacements[] = [
+						$node->getStartFilePos() - $start,
+						$node->getEndFilePos() - $start,
+						$quote . addcslashes($node->value, "\x00..\x1F") . $quote,
+					];
 				}
-			} elseif (
-				$node instanceof Node\Scalar\Encapsed && $node->getAttribute('kind') === Node\Scalar\String_::KIND_HEREDOC
-				&& Helpers::unindent($node->getAttribute('docIndentation'), $level) === $node->getAttribute('docIndentation')
-			) { // fix indentation of HEREDOC
-				$replacements[] = [
-					$tmp = $node->getStartFilePos() - $start + strlen($node->getAttribute('docLabel')) + 3, // <<<
-					$tmp,
-					$indent,
-				];
-				$replacements[] = [
-					$tmp = $node->getEndFilePos() - $start - strlen($node->getAttribute('docLabel')),
-					$tmp,
-					$indent,
-				];
-				foreach ($node->parts as $part) {
-					if ($part instanceof Node\Scalar\EncapsedStringPart) {
-						$replacements[] = [
-							$part->getStartFilePos() - $start,
-							$part->getEndFilePos() - $start,
-							str_replace("\n", $indent, $this->getNodeContents($part)),
-						];
-					}
+			} elseif ($node instanceof Node\Scalar\Encapsed) {
+				// HEREDOC => "string"
+				if ($node->getAttribute('kind') === Node\Scalar\String_::KIND_HEREDOC) {
+					$replacements[] = [
+						$node->getStartFilePos() - $start,
+						$node->parts[0]->getStartFilePos() - $start - 1,
+						'"',
+					];
+					$replacements[] = [
+						end($node->parts)->getEndFilePos() - $start + 1,
+						$node->getEndFilePos() - $start,
+						'"',
+					];
 				}
 			}
 		});
@@ -329,7 +295,7 @@ final class Extractor
 				$prop->setValue($this->toValue($item->default));
 			}
 
-			$prop->setReadOnly((method_exists($node, 'isReadonly') && $node->isReadonly()) || ($class instanceof ClassType && $class->isReadOnly()));
+			$prop->setReadOnly(method_exists($node, 'isReadonly') && $node->isReadonly());
 			$this->addCommentAndAttributes($prop, $node);
 		}
 	}
@@ -343,9 +309,6 @@ final class Extractor
 		$method->setStatic($node->isStatic());
 		$method->setVisibility($this->toVisibility($node->flags));
 		$this->setupFunction($method, $node);
-		if ($method->getName() === Method::Constructor && $class instanceof ClassType && $class->isReadOnly()) {
-			array_map(fn($param) => $param instanceof PromotedParameter ? $param->setReadOnly() : $param, $method->getParameters());
-		}
 	}
 
 

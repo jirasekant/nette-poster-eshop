@@ -114,7 +114,6 @@ abstract class BaseControl extends Nette\ComponentModel\Component implements Con
 
 	/**
 	 * Returns form.
-	 * @return ($throw is true ? Form : ?Form)
 	 */
 	public function getForm(bool $throw = true): ?Form
 	{

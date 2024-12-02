@@ -322,7 +322,7 @@ final class FormMacros extends MacroSet
 
 		$node->tokenizer->reset();
 		return $writer->write(
-			'Nette\Forms\Blueprint::' . ($node->name === 'formPrint' ? 'latte' : 'dataClass') . '('
+			'Nette\Bridges\FormsLatte\Runtime::render' . $node->name . '('
 			. ($name[0] === '$'
 				? 'is_object($ʟ_tmp = %node.word) ? $ʟ_tmp : $this->global->uiControl[$ʟ_tmp]'
 				: '$this->global->uiControl[%node.word]')

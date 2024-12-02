@@ -114,8 +114,7 @@ final class LatteExtension extends Nette\DI\CompilerExtension
 		Nette\Application\UI\TemplateFactory $factory,
 		Tracy\Bar $bar,
 		bool $all = false
-	): void
-	{
+	) {
 		if (!$factory instanceof ApplicationLatte\TemplateFactory) {
 			return;
 		}

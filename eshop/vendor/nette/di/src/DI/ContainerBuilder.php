@@ -225,7 +225,6 @@ class ContainerBuilder
 	/**
 	 * Resolves autowired service name by type.
 	 * @param  bool  $throw exception if service doesn't exist?
-	 * @return ($throw is true ? string : ?string)
 	 * @throws MissingServiceException
 	 */
 	public function getByType(string $type, bool $throw = false): ?string

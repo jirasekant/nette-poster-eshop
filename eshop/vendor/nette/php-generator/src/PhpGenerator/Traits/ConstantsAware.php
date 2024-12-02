@@ -22,15 +22,12 @@ trait ConstantsAware
 	private array $consts = [];
 
 
-	/**
-	 * Replaces all constants.
-	 * @param  Constant[]  $consts
-	 */
+	/** @param  Constant[]  $consts */
 	public function setConstants(array $consts): static
 	{
 		(function (Constant ...$consts) {})(...$consts);
 		$this->consts = [];
-		foreach ($consts as $const) {
+		foreach ($consts as $k => $const) {
 			$this->consts[$const->getName()] = $const;
 		}
 
@@ -51,12 +48,9 @@ trait ConstantsAware
 	}
 
 
-	/**
-	 * Adds a constant. If it already exists, throws an exception or overwrites it if $overwrite is true.
-	 */
-	public function addConstant(string $name, mixed $value, bool $overwrite = false): Constant
+	public function addConstant(string $name, mixed $value): Constant
 	{
-		if (!$overwrite && isset($this->consts[$name])) {
+		if (isset($this->consts[$name])) {
 			throw new Nette\InvalidStateException("Cannot add constant '$name', because it already exists.");
 		}
 		return $this->consts[$name] = (new Constant($name))

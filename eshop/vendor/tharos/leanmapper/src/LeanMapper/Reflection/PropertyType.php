@@ -38,10 +38,6 @@ class PropertyType
                 $type = 'integer';
             }
             $this->isBasicType = true;
-
-        } elseif ($type === 'non-empty-string') {
-            $this->isBasicType = true;
-
         } else {
             if (substr($type, 0, 1) === '\\') {
                 $type = substr($type, 1);

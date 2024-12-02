@@ -66,9 +66,6 @@ final class InjectExtension extends DI\CompilerExtension
 				}
 			}
 
-			if ($builder) {
-				self::checkType($class, $property, $type, $builder);
-			}
 			array_unshift($setups, $inject);
 		}
 
@@ -119,6 +116,7 @@ final class InjectExtension extends DI\CompilerExtension
 	{
 		$res = [];
 		foreach ((new \ReflectionClass($class))->getProperties() as $rp) {
+			$name = $rp->getName();
 			$hasAttr = PHP_VERSION_ID >= 80000 && $rp->getAttributes(DI\Attributes\Inject::class);
 			if ($hasAttr || DI\Helpers::parseAnnotation($rp, 'inject') !== null) {
 				if (!$rp->isPublic() || $rp->isStatic()) {
@@ -146,7 +144,7 @@ final class InjectExtension extends DI\CompilerExtension
 
 
 	/**
-	 * Calls all methods starting with "inject" using autowiring.
+	 * Calls all methods starting with with "inject" using autowiring.
 	 * @param  object  $service
 	 */
 	public static function callInjects(DI\Container $container, $service): void
@@ -160,20 +158,7 @@ final class InjectExtension extends DI\CompilerExtension
 		}
 
 		foreach (self::getInjectProperties(get_class($service)) as $property => $type) {
-			self::checkType($service, $property, $type, $container);
 			$service->$property = $container->getByType($type);
-		}
-	}
-
-
-	private static function checkType($class, string $name, ?string $type, $container): void
-	{
-		if (!$container->getByType($type, false)) {
-			throw new Nette\DI\MissingServiceException(sprintf(
-				'Service of type %s required by %s not found. Did you add it to configuration file?',
-				$type,
-				Reflection::toString(new \ReflectionProperty($class, $name))
-			));
 		}
 	}
 }
