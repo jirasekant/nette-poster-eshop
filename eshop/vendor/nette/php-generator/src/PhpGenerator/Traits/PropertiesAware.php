@@ -22,10 +22,7 @@ trait PropertiesAware
 	private array $properties = [];
 
 
-	/**
-	 * Replaces all properties.
-	 * @param  Property[]  $props
-	 */
+	/** @param  Property[]  $props */
 	public function setProperties(array $props): static
 	{
 		(function (Property ...$props) {})(...$props);
@@ -51,13 +48,10 @@ trait PropertiesAware
 	}
 
 
-	/**
-	 * Adds a property. If it already exists, throws an exception or overwrites it if $overwrite is true.
-	 * @param  string  $name  without $
-	 */
-	public function addProperty(string $name, mixed $value = null, bool $overwrite = false): Property
+	/** @param  string  $name  without $ */
+	public function addProperty(string $name, mixed $value = null): Property
 	{
-		if (!$overwrite && isset($this->properties[$name])) {
+		if (isset($this->properties[$name])) {
 			throw new Nette\InvalidStateException("Cannot add property '$name', because it already exists.");
 		}
 		return $this->properties[$name] = func_num_args() > 1

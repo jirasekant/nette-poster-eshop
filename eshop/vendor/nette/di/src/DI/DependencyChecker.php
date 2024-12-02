@@ -147,9 +147,7 @@ class DependencyChecker
 		$flip = array_flip($classes);
 		foreach ($functions as $name) {
 			if (strpos($name, '::')) {
-				$method = PHP_VERSION_ID < 80300
-					? new ReflectionMethod($name)
-					: ReflectionMethod::createFromMethodName($name);
+				$method = new ReflectionMethod($name);
 				$class = $method->getDeclaringClass();
 				if (isset($flip[$class->name])) {
 					continue;

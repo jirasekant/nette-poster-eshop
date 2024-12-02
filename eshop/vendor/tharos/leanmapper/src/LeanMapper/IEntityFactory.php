@@ -35,7 +35,7 @@ interface IEntityFactory
      * Allows wrap set of entities in custom collection
      *
      * @param Entity[] $entities
-     * @return iterable<Entity>
+     * @return mixed
      */
     function createCollection(array $entities);
 

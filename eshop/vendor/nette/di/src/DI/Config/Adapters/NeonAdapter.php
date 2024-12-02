@@ -160,11 +160,9 @@ final class NeonAdapter implements Nette\DI\Config\Adapter
 
 		$index = false;
 		foreach ($node->attributes as $i => $attr) {
-			if ($attr->key !== null) {
-				continue;
+			if ($index) {
+				$attr->key = $attr->key ?? new Neon\Node\LiteralNode((string) $i);
 			}
-
-			$attr->key = $index ? new Neon\Node\LiteralNode((string) $i) : null;
 
 			if ($attr->value instanceof Neon\Node\LiteralNode && $attr->value->value === '_') {
 				unset($node->attributes[$i]);

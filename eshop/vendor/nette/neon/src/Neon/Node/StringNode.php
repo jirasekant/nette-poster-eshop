@@ -70,16 +70,14 @@ final class StringNode extends Node
 	public function toString(): string
 	{
 		if (!str_contains($this->value, "\n")) {
-			return preg_match('~[\x00-\x08\x0B-\x1F]~', $this->value)
-				? json_encode($this->value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
-				: "'" . str_replace("'", "''", $this->value) . "'";
+			return "'" . str_replace("'", "''", $this->value) . "'";
 
-		} elseif (preg_match('~[\x00-\x08\x0B-\x1F]|\n[\t ]+\'{3}~', $this->value)) {
-			$s = substr(json_encode($this->value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), 1, -1);
+		} elseif (preg_match('~\n[\t ]+\'{3}~', $this->value)) {
+			$s = json_encode($this->value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 			$s = preg_replace_callback(
 				'#[^\\\\]|\\\\(.)#s',
 				fn($m) => ['n' => "\n", 't' => "\t", '"' => '"'][$m[1] ?? ''] ?? $m[0],
-				$s,
+				substr($s, 1, -1),
 			);
 			$s = str_replace('"""', '""\"', $s);
 			$delim = '"""';

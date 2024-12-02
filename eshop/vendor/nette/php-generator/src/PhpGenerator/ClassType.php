@@ -177,7 +177,7 @@ final class ClassType extends ClassLike
 	}
 
 
-	public function addMember(Method|Property|Constant|TraitUse $member, bool $overwrite = false): static
+	public function addMember(Method|Property|Constant|TraitUse $member): static
 	{
 		$name = $member->getName();
 		[$type, $n] = match (true) {
@@ -186,7 +186,7 @@ final class ClassType extends ClassLike
 			$member instanceof Property => ['properties', $name],
 			$member instanceof TraitUse => ['traits', $name],
 		};
-		if (!$overwrite && isset($this->$type[$n])) {
+		if (isset($this->$type[$n])) {
 			throw new Nette\InvalidStateException("Cannot add member '$name', because it already exists.");
 		}
 		$this->$type[$n] = $member;
@@ -195,20 +195,55 @@ final class ClassType extends ClassLike
 
 
 	/**
-	 * @deprecated use ClassManipulator::inheritProperty()
+	 * Inherits property from parent class.
 	 */
 	public function inheritProperty(string $name, bool $returnIfExists = false): Property
 	{
-		return (new ClassManipulator($this))->inheritProperty($name, $returnIfExists);
+		if (isset($this->properties[$name])) {
+			return $returnIfExists
+				? $this->properties[$name]
+				: throw new Nette\InvalidStateException("Cannot inherit property '$name', because it already exists.");
+
+		} elseif (!$this->extends) {
+			throw new Nette\InvalidStateException("Class '{$this->getName()}' has not setExtends() set.");
+		}
+
+		try {
+			$rp = new \ReflectionProperty($this->extends, $name);
+		} catch (\ReflectionException) {
+			throw new Nette\InvalidStateException("Property '$name' has not been found in ancestor {$this->extends}");
+		}
+
+		return $this->properties[$name] = (new Factory)->fromPropertyReflection($rp);
 	}
 
 
 	/**
-	 * @deprecated use ClassManipulator::inheritMethod()
+	 * Inherits method from parent class or interface.
 	 */
 	public function inheritMethod(string $name, bool $returnIfExists = false): Method
 	{
-		return (new ClassManipulator($this))->inheritMethod($name, $returnIfExists);
+		$lower = strtolower($name);
+		$parents = [...(array) $this->extends, ...$this->implements];
+		if (isset($this->methods[$lower])) {
+			return $returnIfExists
+				? $this->methods[$lower]
+				: throw new Nette\InvalidStateException("Cannot inherit method '$name', because it already exists.");
+
+		} elseif (!$parents) {
+			throw new Nette\InvalidStateException("Class '{$this->getName()}' has neither setExtends() nor setImplements() set.");
+		}
+
+		foreach ($parents as $parent) {
+			try {
+				$rm = new \ReflectionMethod($parent, $name);
+			} catch (\ReflectionException) {
+				continue;
+			}
+			return $this->methods[$lower] = (new Factory)->fromMethodReflection($rm);
+		}
+
+		throw new Nette\InvalidStateException("Method '$name' has not been found in any ancestor: " . implode(', ', $parents));
 	}
 
 
@@ -225,9 +260,8 @@ final class ClassType extends ClassLike
 	}
 
 
-	public function __clone(): void
+	public function __clone()
 	{
-		parent::__clone();
 		$clone = fn($item) => clone $item;
 		$this->consts = array_map($clone, $this->consts);
 		$this->methods = array_map($clone, $this->methods);

@@ -535,7 +535,6 @@ abstract class Presenter extends Control implements Application\IPresenter
 
 	/**
 	 * Formats layout template file names.
-	 * @return string[]
 	 */
 	public function formatLayoutTemplateFiles(): array
 	{
@@ -562,7 +561,6 @@ abstract class Presenter extends Control implements Application\IPresenter
 
 	/**
 	 * Formats view template file names.
-	 * @return string[]
 	 */
 	public function formatTemplateFiles(): array
 	{

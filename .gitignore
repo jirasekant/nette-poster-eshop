@@ -1,4 +1,6 @@
 eshop/config/local.neon
-.idea/
-.vscode/
+
+.vscode
+.DS_Store
+.idea
 .DS_Store

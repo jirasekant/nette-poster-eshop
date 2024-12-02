@@ -93,15 +93,23 @@ class PdoDriver implements Dibi\Driver
 		$this->affectedRows = null;
 
 		[$sqlState, $code, $message] = $this->connection->errorInfo();
-		$code ??= 0;
 		$message = "SQLSTATE[$sqlState]: $message";
-		throw match ($this->driverName) {
-			'mysql' => MySqliDriver::createException($message, $code, $sql),
-			'oci' => OracleDriver::createException($message, $code, $sql),
-			'pgsql' => PostgreDriver::createException($message, $sqlState, $sql),
-			'sqlite' => SqliteDriver::createException($message, $code, $sql),
-			default => new Dibi\DriverException($message, $code, $sql),
-		};
+		switch ($this->driverName) {
+			case 'mysql':
+				throw MySqliDriver::createException($message, $code, $sql);
+
+			case 'oci':
+				throw OracleDriver::createException($message, $code, $sql);
+
+			case 'pgsql':
+				throw PostgreDriver::createException($message, $sqlState, $sql);
+
+			case 'sqlite':
+				throw SqliteDriver::createException($message, $code, $sql);
+
+			default:
+				throw new Dibi\DriverException($message, $code, $sql);
+		}
 	}
 
 
@@ -131,7 +139,7 @@ class PdoDriver implements Dibi\Driver
 	{
 		if (!$this->connection->beginTransaction()) {
 			$err = $this->connection->errorInfo();
-			throw new Dibi\DriverException("SQLSTATE[$err[0]]: $err[2]", $err[1] ?? 0);
+			throw new Dibi\DriverException("SQLSTATE[$err[0]]: $err[2]", $err[1]);
 		}
 	}
 
@@ -144,7 +152,7 @@ class PdoDriver implements Dibi\Driver
 	{
 		if (!$this->connection->commit()) {
 			$err = $this->connection->errorInfo();
-			throw new Dibi\DriverException("SQLSTATE[$err[0]]: $err[2]", $err[1] ?? 0);
+			throw new Dibi\DriverException("SQLSTATE[$err[0]]: $err[2]", $err[1]);
 		}
 	}
 
@@ -157,7 +165,7 @@ class PdoDriver implements Dibi\Driver
 	{
 		if (!$this->connection->rollBack()) {
 			$err = $this->connection->errorInfo();
-			throw new Dibi\DriverException("SQLSTATE[$err[0]]: $err[2]", $err[1] ?? 0);
+			throw new Dibi\DriverException("SQLSTATE[$err[0]]: $err[2]", $err[1]);
 		}
 	}
 
@@ -176,14 +184,27 @@ class PdoDriver implements Dibi\Driver
 	 */
 	public function getReflector(): Dibi\Reflector
 	{
-		return match ($this->driverName) {
-			'mysql' => new MySqlReflector($this),
-			'oci' => new OracleReflector($this),
-			'pgsql' => new PostgreReflector($this, $this->connection->getAttribute(PDO::ATTR_SERVER_VERSION)),
-			'sqlite' => new SqliteReflector($this),
-			'mssql', 'dblib', 'sqlsrv' => new SqlsrvReflector($this),
-			default => throw new Dibi\NotSupportedException,
-		};
+		switch ($this->driverName) {
+			case 'mysql':
+				return new MySqlReflector($this);
+
+			case 'oci':
+				return new OracleReflector($this);
+
+			case 'pgsql':
+				return new PostgreReflector($this, $this->connection->getAttribute(PDO::ATTR_SERVER_VERSION));
+
+			case 'sqlite':
+				return new SqliteReflector($this);
+
+			case 'mssql':
+			case 'dblib':
+			case 'sqlsrv':
+				return new SqlsrvReflector($this);
+
+			default:
+				throw new Dibi\NotSupportedException;
+		}
 	}
 
 
@@ -204,34 +225,44 @@ class PdoDriver implements Dibi\Driver
 	 */
 	public function escapeText(string $value): string
 	{
-		return match ($this->driverName) {
-			'odbc' => "'" . str_replace("'", "''", $value) . "'",
-			'sqlsrv' => "N'" . str_replace("'", "''", $value) . "'",
-			default => $this->connection->quote($value, PDO::PARAM_STR),
-		};
+		return $this->driverName === 'odbc'
+			? "'" . str_replace("'", "''", $value) . "'"
+			: $this->connection->quote($value, PDO::PARAM_STR);
 	}
 
 
 	public function escapeBinary(string $value): string
 	{
-		return match ($this->driverName) {
-			'odbc' => "'" . str_replace("'", "''", $value) . "'",
-			'sqlsrv' => '0x' . bin2hex($value),
-			default => $this->connection->quote($value, PDO::PARAM_LOB),
-		};
+		return $this->driverName === 'odbc'
+			? "'" . str_replace("'", "''", $value) . "'"
+			: $this->connection->quote($value, PDO::PARAM_LOB);
 	}
 
 
 	public function escapeIdentifier(string $value): string
 	{
-		return match ($this->driverName) {
-			'mysql' => '`' . str_replace('`', '``', $value) . '`',
-			'oci', 'pgsql' => '"' . str_replace('"', '""', $value) . '"',
-			'sqlite' => '[' . strtr($value, '[]', '  ') . ']',
-			'odbc', 'mssql' => '[' . str_replace(['[', ']'], ['[[', ']]'], $value) . ']',
-			'dblib', 'sqlsrv' => '[' . str_replace(']', ']]', $value) . ']',
-			default => $value,
-		};
+		switch ($this->driverName) {
+			case 'mysql':
+				return '`' . str_replace('`', '``', $value) . '`';
+
+			case 'oci':
+			case 'pgsql':
+				return '"' . str_replace('"', '""', $value) . '"';
+
+			case 'sqlite':
+				return '[' . strtr($value, '[]', '  ') . ']';
+
+			case 'odbc':
+			case 'mssql':
+				return '[' . str_replace(['[', ']'], ['[[', ']]'], $value) . ']';
+
+			case 'dblib':
+			case 'sqlsrv':
+				return '[' . str_replace(']', ']]', $value) . ']';
+
+			default:
+				return $value;
+		}
 	}
 
 
@@ -253,11 +284,16 @@ class PdoDriver implements Dibi\Driver
 
 	public function escapeDateTime(\DateTimeInterface $value): string
 	{
-		return match ($this->driverName) {
-			'odbc' => $value->format('#m/d/Y H:i:s.u#'),
-			'mssql', 'dblib', 'sqlsrv' => 'CONVERT(DATETIME2(7), ' . $value->format("'Y-m-d H:i:s.u'") . ')',
-			default => $value->format("'Y-m-d H:i:s.u'"),
-		};
+		switch ($this->driverName) {
+			case 'odbc':
+				return $value->format('#m/d/Y H:i:s.u#');
+			case 'mssql':
+			case 'dblib':
+			case 'sqlsrv':
+				return 'CONVERT(DATETIME2(7), ' . $value->format("'Y-m-d H:i:s.u'") . ')';
+			default:
+				return $value->format("'Y-m-d H:i:s.u'");
+		}
 	}
 
 

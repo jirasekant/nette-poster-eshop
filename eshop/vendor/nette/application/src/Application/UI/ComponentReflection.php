@@ -34,7 +34,6 @@ final class ComponentReflection extends \ReflectionClass
 
 	/**
 	 * Returns array of class properties that are public and have attribute #[Persistent] or #[Parameter] or annotation @persistent.
-	 * @return array<string, array{def: mixed, type: string, since: ?string}>
 	 */
 	public function getParameters(): array
 	{
@@ -82,7 +81,6 @@ final class ComponentReflection extends \ReflectionClass
 
 	/**
 	 * Returns array of persistent properties. They are public and have attribute #[Persistent] or annotation @persistent.
-	 * @return array<string, array{def: mixed, type: string, since: string}>
 	 */
 	public function getPersistentParams(): array
 	{
