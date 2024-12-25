@@ -52,4 +52,4 @@ services:
 	- App\Model\Repositories\ProductRepository
 	- App\Model\Repositories\ResourceRepository
 	- App\Model\Repositories\RoleRepository
-	- App\Model\Repositories\UserRepository
+	- App\Model\Repositories\UserRepository	

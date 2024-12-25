@@ -3,6 +3,7 @@
 namespace App\FrontModule\Components\CartControl;
 
 use App\Model\Entities\Cart;
+use App\Model\Entities\CartItem;
 use App\Model\Entities\Product;
 use App\Model\Facades\CartFacade;
 use Nette\Application\UI\Control;
@@ -31,12 +32,76 @@ class CartControl extends Control{
     $template->render();
   }
 
+  public function renderList():void {
+    $template=$this->prepareTemplate('list');
+    $template->cart=$this->cart;
+    $template->render();
+  }
+
+  public function handleRemove(int $cartItemId):void {
+    $this->cartFacade->deleteCartItem($cartItemId);
+    $this->cart->updateCartItems();
+    
+    if ($this->presenter->isAjax()) {
+        $this->redrawControl('cart');
+    } else {
+        $this->redirect('this');
+    }
+  }
+
+  public function handleIncrease(int $cartItemId):void {
+    $this->cartFacade->increaseCartItem($cartItemId);
+    $this->cart->updateCartItems();
+    
+    if ($this->presenter->isAjax()) {
+        $this->redrawControl('cart');
+    } else {
+        $this->redirect('this');
+    }
+  }
+
+  public function handleDecrease(int $cartItemId):void {
+    $this->cartFacade->decreaseCartItem($cartItemId);
+    $this->cart->updateCartItems();
+    
+    if ($this->presenter->isAjax()) {
+        $this->redrawControl('cart');
+    } else {
+        $this->redirect('this');
+    }
+  }
+
   /**
    * Metoda pro přidání produktu do košíku
    * @param Product $product
    */
-  public function addToCart(Product $product):void {
-    //TODO implementovat
+  public function addToCart(Product $product, int $count):void {
+    //aktualní košík je v $this->cart
+    $cartItem = null;
+
+    //pokud je košík neprázdný, zkontrolujeme, zda produkt již v košíku není
+    if (!empty($this->cart->items)) {
+      foreach ($this->cart->items as $item) {
+        if ($item->product->productId == $product->productId) {
+          $cartItem = $item;
+          break;
+        }
+      }
+    }
+    //pokud produkt není v košíku, vytvoříme nový produkt v košíku
+    if (!$cartItem) {
+      $cartItem = new CartItem();
+      $cartItem->product = $product;
+      $cartItem->count = $count;
+      $this->cart->items[] = $cartItem;
+    }
+    //TODO: volání funkce s count < 0
+    //pokud produkt již v košíku je, zvýšíme jeho množství
+    $cartItem->count += $count;
+
+    $this->cartFacade->saveCartItem($cartItem);
+    $this->cartFacade->saveCart($this->cart);
+    $this->cart->updateCartItems();
   }
 
   /**
