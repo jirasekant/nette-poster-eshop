@@ -6,7 +6,9 @@
         {foreach $posters as $poster}
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 {if count($poster->posterImages) > 0}
-                    <img src="{$poster->posterImages[0]->imageUrl}" alt="{$poster->title}" class="w-full h-64 object-cover">
+                    {var $imagePath = $basePath . $poster->posterImages[0]->imageUrl}
+                    <p>Debug: {$imagePath}</p>
+                    <img src="{$imagePath}" alt="{$poster->title}" class="w-full h-64 object-cover">
                 {/if}
                 <div class="p-4">
                     <h2 class="text-xl font-semibold mb-2">{$poster->title}</h2>
