@@ -1,0 +1,44 @@
+{varType App\Model\Entities\Cart $cart}
+{snippet list}
+<div>
+  {if empty($cart->items)}
+    košík je prázdný
+  {else}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Produkt</th>
+          <th>Počet</th>
+          <th>Cena za kus</th>
+          <th>Celkem</th>
+        </tr>
+      </thead>
+      <tbody>
+        {n:foreach $cart->items as $item}
+          <tr>
+            <td>{$item->product->title}</td>
+            <td>
+              <div class="d-flex align-items-center">
+                <a href="{link decrease! $item->cartItemId}" class="btn btn-sm btn-outline-secondary me-2">-</a>
+                {$item->count}
+                <a href="{link increase! $item->cartItemId}" class="btn btn-sm btn-outline-secondary ms-2">+</a>
+              </div>
+            </td>
+            <td>{$item->product->price|number:0,',',' '} Kč</td>
+            <td>{$item->product->price * $item->count|number:0,',',' '} Kč</td>
+            <td>
+              <a href="{link remove! $item->cartItemId}" class="btn btn-sm btn-danger">×</a>
+            </td>
+          </tr>
+        {/n:foreach}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="text-right"><strong>Celková cena:</strong></td>
+          <td><strong>{$cart->getTotalPrice()|number:0,',',' '} Kč</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  {/if}
+</div>
+{/snippet}

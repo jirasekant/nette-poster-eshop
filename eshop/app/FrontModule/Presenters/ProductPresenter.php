@@ -5,6 +5,9 @@ namespace App\FrontModule\Presenters;
 use App\FrontModule\Components\ProductCartForm\ProductCartFormFactory;
 use App\Model\Facades\ProductsFacade;
 use Nette\Application\BadRequestException;
+use Nette\Application\UI\Multiplier;
+use App\FrontModule\Components\ProductCartForm\ProductCartForm;
+use App\FrontModule\Components\CartControl\CartControl;
 
 /**
  * Class ProductPresenter
@@ -50,4 +53,27 @@ class ProductPresenter extends BasePresenter{
     $this->productCartFormFactory=$productCartFormFactory;
   }
   #endregion injections
+
+  protected function createComponentProductCartForm(): Multiplier {
+    return new Multiplier(function ($productId) {
+      $form = $this->productCartFormFactory->create();
+          $form->setDefaults(['productId'=>$productId]);
+
+      $form->onSubmit[] = function (ProductCartForm $form) {
+        try {
+          $product = $this->productsFacade->getProduct($form->values->productId);
+        } catch (\Exception $e) {
+          $this->flashMessage('Nelze přidat produkt do košíku.', 'error');
+          $this->redirect('this');
+        }
+        /** @var CartControl $cart */
+        $cart = $this->getComponent('cart');
+        $cart->addToCart($product, (int)$form->values->count);
+
+        $this->flashMessage('Produkt byl přidán do košíku.', 'success');
+        $this->redirect('this');
+      };
+      return $form;
+    }); 
+  }
 }
