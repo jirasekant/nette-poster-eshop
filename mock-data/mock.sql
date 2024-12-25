@@ -1,88 +1,90 @@
--- Authors Table
-INSERT INTO `Authors` (`Name`) VALUES
-('John Doe'),
-('Jane Smith'),
-('Michael Brown'),
-('Emma Johnson');
+-- Insert test users with hashed passwords (using bcrypt)
+INSERT INTO `user` (`name`, `email`, `password`, `role_id`) VALUES
+('John Doe', 'john@example.com', '$2y$10$GRA8D27bvZzxaECqD7SOIuXwC6oHtHrFZ.4q/kPtqsX9M2VF.nE8W', 'admin'), -- password: admin123
+('Jane Smith', 'jane@example.com', '$2y$10$8HxXxx0.1EYVLdZH7HKO8u0UpVBVrX3dh3YGhXjEUf4qmEtGHfSge', 'authenticated'), -- password: user123
+('Michael Brown', 'michael@example.com', '$2y$10$8HxXxx0.1EYVLdZH7HKO8u0UpVBVrX3dh3YGhXjEUf4qmEtGHfSge', 'authenticated'), -- password: user123
+('Emma Johnson', 'emma@example.com', '$2y$10$8HxXxx0.1EYVLdZH7HKO8u0UpVBVrX3dh3YGhXjEUf4qmEtGHfSge', 'authenticated'); -- password: user123
 
--- Categories Table
-INSERT INTO `Categories` (`CategoryName`, `ParentCategoryID`) VALUES
-('Art', NULL),
-('Photography', NULL),
-('Digital Art', 1),
-('Abstract', 3),
-('Nature', 2);
+-- Insert authors
+INSERT INTO `author` (`name`) VALUES
+('Vincent van Gogh'),
+('Claude Monet'),
+('Gustav Klimt'),
+('Alphonse Mucha');
 
--- Users Table
-INSERT INTO `Users` (`Username`, `PasswordHash`, `Email`) VALUES
-('johndoe', 'hashedpassword123', 'johndoe@example.com'),
-('janesmith', 'hashedpassword456', 'janesmith@example.com'),
-('michaelbrown', 'hashedpassword789', 'michaelbrown@example.com'),
-('emmajohnson', 'hashedpassword101', 'emmajohnson@example.com');
+-- Insert categories
+INSERT INTO `category` (`title`, `description`, `parent_category_id`) VALUES
+('Art', 'Beautiful art pieces from various artists', NULL),
+('Photography', 'Stunning photographic works', NULL),
+('Digital Art', 'Modern digital artworks', 1),
+('Abstract', 'Abstract art pieces', 3),
+('Nature', 'Nature themed artwork', 2);
 
--- Posters Table
-INSERT INTO `Posters` (`PosterName`, `Description`, `AuthorID`, `Stock`) VALUES
-('Mountain Landscape', 'A beautiful mountain view during sunrise.', 1, 50),
-('Cityscape at Night', 'A vibrant city skyline with colorful lights.', 2, 30),
-('Abstract Art', 'A modern abstract painting with vivid colors.', 3, 20),
-('Wildlife Photography', 'A stunning shot of a lion in the wild.', 4, 15);
+-- Insert posters
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Starry Night', 'starry-night', 'The iconic night sky painting by Vincent van Gogh', 1, 50, 1),
+('Water Lilies', 'water-lilies', 'Monet\'s famous water lilies series', 2, 30, 1),
+('The Kiss', 'the-kiss', 'Gustav Klimt\'s masterpiece of the Golden Period', 3, 20, 1),
+('The Seasons', 'the-seasons', 'Mucha\'s decorative panel series', 4, 15, 1);
 
--- PosterCategories Table
-INSERT INTO `PosterCategories` (`PosterID`, `CategoryID`) VALUES
-(1, 1),  -- Mountain Landscape -> Art
-(2, 2),  -- Cityscape at Night -> Photography
-(3, 3),  -- Abstract Art -> Digital Art
-(4, 5),  -- Wildlife Photography -> Nature
-(1, 4);  -- Mountain Landscape -> Abstract
+-- Insert poster categories
+INSERT INTO `poster_category` (`poster_id`, `category_id`) VALUES
+(1, 1),  -- Starry Night -> Art
+(2, 1),  -- Water Lilies -> Art
+(3, 1),  -- The Kiss -> Art
+(4, 1),  -- The Seasons -> Art
+(1, 4),  -- Starry Night -> Abstract
+(2, 5);  -- Water Lilies -> Nature
 
--- PosterImages Table
-INSERT INTO `PosterImages` (`PosterID`, `ImageURL`) VALUES
-(1, 'https://example.com/images/mountain_landscape.jpg'),
-(2, 'https://example.com/images/cityscape_night.jpg'),
-(3, 'https://example.com/images/abstract_art.jpg'),
-(4, 'https://example.com/images/wildlife_photography.jpg');
+-- Insert poster images
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(1, '/images/posters/starry-night-main.jpg'),
+(1, '/images/posters/starry-night-detail.jpg'),
+(2, '/images/posters/water-lilies-main.jpg'),
+(3, '/images/posters/the-kiss-main.jpg'),
+(4, '/images/posters/the-seasons-main.jpg');
 
--- PosterSizes Table
-INSERT INTO `PosterSizes` (`PosterID`, `Size`, `Price`) VALUES
-(1, 'Small', 15.00),
-(1, 'Medium', 25.00),
-(1, 'Large', 35.00),
-(2, 'Small', 18.00),
-(2, 'Medium', 28.00),
-(2, 'Large', 38.00),
-(3, 'Small', 20.00),
-(3, 'Medium', 30.00),
-(3, 'Large', 40.00),
-(4, 'Small', 25.00),
-(4, 'Medium', 35.00),
-(4, 'Large', 45.00);
+-- Insert poster sizes with prices
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(1, 'small', 29.99),
+(1, 'medium', 49.99),
+(1, 'large', 79.99),
+(2, 'small', 24.99),
+(2, 'medium', 44.99),
+(2, 'large', 74.99),
+(3, 'small', 34.99),
+(3, 'medium', 54.99),
+(3, 'large', 84.99),
+(4, 'small', 39.99),
+(4, 'medium', 59.99),
+(4, 'large', 89.99);
 
--- Carts Table
-INSERT INTO `Carts` (`UserID`) VALUES
-(1),
-(2),
-(3),
-(4);
+-- Insert carts
+INSERT INTO `cart` (`user_id`, `last_modified`) VALUES
+(2, NOW()),  -- Cart for Jane
+(3, NOW()),  -- Cart for Michael
+(4, NOW());  -- Cart for Emma
 
--- CartItems Table
-INSERT INTO `CartItems` (`CartID`, `PosterSizeID`, `Quantity`) VALUES
-(1, 1, 2),  -- User 1, Mountain Landscape, Small x2
-(1, 3, 1),  -- User 1, Abstract Art, Large x1
-(2, 2, 1),  -- User 2, Cityscape at Night, Medium x1
-(3, 4, 3),  -- User 3, Wildlife Photography, Small x3
-(4, 5, 2);  -- User 4, Abstract Art, Medium x2
+-- Insert cart items
+INSERT INTO `cart_item` (`cart_id`, `poster_size_id`, `count`) VALUES
+(1, 1, 2),  -- Jane's cart: 2x Starry Night (small)
+(1, 5, 1),  -- Jane's cart: 1x Water Lilies (medium)
+(2, 8, 1),  -- Michael's cart: 1x The Kiss (medium)
+(3, 12, 1); -- Emma's cart: 1x The Seasons (large)
 
--- Orders Table
-INSERT INTO `Orders` (`UserID`, `CartID`, `TotalAmount`, `Status`) VALUES
-(1, 1, 95.00, 'Pending'),
-(2, 2, 60.00, 'Completed'),
-(3, 3, 105.00, 'Pending'),
-(4, 4, 160.00, 'Completed');
+-- Insert orders
+INSERT INTO `order` (`user_id`, `cart_id`, `total_amount`, `status`, `created`) VALUES
+(2, 1, 104.97, 'completed', NOW() - INTERVAL 2 DAY),  -- Jane's completed order
+(3, 2, 54.99, 'pending', NOW() - INTERVAL 1 DAY),     -- Michael's pending order
+(4, 3, 89.99, 'completed', NOW());                    -- Emma's completed order
 
--- OrderItems Table
-INSERT INTO `OrderItems` (`OrderID`, `PosterSizeID`, `Quantity`, `Price`) VALUES
-(1, 1, 2, 15.00),  -- Order 1, Mountain Landscape x2 (Small)
-(1, 3, 1, 40.00),  -- Order 1, Abstract Art x1 (Large)
-(2, 2, 1, 28.00),  -- Order 2, Cityscape at Night x1 (Medium)
-(3, 4, 3, 25.00),  -- Order 3, Wildlife Photography x3 (Small)
-(4, 5, 2, 30.00);  -- Order 4, Abstract Art x2 (Medium)
+-- Insert order items
+INSERT INTO `order_item` (`order_id`, `poster_size_id`, `count`, `price`) VALUES
+(1, 1, 2, 29.99),  -- Jane's order: 2x Starry Night (small)
+(1, 5, 1, 44.99),  -- Jane's order: 1x Water Lilies (medium)
+(2, 8, 1, 54.99),  -- Michael's order: 1x The Kiss (medium)
+(3, 12, 1, 89.99); -- Emma's order: 1x The Seasons (large)
+
+-- Insert a forgotten password request (for testing)
+INSERT INTO `forgotten_password` (`user_id`, `code`, `created`) VALUES
+(2, 'test-reset-code-123', NOW() - INTERVAL 1 HOUR);
