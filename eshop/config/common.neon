@@ -27,6 +27,7 @@ services:
 
 	- App\AdminModule\Components\CategoryEditForm\CategoryEditFormFactory
 	- App\AdminModule\Components\ProductEditForm\ProductEditFormFactory
+	- App\AdminModule\Components\PosterEditForm\PosterEditFormFactory
 
 	- App\FrontModule\Components\UserLoginForm\UserLoginFormFactory
 	- App\FrontModule\Components\UserRegistrationForm\UserRegistrationFormFactory
@@ -36,11 +37,13 @@ services:
 	        - setMailFrom(%mailFrom.email%,%mailFrom.name%)
 	- App\FrontModule\Components\NewPasswordForm\NewPasswordFormFactory
 	- App\FrontModule\Components\ProductCartForm\ProductCartFormFactory
+	- App\FrontModule\Components\PosterCartForm\PosterCartFormFactory
 	- App\FrontModule\Components\CartControl\CartControlFactory
 	- App\FrontModule\Components\UserLoginControl\UserLoginControlFactory
 
 	- App\Model\Facades\CategoriesFacade
 	- App\Model\Facades\ProductsFacade
+	- App\Model\Facades\PostersFacade
 	- App\Model\Facades\CartFacade
 	- App\Model\Facades\UsersFacade
 
@@ -50,6 +53,7 @@ services:
 	- App\Model\Repositories\ForgottenPasswordRepository
 	- App\Model\Repositories\PermissionRepository
 	- App\Model\Repositories\ProductRepository
+	- App\Model\Repositories\PosterRepository
 	- App\Model\Repositories\ResourceRepository
 	- App\Model\Repositories\RoleRepository
 	- App\Model\Repositories\UserRepository	

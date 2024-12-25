@@ -2,8 +2,19 @@
 
 namespace App\FrontModule\Presenters;
 
-class HomepagePresenter extends BasePresenter{
+use App\Model\Facades\PostersFacade;
 
-  //TODO
+class HomepagePresenter extends BasePresenter {
+    private PostersFacade $postersFacade;
 
+    public function renderDefault(): void {
+        $this->template->posters = $this->postersFacade->findPosters([
+            'order' => 'title',
+            'available' => true
+        ]);
+    }
+
+    public function injectPostersFacade(PostersFacade $postersFacade): void {
+        $this->postersFacade = $postersFacade;
+    }
 }
