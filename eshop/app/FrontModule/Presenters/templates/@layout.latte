@@ -38,40 +38,99 @@
 			font-size: 1rem;
 			font-weight: 500;
 		}
+		.navbar-toggler {
+			border: none;
+			padding: 0;
+		}
+		.nav-link {
+			color: #333;
+			font-weight: 500;
+			padding: 0.5rem 1rem;
+		}
+		.nav-link:hover {
+			color: #666;
+		}
+		.dropdown-menu {
+			border-radius: 0;
+			border: none;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+		}
 	</style>
 
 	{block head}{/block}
 </head>
 <body>
 
-	<header class="navbar navbar-light bg-light mb-4">
+	<!-- Main Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
 		<div class="container">
-			<h1 class="h2 mt-1 "><a href="{plink Homepage:default}" class="text-dark">E-shop</a></h1>
-			<div class="ml-auto">
-				{control cart}
-				{control userLogin}
+			<!-- Menu Button -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			<!-- Brand -->
+			<a class="navbar-brand mx-auto mx-lg-0" href="{plink Homepage:default}">Art Poster Shop</a>
+
+			<!-- Navigation Items -->
+			<div class="collapse navbar-collapse" id="navbarContent">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="{plink Homepage:default}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{plink Product:list}">Shop</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{plink Homepage:about}">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{plink Homepage:contact}">Contact</a>
+					</li>
+				</ul>
+
+				<!-- User Controls -->
+				<div class="d-flex align-items-center ms-lg-4">
+					<a href="{plink Cart:default}" class="btn btn-link">
+						<i class="fas fa-shopping-cart"></i>
+					</a>
+					{if $user->isLoggedIn()}
+						<div class="dropdown">
+							<button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+								<i class="fas fa-user"></i>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li><a class="dropdown-item" href="{plink User:profile}">Profile</a></li>
+								<li><a class="dropdown-item" href="{plink User:orders}">Orders</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="{plink User:logout}">Logout</a></li>
+							</ul>
+						</div>
+					{else}
+						<a href="{plink User:login}" class="btn btn-link">
+							<i class="fas fa-user"></i>
+						</a>
+					{/if}
+				</div>
 			</div>
 		</div>
-	</header>
-	<div class="container">
+	</nav>
 
-		<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type=='error'?'danger':$flash->type} alert-dismissible mt-2" role="alert">
-			{$flash->message}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-
-		<section>
-		{include content}
-		</section>
+	<!-- Flash Messages -->
+	<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type=='error'?'danger':$flash->type} alert-dismissible mt-2" role="alert">
+		{$flash->message}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 
-	{block scripts}
-		<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-	{/block}
+	<!-- Main Content -->
+	<main>
+		<div class="container">
+			{include content}
+		</div>
+	</main>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	{block scripts}{/block}
 </body>
 </html>
 
