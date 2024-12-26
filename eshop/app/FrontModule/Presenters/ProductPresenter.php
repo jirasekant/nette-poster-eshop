@@ -2,78 +2,48 @@
 
 namespace App\FrontModule\Presenters;
 
-use App\FrontModule\Components\ProductCartForm\ProductCartFormFactory;
-use App\Model\Facades\ProductsFacade;
-use Nette\Application\BadRequestException;
-use Nette\Application\UI\Multiplier;
-use App\FrontModule\Components\ProductCartForm\ProductCartForm;
-use App\FrontModule\Components\CartControl\CartControl;
+use App\Model\Repositories\PosterRepository;
+use App\Model\Repositories\CategoryRepository;
 
-/**
- * Class ProductPresenter
- * @package App\FrontModule\Presenters
- * @property string $category
- */
-class ProductPresenter extends BasePresenter{
-  private ProductsFacade $productsFacade;
-  private ProductCartFormFactory $productCartFormFactory;
+class ProductPresenter extends BasePresenter
+{
+    private PosterRepository $posterRepository;
+    private CategoryRepository $categoryRepository;
 
-  /** @persistent */
-  public string $category;
-
-  /**
-   * Akce pro zobrazení jednoho produktu
-   * @param string $url
-   * @throws BadRequestException
-   */
-  public function renderShow(string $url):void {
-    try{
-      $product = $this->productsFacade->getProductByUrl($url);
-    }catch (\Exception $e){
-      throw new BadRequestException('Produkt nebyl nalezen.');
+    public function __construct(
+        PosterRepository $posterRepository,
+        CategoryRepository $categoryRepository
+    ) {
+        parent::__construct();
+        $this->posterRepository = $posterRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
-    $this->template->product = $product;
-  }
-
-  /**
-   * Akce pro vykreslení přehledu produktů
-   */
-  public function renderList():void {
-    //TODO tady by mělo přibýt filtrování podle kategorie, stránkování atp.
-    $this->template->products = $this->productsFacade->findProducts(['order'=>'title']);
-  }
-
-  #region injections
-  public function injectProductsFacade(ProductsFacade $productsFacade):void {
-    $this->productsFacade=$productsFacade;
-  }
-
-  public function injectProductCartFormFactory(ProductCartFormFactory $productCartFormFactory):void {
-    $this->productCartFormFactory=$productCartFormFactory;
-  }
-  #endregion injections
-
-  protected function createComponentProductCartForm(): Multiplier {
-    return new Multiplier(function ($productId) {
-      $form = $this->productCartFormFactory->create();
-          $form->setDefaults(['productId'=>$productId]);
-
-      $form->onSubmit[] = function (ProductCartForm $form) {
-        try {
-          $product = $this->productsFacade->getProduct($form->values->productId);
-        } catch (\Exception $e) {
-          $this->flashMessage('Nelze přidat produkt do košíku.', 'error');
-          $this->redirect('this');
+    public function renderList(): void
+    {
+        // Get category filter from query params
+        $categoryId = $this->getParameter('categoryId');
+        
+        // Get all categories for the sidebar
+        $this->template->categories = $this->categoryRepository->findAll();
+        
+        // Get posters, filtered by category if specified
+        if ($categoryId) {
+            $this->template->posters = $this->posterRepository->findByCategory($categoryId);
+        } else {
+            $this->template->posters = $this->posterRepository->findAll();
         }
-        /** @var CartControl $cart */
-        $cart = $this->getComponent('cart');
-        $cart->addToCart($product, (int)$form->values->count);
+        
+        // Pass the current category ID to the template
+        $this->template->currentCategoryId = $categoryId;
+    }
 
-        $this->flashMessage('Produkt byl přidán do košíku.', 'success');
-        $this->redirect('this');
-      };
-      return $form;
-    }); 
-  }
+    public function renderShow(int $id): void
+    {
+        $poster = $this->posterRepository->find($id);
+        if (!$poster) {
+            $this->error('Poster not found');
+        }
+        $this->template->poster = $poster;
+    }
 }

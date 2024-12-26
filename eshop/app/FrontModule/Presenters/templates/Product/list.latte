@@ -1,13 +1,68 @@
-{varType App\Model\Entities\Product[] $products}
 {block content}
-
-<h1 n:block="title">Nabízené produkty</h1>
-
-<section class="row" n:if="!empty($products)">
-    {foreach $products as $product}
-        <div class="col-md-6 col-lg-4 my-2 card">
-            <a href="{plink Product:show url=>$product->url}" class="h4">{$product->title}</a>
-            {control "productCartForm-$product->productId"}
+<div class="container-fluid py-5">
+    <div class="row">
+        <!-- Categories Sidebar -->
+        <div class="col-md-3">
+            <div class="card border-0 rounded-0">
+                <div class="card-body">
+                    <h5 class="text-uppercase mb-4">Categories</h5>
+                    <div class="list-group list-group-flush">
+                        <a href="{plink Product:list}" 
+                           class="list-group-item list-group-item-action border-0 {if !$currentCategoryId}active{/if}">
+                            All Posters
+                        </a>
+                        <a n:foreach="$categories as $category" 
+                           href="{plink Product:list, categoryId => $category->categoryId}"
+                           class="list-group-item list-group-item-action border-0 {if $currentCategoryId == $category->categoryId}active{/if}">
+                            {$category->title}
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    {/foreach}
-</section>
+
+        <!-- Products Grid -->
+        <div class="col-md-9">
+            <div class="row g-4">
+                {foreach $posters as $poster}
+                    <div class="col-md-4">
+                        <div class="card border-0 h-100 position-relative">
+                            <!-- Image -->
+                            {if $poster->posterImages && count($poster->posterImages) > 0}
+                                <div class="position-relative">
+                                    <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
+                                         class="card-img-top" 
+                                         alt="{$poster->title}" 
+                                         style="height: 300px; object-fit: cover;">
+                                </div>
+                            {else}
+                                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                                    <i class="fas fa-image text-muted fa-3x"></i>
+                                </div>
+                            {/if}
+                            
+                            <!-- Content -->
+                            <div class="card-body px-0 text-center">
+                                <h5 class="card-title mb-2">{$poster->title}</h5>
+                                {if $poster->posterSizes && count($poster->posterSizes) > 0}
+                                    <div class="price-container">
+                                        <span class="text-danger">from ${$poster->posterSizes[0]->price|number:2}</span>
+                                        {var $originalPrice = $poster->posterSizes[0]->price + rand(4, 8)}
+                                        <span class="text-muted text-decoration-line-through">${$originalPrice|number:2}</span>
+                                    </div>
+                                {else}
+                                    <p class="card-text text-muted">Price not available</p>
+                                {/if}
+                            </div>
+                            
+                            <!-- View Button -->
+                            <div class="card-footer bg-transparent border-0 text-center">
+                                <a href="{plink Product:show $poster->posterId}" class="btn btn-outline-dark rounded-0 px-4">View</a>
+                            </div>
+                        </div>
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,22 +6,32 @@ namespace App\Router;
 
 use Nette;
 use Nette\Application\Routers\RouteList;
+use Nette\Application\Routers\Route;
 
-final class RouterFactory{
+final class RouterFactory
+{
 	use Nette\StaticClass;
 
 	public static function createRouter():RouteList {
-    $adminRouter = new RouteList('Admin');
-    $adminRouter->addRoute('admin/<presenter=Dashboard>/<action=default>[/<id>]');
+		$router = new RouteList;
+		
+		// Admin routes
+		$router->addRoute('admin/<presenter>/<action>[/<id>]', [
+			'module' => 'Admin',
+			'presenter' => 'Homepage',
+			'action' => 'default'
+		]);
 
-	  $frontRouter = new RouteList('Front');
-    $frontRouter->addRoute('produkty[/kategorie-<category>]', 'Product:list');  //pokud je do adresy zakomponována také proměnná category, je doplněna do adresy
-    $frontRouter->addRoute('produkty[/kategorie-<category>]/<url>', 'Product:show');  //pokud je do adresy zakomponována také proměnná category, je doplněna prostřední část adresy
-		$frontRouter->addRoute('<presenter=Homepage>/<action=default>[/<id>]');
+		// Front routes
+		$router->addRoute('products', 'Front:Product:list');
+		$router->addRoute('products/<id>', 'Front:Product:show');
+		
+		$router->addRoute('<presenter>/<action>[/<id>]', [
+			'module' => 'Front',
+			'presenter' => 'Homepage',
+			'action' => 'default'
+		]);
 
-	  $router = new RouteList();
-		$router->add($adminRouter);
-		$router->add($frontRouter);
 		return $router;
 	}
 }

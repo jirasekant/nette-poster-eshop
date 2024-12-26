@@ -3,10 +3,29 @@
 namespace App\Model\Repositories;
 
 use LeanMapper\Repository;
-use Tracy\Debugger;
 
 class PosterRepository extends Repository
 {
+    public function findAll(): array
+    {
+        $result = $this->connection->select('DISTINCT p.*')
+            ->from('[poster] p')
+            ->fetchAll();
+            
+        return $this->createEntities($result);
+    }
+
+    public function findByCategory(int $categoryId): array
+    {
+        $result = $this->connection->select('DISTINCT p.*')
+            ->from('[poster] p')
+            ->join('[poster_category] pc')->on('p.poster_id = pc.poster_id')
+            ->where('pc.category_id = %i', $categoryId)
+            ->fetchAll();
+            
+        return $this->createEntities($result);
+    }
+
     public function findNewest(int $limit = 4): array
     {
         $result = $this->connection->select('DISTINCT p.*')
@@ -15,12 +34,7 @@ class PosterRepository extends Repository
             ->limit($limit)
             ->fetchAll();
         
-        Debugger::barDump($result, 'Raw SQL Result');
-        
-        $entities = $this->createEntities($result);
-        Debugger::barDump($entities, 'Created Entities');
-        
-        return $entities;
+        return $this->createEntities($result);
     }
 
     public function findPopular(int $limit = 4): array
@@ -30,11 +44,6 @@ class PosterRepository extends Repository
             ->limit($limit)
             ->fetchAll();
             
-        Debugger::barDump($result, 'Raw SQL Result - Popular');
-        
-        $entities = $this->createEntities($result);
-        Debugger::barDump($entities, 'Created Entities - Popular');
-        
-        return $entities;
+        return $this->createEntities($result);
     }
 } 
