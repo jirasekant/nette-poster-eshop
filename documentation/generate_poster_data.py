@@ -16,40 +16,18 @@ POSTER_SIZES = {
 
 def clean_filename(filename):
     """Clean up the filename to get a nice title"""
-    # Remove file extension
-    name = re.sub(r'\.(jpg|png)$', '', filename, flags=re.IGNORECASE)
-    
-    # Remove various prefixes and suffixes
+    # Remove file extension and common suffixes
+    name = re.sub(r'\.(jpg|png)$', '', filename)
     name = re.sub(r'-\d+_\d+x$', '', name)  # Remove size suffix like -1_360x
-    name = re.sub(r'^[XP]\d+-', '', name)   # Remove X123- or P123- prefix
-    name = re.sub(r'\d+_\d+x$', '', name)   # Remove any remaining size indicators
+    name = re.sub(r'^X\d+-', '', name)      # Remove X123- prefix
     
-    # Special case for Bauhaus files
-    if name.lower().startswith('bauhaus'):
-        # Split "bauhausredsun" into "bauhaus red sun"
-        name = re.sub(r'(?<=bauhaus)(?=[a-z])', ' ', name, flags=re.IGNORECASE)
-    
-    # Add spaces before capital letters in combined words
-    name = re.sub(r'(?<!^)(?<![\s-])([A-Z][a-z])', r' \1', name)
-    
-    # Replace dashes and underscores with spaces
-    name = name.replace('-', ' ').replace('_', ' ')
-    
-    # Remove duplicate spaces and split into words
-    words = [w for w in name.split() if w]
-    
-    # Title case each word
+    # Replace dashes with spaces and title case
+    words = name.replace('-', ' ').split()
     return ' '.join(word.capitalize() for word in words)
 
 def generate_url(title):
     """Generate URL-friendly string"""
-    # Convert to lowercase and replace spaces with dashes
-    url = title.lower().replace(' ', '-')
-    # Remove any characters that aren't alphanumeric or dashes
-    url = re.sub(r'[^a-z0-9-]', '', url)
-    # Remove multiple consecutive dashes
-    url = re.sub(r'-+', '-', url)
-    return url
+    return re.sub(r'[^a-z0-9-]', '', title.lower().replace(' ', '-'))
 
 def main():
     print(f'Script directory: {SCRIPT_DIR}')

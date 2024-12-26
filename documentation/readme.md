@@ -1,4 +1,13 @@
 # Nette Poster E-shop Documentation
+## Notes
+- Cleaning the filenames is not perfect, it will need further improvements
+  - atm not caught cases example: P317-BauhausWeimar1_360x.png -> P317 Bauhausweimar1_360x
+- The current version generates standard prices for all posters:
+  - Small: $29.99
+  - Medium: $49.99
+  - Large: $79.99
+- Each poster is set with a default stock of 50 items
+- All posters are set as available by default
 
 ## Database Initialization
 
@@ -68,11 +77,4 @@ The following improvements are planned for the data generation:
    - Validate naming conventions
    - Ensure all required files are present
 
-## Notes
 
-- The current version generates standard prices for all posters:
-  - Small: $29.99
-  - Medium: $49.99
-  - Large: $79.99
-- Each poster is set with a default stock of 50 items
-- All posters are set as available by default
