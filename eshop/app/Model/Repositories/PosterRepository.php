@@ -3,6 +3,7 @@
 namespace App\Model\Repositories;
 
 use LeanMapper\Repository;
+use LeanMapper\Entity;
 
 class PosterRepository extends Repository
 {
@@ -45,5 +46,27 @@ class PosterRepository extends Repository
             ->fetchAll();
             
         return $this->createEntities($result);
+    }
+
+    public function findRelated(int $posterId, int $limit = 4): array
+    {
+        $result = $this->connection->select('DISTINCT p.*')
+            ->from('[poster] p')
+            ->where('p.poster_id != %i', $posterId)
+            ->orderBy('RAND()')
+            ->limit($limit)
+            ->fetchAll();
+            
+        return $this->createEntities($result);
+    }
+
+    public function find(int $posterId): ?Entity
+    {
+        $result = $this->connection->select('p.*')
+            ->from('[poster] p')
+            ->where('p.poster_id = %i', $posterId)
+            ->fetch();
+        
+        return $result ? $this->createEntity($result) : null;
     }
 } 

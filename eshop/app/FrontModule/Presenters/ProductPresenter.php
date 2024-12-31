@@ -44,6 +44,10 @@ class ProductPresenter extends BasePresenter
         if (!$poster) {
             $this->error('Poster not found');
         }
+        
+        // Get related posters (for now, just get 4 random posters excluding current one)
+        $this->template->relatedPosters = $this->posterRepository->findRelated($id, 4);
+        
         $this->template->poster = $poster;
     }
 }

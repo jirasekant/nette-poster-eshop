@@ -1,8 +1,115 @@
 {varType App\Model\Entities\Product $product}
 {block content}
+<div class="py-5">
+    <div class="row">
+        <!-- Left Column - Main Image -->
+        <div class="col-md-6 mb-4">
+            {if $poster->posterImages && count($poster->posterImages) > 0}
+                <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
+                     class="img-fluid" 
+                     alt="{$poster->title}">
+                
+                <!-- Thumbnail Images -->
+                <div class="row mt-3">
+                    {foreach $poster->posterImages as $image}
+                        <div class="col-3">
+                            <img src="{$basePath}{$image->imageUrl}" 
+                                 class="img-fluid border" 
+                                 alt="{$poster->title}">
+                        </div>
+                    {/foreach}
+                </div>
+            {else}
+                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 600px;">
+                    <i class="fas fa-image text-muted fa-3x"></i>
+                </div>
+            {/if}
+        </div>
 
-<h1 n:block="title">{$product->title}</h1>
+        <!-- Right Column - Product Info -->
+        <div class="col-md-6">
+            <h1 class="h2 mb-4">{$poster->title}</h1>
+            
+            <!-- Author -->
+            {if $poster->author}
+                <p class="text-muted mb-4">By {$poster->author->name}</p>
+            {/if}
 
-<p>
-    {$product->description}
-</p>
+            <!-- Size Selection -->
+            {if $poster->posterSizes && count($poster->posterSizes) > 0}
+                <div class="mb-4">
+                    <h5 class="text-uppercase mb-3">Select Size</h5>
+                    <div class="row g-2">
+                        {foreach $poster->posterSizes as $size}
+                            <div class="col-12">
+                                <div class="border p-3 text-center position-relative {if $size->size === 'medium'}border-success{/if}">
+                                    <div class="h5 mb-1">${$size->price|number:2}</div>
+                                    <div class="mb-1">{$size->displayName} ({$size->width} × {$size->height} cm)</div>
+                                    {if $size->size === 'medium'}
+                                        <span class="badge bg-success position-absolute top-0 end-0 m-2">Most popular</span>
+                                    {/if}
+                                </div>
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+            {/if}
+
+            <!-- Add to Cart Button -->
+            <div class="mb-4">
+                <button class="btn btn-dark w-100 rounded-0 py-3">Add to Cart</button>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4">
+                <h5 class="text-uppercase mb-3">Description</h5>
+                <p>{$poster->description}</p>
+            </div>
+
+            <!-- Categories -->
+            {if $poster->categories && count($poster->categories) > 0}
+                <div class="mb-4">
+                    <h5 class="text-uppercase mb-3">Categories</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        {foreach $poster->categories as $category}
+                            <a href="{plink Product:list, categoryId => $category->categoryId}" 
+                               class="btn btn-outline-dark btn-sm rounded-0">
+                                {$category->title}
+                            </a>
+                        {/foreach}
+                    </div>
+                </div>
+            {/if}
+        </div>
+    </div>
+
+    <!-- You May Also Like Section -->
+    <section class="mt-5">
+        <h2 class="text-uppercase mb-4">You May Also Like</h2>
+        <div class="row g-4">
+            {foreach $relatedPosters as $relatedPoster}
+                <div class="col-md-3">
+                    <div class="card border-0 h-100">
+                        {if $relatedPoster->posterImages && count($relatedPoster->posterImages) > 0}
+                            <img src="{$basePath}{$relatedPoster->posterImages[0]->imageUrl}" 
+                                 class="card-img-top" 
+                                 alt="{$relatedPoster->title}"
+                                 style="height: 300px; object-fit: cover;">
+                        {else}
+                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                                <i class="fas fa-image text-muted fa-3x"></i>
+                            </div>
+                        {/if}
+                        <div class="card-body px-0 text-center">
+                            <h5 class="card-title">{$relatedPoster->title}</h5>
+                            {if $relatedPoster->posterSizes && count($relatedPoster->posterSizes) > 0}
+                                <p class="card-text">From ${$relatedPoster->posterSizes[0]->price|number:2}</p>
+                            {/if}
+                            <a href="{plink Product:show $relatedPoster->posterId}" class="btn btn-outline-dark rounded-0">View</a>
+                        </div>
+                    </div>
+                </div>
+            {/foreach}
+        </div>
+    </section>
+</div>
