@@ -21,15 +21,15 @@ class HomepagePresenter extends BasePresenter
 
     public function renderDefault(): void
     {
-        // Get 4 newest posters (using created_at timestamp)
-        $this->template->newArrivals = $this->posterRepository->findNewest();
+        // Get 20 newest posters for the carousel
+        $this->template->newArrivals = $this->posterRepository->findNewest(20);
 
         // Get main categories (those without parent)
         $this->template->mainCategories = $this->categoryRepository->findBy([
             'parent_category_id' => null
         ]);
 
-        // Get 4 random posters for the Popular section
-        $this->template->popularPosters = $this->posterRepository->findRandom();
+        // Get 20 random posters for the Popular section carousel
+        $this->template->popularPosters = $this->posterRepository->findRandom(20);
     }
 }

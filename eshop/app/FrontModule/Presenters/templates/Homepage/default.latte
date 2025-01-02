@@ -3,52 +3,130 @@
     <!-- New Arrivals Section -->
     <section class="mb-5">
         <h2 class="text-center mb-4 text-uppercase">New Arrivals</h2>
-        <div class="row g-4">
-            {foreach $newArrivals as $poster}
-                <div class="col-md-3">
-                    <div class="card border-0 h-100 position-relative">
-                        <!-- Sale Badge -->
-                        {* <div class="position-absolute" style="top: 10px; right: 10px;">
-                            <span class="badge bg-danger">Save 50%</span>
-                        </div> *}
-                        
-                        <!-- Image -->
-                        {if $poster->posterImages && count($poster->posterImages) > 0}
-                            <div class="position-relative">
-                                <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
-                                     class="card-img-top" 
-                                     alt="{$poster->title}" 
-                                     style="height: 300px; object-fit: cover;">
+        
+        <div class="carousel-container">
+            <div id="newArrivalsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Navigation arrows -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#newArrivalsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#newArrivalsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    {var $chunks = array_chunk($newArrivals, 4)}
+                    {foreach $chunks as $chunk}
+                        <div class="carousel-item {if $iterator->isFirst()}active{/if}">
+                            <div class="row g-4">
+                                {foreach $chunk as $poster}
+                                    <div class="col-md-3">
+                                        <div class="card border-0 h-100">
+                                            <!-- Image -->
+                                            {if $poster->posterImages && count($poster->posterImages) > 0}
+                                                <div class="position-relative poster-image-container">
+                                                    <a href="{plink Product:show $poster->posterId}" class="d-block">
+                                                        <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
+                                                             class="card-img-top" 
+                                                             alt="{$poster->title}" 
+                                                             style="height: 300px; object-fit: cover;">
+                                                    </a>
+                                                </div>
+                                            {else}
+                                                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                                                    <i class="fas fa-image text-muted fa-3x"></i>
+                                                </div>
+                                            {/if}
+                                            
+                                            <!-- Content -->
+                                            <div class="card-body px-0 text-center">
+                                                <h5 class="card-title mb-2">{$poster->title}</h5>
+                                                {if $poster->posterSizes && count($poster->posterSizes) > 0}
+                                                    <div class="price-container">
+                                                        <span class="text-danger">from ${$poster->posterSizes[0]->price|number:2}</span>
+                                                        {var $originalPrice = $poster->posterSizes[0]->price + rand(4, 8)}
+                                                        <span class="text-muted text-decoration-line-through">${$originalPrice|number:2}</span>
+                                                    </div>
+                                                {else}
+                                                    <p class="card-text text-muted">Price not available</p>
+                                                {/if}
+                                            </div>
+                                            
+                                            <!-- View Button -->
+                                            <div class="card-footer bg-transparent border-0 text-center">
+                                                <a href="{plink Product:show $poster->posterId}" class="btn btn-outline-dark rounded-0 px-4">View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {/foreach}
                             </div>
-                        {else}
-                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
-                                <i class="fas fa-image text-muted fa-3x"></i>
-                            </div>
-                        {/if}
-                        
-                        <!-- Content -->
-                        <div class="card-body px-0 text-center">
-                            <h5 class="card-title mb-2">{$poster->title}</h5>
-                            {if $poster->posterSizes && count($poster->posterSizes) > 0}
-                                <div class="price-container">
-                                    <span class="text-danger">from ${$poster->posterSizes[0]->price|number:2}</span>
-                                    {var $originalPrice = $poster->posterSizes[0]->price + rand(4, 8)}
-                                    <span class="text-muted text-decoration-line-through">${$originalPrice|number:2}</span>
-                                </div>
-                            {else}
-                                <p class="card-text text-muted">Price not available</p>
-                            {/if}
                         </div>
-                        
-                        <!-- View Button - Positioned at bottom -->
-                        <div class="card-footer bg-transparent border-0 text-center">
-                            <a href="{plink Product:show $poster->posterId}" class="btn btn-outline-dark rounded-0 px-4">View</a>
-                        </div>
-                    </div>
+                    {/foreach}
                 </div>
-            {/foreach}
+            </div>
         </div>
     </section>
+
+    <style>
+        /* Custom styles for carousel arrows */
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        
+        .carousel-control-prev {
+            left: 10px;
+        }
+        
+        .carousel-control-next {
+            right: 10px;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        #newArrivalsCarousel {
+            position: relative;
+            padding: 0 60px;
+            overflow: hidden;
+        }
+
+        #newArrivalsCarousel .carousel-inner {
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            transition: transform .6s ease-in-out;
+        }
+
+        /* Container to clip the overflow */
+        .carousel-container {
+            position: relative;
+            overflow: visible;
+            margin: 0 -15px;
+        }
+
+        .poster-image-container {
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .poster-image-container:hover {
+            opacity: 0.9;
+        }
+    </style>
 
     <!-- Categories Section -->
     <style>
@@ -135,47 +213,122 @@
     <!-- Popular Right Now Section -->
     <section class="mb-5">
         <h2 class="text-center mb-4 text-uppercase">Popular Right Now</h2>
-        <div class="row g-4">
-            {foreach $popularPosters as $poster}
-                <div class="col-md-3">
-                    <div class="card border-0 h-100 position-relative">
-                        <!-- Image -->
-                        {if $poster->posterImages && count($poster->posterImages) > 0}
-                            <div class="position-relative">
-                                <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
-                                     class="card-img-top" 
-                                     alt="{$poster->title}" 
-                                     style="height: 300px; object-fit: cover;">
+        
+        <div class="carousel-container">
+            <div id="popularCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Navigation arrows -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#popularCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#popularCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    {var $chunks = array_chunk($popularPosters, 4)}
+                    {foreach $chunks as $chunk}
+                        <div class="carousel-item {if $iterator->isFirst()}active{/if}">
+                            <div class="row g-4">
+                                {foreach $chunk as $poster}
+                                    <div class="col-md-3">
+                                        <div class="card border-0 h-100">
+                                            <!-- Image -->
+                                            {if $poster->posterImages && count($poster->posterImages) > 0}
+                                                <div class="position-relative poster-image-container">
+                                                    <a href="{plink Product:show $poster->posterId}" class="d-block">
+                                                        <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
+                                                             class="card-img-top" 
+                                                             alt="{$poster->title}" 
+                                                             style="height: 300px; object-fit: cover;">
+                                                    </a>
+                                                </div>
+                                            {else}
+                                                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                                                    <i class="fas fa-image text-muted fa-3x"></i>
+                                                </div>
+                                            {/if}
+                                            
+                                            <!-- Content -->
+                                            <div class="card-body px-0 text-center">
+                                                <h5 class="card-title mb-2">{$poster->title}</h5>
+                                                {if $poster->posterSizes && count($poster->posterSizes) > 0}
+                                                    <div class="price-container">
+                                                        <span class="text-danger">from ${$poster->posterSizes[0]->price|number:2}</span>
+                                                        {var $originalPrice = $poster->posterSizes[0]->price + rand(4, 8)}
+                                                        <span class="text-muted text-decoration-line-through">${$originalPrice|number:2}</span>
+                                                    </div>
+                                                {else}
+                                                    <p class="card-text text-muted">Price not available</p>
+                                                {/if}
+                                            </div>
+                                            
+                                            <!-- View Button -->
+                                            <div class="card-footer bg-transparent border-0 text-center">
+                                                <a href="{plink Product:show $poster->posterId}" class="btn btn-outline-dark rounded-0 px-4">View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {/foreach}
                             </div>
-                        {else}
-                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
-                                <i class="fas fa-image text-muted fa-3x"></i>
-                            </div>
-                        {/if}
-                        
-                        <!-- Content -->
-                        <div class="card-body px-0 text-center">
-                            <h5 class="card-title mb-2">{$poster->title}</h5>
-                            {if $poster->posterSizes && count($poster->posterSizes) > 0}
-                                <div class="price-container">
-                                    <span class="text-danger">from ${$poster->posterSizes[0]->price|number:2}</span>
-                                    {var $originalPrice = $poster->posterSizes[0]->price + rand(4, 8)}
-                                    <span class="text-muted text-decoration-line-through">${$originalPrice|number:2}</span>
-                                </div>
-                            {else}
-                                <p class="card-text text-muted">Price not available</p>
-                            {/if}
                         </div>
-                        
-                        <!-- View Button - Positioned at bottom -->
-                        <div class="card-footer bg-transparent border-0 text-center">
-                            <a href="{plink Product:show $poster->posterId}" class="btn btn-outline-dark rounded-0 px-4">View</a>
-                        </div>
-                    </div>
+                    {/foreach}
                 </div>
-            {/foreach}
+            </div>
         </div>
     </section>
+
+    <style>
+        /* Shared carousel styles */
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        
+        .carousel-control-prev {
+            left: 10px;
+        }
+        
+        .carousel-control-next {
+            right: 10px;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        #newArrivalsCarousel,
+        #popularCarousel {
+            position: relative;
+            padding: 0 60px;
+            overflow: hidden;
+        }
+
+        #newArrivalsCarousel .carousel-inner,
+        #popularCarousel .carousel-inner {
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            transition: transform .6s ease-in-out;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: visible;
+            margin: 0 -15px;
+        }
+    </style>
 
     <!-- Info Sections -->
     <section class="mb-5">

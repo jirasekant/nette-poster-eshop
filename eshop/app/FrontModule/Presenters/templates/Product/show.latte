@@ -91,10 +91,14 @@
                 <div class="col-md-3">
                     <div class="card border-0 h-100">
                         {if $relatedPoster->posterImages && count($relatedPoster->posterImages) > 0}
-                            <img src="{$basePath}{$relatedPoster->posterImages[0]->imageUrl}" 
-                                 class="card-img-top" 
-                                 alt="{$relatedPoster->title}"
-                                 style="height: 300px; object-fit: cover;">
+                            <div class="poster-image-container">
+                                <a href="{plink Product:show $relatedPoster->posterId}" class="d-block">
+                                    <img src="{$basePath}{$relatedPoster->posterImages[0]->imageUrl}" 
+                                         class="card-img-top" 
+                                         alt="{$relatedPoster->title}"
+                                         style="height: 300px; object-fit: cover;">
+                                </a>
+                            </div>
                         {else}
                             <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
                                 <i class="fas fa-image text-muted fa-3x"></i>
@@ -113,3 +117,14 @@
         </div>
     </section>
 </div>
+
+<style>
+    .poster-image-container {
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+    
+    .poster-image-container:hover {
+        opacity: 0.9;
+    }
+</style>
