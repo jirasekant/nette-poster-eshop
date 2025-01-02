@@ -17,6 +17,12 @@
 	<link rel="manifest" href="{plink Homepage:manifest}" />
 
 	<style>
+		/* Prevent scrollbar layout shift */
+		html {
+			overflow-y: scroll;
+			scrollbar-gutter: stable;
+		}
+
 		.card {
 			transition: transform 0.2s ease-in-out;
 		}

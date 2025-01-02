@@ -81,4 +81,14 @@ class PosterRepository extends Repository
         
         return $result ? $this->createEntity($result) : null;
     }
+
+    public function findByAuthor(int $authorId): array
+    {
+        $result = $this->connection->select('DISTINCT p.*')
+            ->from('[poster] p')
+            ->where('p.author_id = %i', $authorId)
+            ->fetchAll();
+            
+        return $this->createEntities($result);
+    }
 } 

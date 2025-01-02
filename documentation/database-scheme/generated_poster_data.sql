@@ -4,6 +4,7 @@ DELETE FROM `poster_category`;
 DELETE FROM `poster_image`;
 DELETE FROM `poster_size`;
 DELETE FROM `poster`;
+DELETE FROM `author`;
 DELETE FROM `category` WHERE `category_id` > 0;
 
 -- Insert categories
@@ -22,9 +23,9 @@ INSERT INTO `category` (`title`, `description`) VALUES
 INSERT INTO `category` (`title`, `description`) VALUES
 ('Kids', 'Kids collection of posters');
 
--- Poster: P308 Bauhausredsun1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P308 Bauhausredsun1_360x', 'p308-bauhausredsun1360x', 'P308 Bauhausredsun1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Red Sun 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Red Sun 1', 'bauhaus-red-sun-1', 'Bauhaus Red Sun 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 1, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -36,9 +37,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (1, 'large', 79.99);
 
--- Poster: P317 Bauhausweimar1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P317 Bauhausweimar1_360x', 'p317-bauhausweimar1360x', 'P317 Bauhausweimar1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Weimar 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Weimar 1', 'bauhaus-weimar-1', 'Bauhaus Weimar 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 2, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -50,9 +51,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (2, 'large', 79.99);
 
--- Poster: P286 Bauhausbluecolorcode1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P286 Bauhausbluecolorcode1_360x', 'p286-bauhausbluecolorcode1360x', 'P286 Bauhausbluecolorcode1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Blue Color Code 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Blue Color Code 1', 'bauhaus-blue-color-code-1', 'Bauhaus Blue Color Code 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 3, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -64,9 +65,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (3, 'large', 79.99);
 
--- Poster: P291 Bauhauscoloredcircles1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P291 Bauhauscoloredcircles1_360x', 'p291-bauhauscoloredcircles1360x', 'P291 Bauhauscoloredcircles1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Colored Circles 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Colored Circles 1', 'bauhaus-colored-circles-1', 'Bauhaus Colored Circles 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 4, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -78,9 +79,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (4, 'large', 79.99);
 
--- Poster: P296 Bauhausexhibition1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P296 Bauhausexhibition1_360x', 'p296-bauhausexhibition1360x', 'P296 Bauhausexhibition1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Exhibition 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Exhibition 1', 'bauhaus-exhibition-1', 'Bauhaus Exhibition 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 5, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -92,9 +93,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (5, 'large', 79.99);
 
--- Poster: P316 Bauhauswarmcolors1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P316 Bauhauswarmcolors1_360x', 'p316-bauhauswarmcolors1360x', 'P316 Bauhauswarmcolors1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Warm Colors 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Warm Colors 1', 'bauhaus-warm-colors-1', 'Bauhaus Warm Colors 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 6, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -106,9 +107,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (6, 'large', 79.99);
 
--- Poster: P319 Bauhausyellowcirclewithlines1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P319 Bauhausyellowcirclewithlines1_360x', 'p319-bauhausyellowcirclewithlines1360x', 'P319 Bauhausyellowcirclewithlines1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Yellow Circle With Lines 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Yellow Circle With Lines 1', 'bauhaus-yellow-circle-with-lines-1', 'Bauhaus Yellow Circle With Lines 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 7, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -120,9 +121,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (7, 'large', 79.99);
 
--- Poster: P303 Bauhausmixedsquares1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P303 Bauhausmixedsquares1_360x', 'p303-bauhausmixedsquares1360x', 'P303 Bauhausmixedsquares1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Mixed Squares 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Mixed Squares 1', 'bauhaus-mixed-squares-1', 'Bauhaus Mixed Squares 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 8, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -134,9 +135,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (8, 'large', 79.99);
 
--- Poster: P305 Bauhausorangecolorcode1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P305 Bauhausorangecolorcode1_360x', 'p305-bauhausorangecolorcode1360x', 'P305 Bauhausorangecolorcode1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Orange Color Code 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Orange Color Code 1', 'bauhaus-orange-color-code-1', 'Bauhaus Orange Color Code 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 9, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -148,9 +149,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (9, 'large', 79.99);
 
--- Poster: P315 Bauhaustriangles1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P315 Bauhaustriangles1_360x', 'p315-bauhaustriangles1360x', 'P315 Bauhaustriangles1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Triangles 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Triangles 1', 'bauhaus-triangles-1', 'Bauhaus Triangles 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 10, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -162,9 +163,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (10, 'large', 79.99);
 
--- Poster: P297 Bauhauseyes1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P297 Bauhauseyes1_360x', 'p297-bauhauseyes1360x', 'P297 Bauhauseyes1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Eyes 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Eyes 1', 'bauhaus-eyes-1', 'Bauhaus Eyes 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 11, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -176,9 +177,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (11, 'large', 79.99);
 
--- Poster: P306 Bauhausorangesemicircles1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P306 Bauhausorangesemicircles1_360x', 'p306-bauhausorangesemicircles1360x', 'P306 Bauhausorangesemicircles1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Orange Semicircles 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Orange Semicircles 1', 'bauhaus-orange-semicircles-1', 'Bauhaus Orange Semicircles 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 12, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -190,9 +191,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (12, 'large', 79.99);
 
--- Poster: P289 Bauhauscircles21_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P289 Bauhauscircles21_360x', 'p289-bauhauscircles21360x', 'P289 Bauhauscircles21_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Circles 21
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Circles 21', 'bauhaus-circles-21', 'Bauhaus Circles 21 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 13, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -204,9 +205,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (13, 'large', 79.99);
 
--- Poster: P751 Bauhauszebragreen
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P751 Bauhauszebragreen', 'p751-bauhauszebragreen', 'P751 Bauhauszebragreen - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Zebra Green
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Zebra Green', 'bauhaus-zebra-green', 'Bauhaus Zebra Green - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 14, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -218,9 +219,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (14, 'large', 79.99);
 
--- Poster: Bauhausabstractcolors
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Bauhausabstractcolors', 'bauhausabstractcolors', 'Bauhausabstractcolors - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Abstract Colors
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Abstract Colors', 'bauhaus-abstract-colors', 'Bauhaus Abstract Colors - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 15, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -232,9 +233,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (15, 'large', 79.99);
 
--- Poster: Bauhausgreenpattern
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Bauhausgreenpattern', 'bauhausgreenpattern', 'Bauhausgreenpattern - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Green Pattern
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Green Pattern', 'bauhaus-green-pattern', 'Bauhaus Green Pattern - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 16, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -246,9 +247,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (16, 'large', 79.99);
 
--- Poster: P302 Bauhausmixedcolors1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P302 Bauhausmixedcolors1_360x', 'p302-bauhausmixedcolors1360x', 'P302 Bauhausmixedcolors1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Mixed Colors 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Mixed Colors 1', 'bauhaus-mixed-colors-1', 'Bauhaus Mixed Colors 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 17, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -260,9 +261,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (17, 'large', 79.99);
 
--- Poster: P293 Bauhausdots1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P293 Bauhausdots1_360x', 'p293-bauhausdots1360x', 'P293 Bauhausdots1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Dots 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Dots 1', 'bauhaus-dots-1', 'Bauhaus Dots 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 18, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -274,9 +275,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (18, 'large', 79.99);
 
--- Poster: P304 Bauhausmuseum1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P304 Bauhausmuseum1_360x', 'p304-bauhausmuseum1360x', 'P304 Bauhausmuseum1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Museum 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Museum 1', 'bauhaus-museum-1', 'Bauhaus Museum 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 19, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -288,9 +289,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (19, 'large', 79.99);
 
--- Poster: P300 Bauhauslineswithdots1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P300 Bauhauslineswithdots1_360x', 'p300-bauhauslineswithdots1360x', 'P300 Bauhauslineswithdots1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Lines With Dots 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Lines With Dots 1', 'bauhaus-lines-with-dots-1', 'Bauhaus Lines With Dots 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 20, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -302,9 +303,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (20, 'large', 79.99);
 
--- Poster: P281 Bauhausbicycle1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P281 Bauhausbicycle1_360x', 'p281-bauhausbicycle1360x', 'P281 Bauhausbicycle1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Bicycle 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Bicycle 1', 'bauhaus-bicycle-1', 'Bauhaus Bicycle 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 21, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -316,9 +317,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (21, 'large', 79.99);
 
--- Poster: P288 Bauhauscircles1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P288 Bauhauscircles1_360x', 'p288-bauhauscircles1360x', 'P288 Bauhauscircles1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Circles 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Circles 1', 'bauhaus-circles-1', 'Bauhaus Circles 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 22, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -330,9 +331,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (22, 'large', 79.99);
 
--- Poster: P282 Bauhausblackdots1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P282 Bauhausblackdots1_360x', 'p282-bauhausblackdots1360x', 'P282 Bauhausblackdots1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Black Dots 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Black Dots 1', 'bauhaus-black-dots-1', 'Bauhaus Black Dots 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 23, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -344,9 +345,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (23, 'large', 79.99);
 
--- Poster: P292 Bauhauscoloredeyes1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P292 Bauhauscoloredeyes1_360x', 'p292-bauhauscoloredeyes1360x', 'P292 Bauhauscoloredeyes1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Colored Eyes 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Colored Eyes 1', 'bauhaus-colored-eyes-1', 'Bauhaus Colored Eyes 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 24, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -358,9 +359,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (24, 'large', 79.99);
 
--- Poster: P287 Bauhausbluewithshadows1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P287 Bauhausbluewithshadows1_360x', 'p287-bauhausbluewithshadows1360x', 'P287 Bauhausbluewithshadows1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Blue With Shadows 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Blue With Shadows 1', 'bauhaus-blue-with-shadows-1', 'Bauhaus Blue With Shadows 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 25, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -372,9 +373,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (25, 'large', 79.99);
 
--- Poster: P752 Bauhauszebraorange
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P752 Bauhauszebraorange', 'p752-bauhauszebraorange', 'P752 Bauhauszebraorange - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Zebra Orange
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Zebra Orange', 'bauhaus-zebra-orange', 'Bauhaus Zebra Orange - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 26, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -386,9 +387,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (26, 'large', 79.99);
 
--- Poster: P311 Bauhausrunningman1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P311 Bauhausrunningman1_360x', 'p311-bauhausrunningman1360x', 'P311 Bauhausrunningman1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Running Man 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Running Man 1', 'bauhaus-running-man-1', 'Bauhaus Running Man 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 27, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -400,9 +401,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (27, 'large', 79.99);
 
--- Poster: P295 Bauhausdoublecircle1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P295 Bauhausdoublecircle1_360x', 'p295-bauhausdoublecircle1360x', 'P295 Bauhausdoublecircle1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Double Circle 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Double Circle 1', 'bauhaus-double-circle-1', 'Bauhaus Double Circle 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 28, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -414,9 +415,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (28, 'large', 79.99);
 
--- Poster: P310 Bauhausretroabstract21_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P310 Bauhausretroabstract21_360x', 'p310-bauhausretroabstract21360x', 'P310 Bauhausretroabstract21_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Retro Abstract 21
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Retro Abstract 21', 'bauhaus-retro-abstract-21', 'Bauhaus Retro Abstract 21 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 29, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -428,9 +429,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (29, 'large', 79.99);
 
--- Poster: P280 Bauhausaustellung1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P280 Bauhausaustellung1_360x', 'p280-bauhausaustellung1360x', 'P280 Bauhausaustellung1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Austellung 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Austellung 1', 'bauhaus-austellung-1', 'Bauhaus Austellung 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 30, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -442,9 +443,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (30, 'large', 79.99);
 
--- Poster: P301 Bauhausmeltedcolors1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P301 Bauhausmeltedcolors1_360x', 'p301-bauhausmeltedcolors1360x', 'P301 Bauhausmeltedcolors1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Melted Colors 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Melted Colors 1', 'bauhaus-melted-colors-1', 'Bauhaus Melted Colors 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 31, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -456,9 +457,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (31, 'large', 79.99);
 
--- Poster: Bauhausblackpattern
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Bauhausblackpattern', 'bauhausblackpattern', 'Bauhausblackpattern - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Black Pattern
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Black Pattern', 'bauhaus-black-pattern', 'Bauhaus Black Pattern - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 32, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -470,9 +471,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (32, 'large', 79.99);
 
--- Poster: P307 Bauhausrandomshapes1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P307 Bauhausrandomshapes1_360x', 'p307-bauhausrandomshapes1360x', 'P307 Bauhausrandomshapes1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Random Shapes 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Random Shapes 1', 'bauhaus-random-shapes-1', 'Bauhaus Random Shapes 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 33, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -484,9 +485,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (33, 'large', 79.99);
 
--- Poster: P283 Bauhausblacksemicircles1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P283 Bauhausblacksemicircles1_360x', 'p283-bauhausblacksemicircles1360x', 'P283 Bauhausblacksemicircles1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Black Semicircles 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Black Semicircles 1', 'bauhaus-black-semicircles-1', 'Bauhaus Black Semicircles 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 34, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -498,9 +499,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (34, 'large', 79.99);
 
--- Poster: P320 Bauhauszebra1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P320 Bauhauszebra1_360x', 'p320-bauhauszebra1360x', 'P320 Bauhauszebra1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Zebra 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Zebra 1', 'bauhaus-zebra-1', 'Bauhaus Zebra 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 35, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -512,9 +513,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (35, 'large', 79.99);
 
--- Poster: P321 Bauhauszebraabstract1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P321 Bauhauszebraabstract1_360x', 'p321-bauhauszebraabstract1360x', 'P321 Bauhauszebraabstract1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Zebra Abstract 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Zebra Abstract 1', 'bauhaus-zebra-abstract-1', 'Bauhaus Zebra Abstract 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 36, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -526,9 +527,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (36, 'large', 79.99);
 
--- Poster: P285 Bauhausbluecirclewithlines1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P285 Bauhausbluecirclewithlines1_360x', 'p285-bauhausbluecirclewithlines1360x', 'P285 Bauhausbluecirclewithlines1_360x - Beautiful Bauhaus poster', 50, 1);
+-- Poster: Bauhaus Blue Circle With Lines 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bauhaus Blue Circle With Lines 1', 'bauhaus-blue-circle-with-lines-1', 'Bauhaus Blue Circle With Lines 1 - Beautiful Bauhaus poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 37, `category_id` FROM `category` WHERE `title` = 'Bauhaus';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -540,9 +541,12 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (37, 'large', 79.99);
 
--- Poster: Yayoikusamapinkdots
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Yayoikusamapinkdots', 'yayoikusamapinkdots', 'Yayoikusamapinkdots - Beautiful Japanese poster', 50, 1);
+-- Author: Yayoi Kusama
+INSERT INTO `author` (`author_id`, `name`) VALUES
+(1, 'Yayoi Kusama');
+-- Poster: Pink Dots
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pink Dots', 'pink-dots', 'Pink Dots - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 38, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -554,9 +558,12 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (38, 'large', 79.99);
 
--- Poster: P365 Oharakosonpeacock1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P365 Oharakosonpeacock1_360x', 'p365-oharakosonpeacock1360x', 'P365 Oharakosonpeacock1_360x - Beautiful Japanese poster', 50, 1);
+-- Author: Ohara Koson
+INSERT INTO `author` (`author_id`, `name`) VALUES
+(2, 'Ohara Koson');
+-- Poster: Peacock 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Peacock 1', 'peacock-1', 'Peacock 1 - Beautiful Japanese poster', 2, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 39, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -568,9 +575,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (39, 'large', 79.99);
 
--- Poster: P376 Yayoikusamaflowers1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P376 Yayoikusamaflowers1_360x', 'p376-yayoikusamaflowers1360x', 'P376 Yayoikusamaflowers1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Flowers 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flowers 1', 'flowers-1', 'Flowers 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 40, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -582,9 +589,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (40, 'large', 79.99);
 
--- Poster: P373 Yayoikusamaalltheeternallove1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P373 Yayoikusamaalltheeternallove1_360x', 'p373-yayoikusamaalltheeternallove1360x', 'P373 Yayoikusamaalltheeternallove1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: All The Eternal Love 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('All The Eternal Love 1', 'all-the-eternal-love-1', 'All The Eternal Love 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 41, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -596,9 +603,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (41, 'large', 79.99);
 
--- Poster: P378 Yayoikusamamushrooms1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P378 Yayoikusamamushrooms1_360x', 'p378-yayoikusamamushrooms1360x', 'P378 Yayoikusamamushrooms1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Mushrooms 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Mushrooms 1', 'mushrooms-1', 'Mushrooms 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 42, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -610,9 +617,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (42, 'large', 79.99);
 
--- Poster: P379 Yayoikusamapumpkin1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P379 Yayoikusamapumpkin1_360x', 'p379-yayoikusamapumpkin1360x', 'P379 Yayoikusamapumpkin1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Pumpkin 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pumpkin 1', 'pumpkin-1', 'Pumpkin 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 43, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -624,9 +631,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (43, 'large', 79.99);
 
--- Poster: P382 Yayoikusamathesea1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P382 Yayoikusamathesea1_360x', 'p382-yayoikusamathesea1360x', 'P382 Yayoikusamathesea1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: The Sea 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Sea 1', 'the-sea-1', 'The Sea 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 44, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -638,9 +645,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (44, 'large', 79.99);
 
--- Poster: Yayoikusamapinkpumpkin
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Yayoikusamapinkpumpkin', 'yayoikusamapinkpumpkin', 'Yayoikusamapinkpumpkin - Beautiful Japanese poster', 50, 1);
+-- Poster: Pink Pumpkin
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pink Pumpkin', 'pink-pumpkin', 'Pink Pumpkin - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 45, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -652,9 +659,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (45, 'large', 79.99);
 
--- Poster: P675 Yayoikusamazebrapattern1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P675 Yayoikusamazebrapattern1_360x', 'p675-yayoikusamazebrapattern1360x', 'P675 Yayoikusamazebrapattern1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Zebra Pattern 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Zebra Pattern 1', 'zebra-pattern-1', 'Zebra Pattern 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 46, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -666,9 +673,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (46, 'large', 79.99);
 
--- Poster: P669 Thefirstramenshop1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P669 Thefirstramenshop1_360x', 'p669-thefirstramenshop1360x', 'P669 Thefirstramenshop1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: The First Ramen Shop 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The First Ramen Shop 1', 'the-first-ramen-shop-1', 'The First Ramen Shop 1 - Beautiful Japanese poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 47, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -680,9 +687,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (47, 'large', 79.99);
 
--- Poster: Ramendefinition
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Ramendefinition', 'ramendefinition', 'Ramendefinition - Beautiful Japanese poster', 50, 1);
+-- Poster: Ramen Definition
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Ramen Definition', 'ramen-definition', 'Ramen Definition - Beautiful Japanese poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 48, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -694,9 +701,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (48, 'large', 79.99);
 
--- Poster: Yayoikusamagreendots
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Yayoikusamagreendots', 'yayoikusamagreendots', 'Yayoikusamagreendots - Beautiful Japanese poster', 50, 1);
+-- Poster: Green Dots
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Green Dots', 'green-dots', 'Green Dots - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 49, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -708,9 +715,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (49, 'large', 79.99);
 
--- Poster: Yayoikusamainfinitymushrooms
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Yayoikusamainfinitymushrooms', 'yayoikusamainfinitymushrooms', 'Yayoikusamainfinitymushrooms - Beautiful Japanese poster', 50, 1);
+-- Poster: Infinity Mushrooms
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Infinity Mushrooms', 'infinity-mushrooms', 'Infinity Mushrooms - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 50, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -722,9 +729,12 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (50, 'large', 79.99);
 
--- Poster: P335 Hokusaithegreatwaveoffkanagawa1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P335 Hokusaithegreatwaveoffkanagawa1_360x', 'p335-hokusaithegreatwaveoffkanagawa1360x', 'P335 Hokusaithegreatwaveoffkanagawa1_360x - Beautiful Japanese poster', 50, 1);
+-- Author: Hokusai
+INSERT INTO `author` (`author_id`, `name`) VALUES
+(3, 'Hokusai');
+-- Poster: The Great Wave Off Kanagawa 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Great Wave Off Kanagawa 1', 'the-great-wave-off-kanagawa-1', 'The Great Wave Off Kanagawa 1 - Beautiful Japanese poster', 3, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 51, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -736,9 +746,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (51, 'large', 79.99);
 
--- Poster: P337 Hokusaiyorowaterfallinminoprovince1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P337 Hokusaiyorowaterfallinminoprovince1_360x', 'p337-hokusaiyorowaterfallinminoprovince1360x', 'P337 Hokusaiyorowaterfallinminoprovince1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Yoro Waterfall In Mino Province 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Yoro Waterfall In Mino Province 1', 'yoro-waterfall-in-mino-province-1', 'Yoro Waterfall In Mino Province 1 - Beautiful Japanese poster', 3, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 52, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -750,9 +760,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (52, 'large', 79.99);
 
--- Poster: P359 Oharakosonbirdonbranch1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P359 Oharakosonbirdonbranch1_360x', 'p359-oharakosonbirdonbranch1360x', 'P359 Oharakosonbirdonbranch1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Bird On Branch 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bird On Branch 1', 'bird-on-branch-1', 'Bird On Branch 1 - Beautiful Japanese poster', 2, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 53, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -764,9 +774,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (53, 'large', 79.99);
 
--- Poster: P325 Bijutsusekaipinksky1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P325 Bijutsusekaipinksky1_360x', 'p325-bijutsusekaipinksky1360x', 'P325 Bijutsusekaipinksky1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Bijutsu Sekai Pink Sky 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bijutsu Sekai Pink Sky 1', 'bijutsu-sekai-pink-sky-1', 'Bijutsu Sekai Pink Sky 1 - Beautiful Japanese poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 54, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -778,9 +788,12 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (54, 'large', 79.99);
 
--- Poster: P351 Matsumotohojifrog1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P351 Matsumotohojifrog1_360x', 'p351-matsumotohojifrog1360x', 'P351 Matsumotohojifrog1_360x - Beautiful Japanese poster', 50, 1);
+-- Author: Matsumoto Hoji
+INSERT INTO `author` (`author_id`, `name`) VALUES
+(4, 'Matsumoto Hoji');
+-- Poster: Frog 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Frog 1', 'frog-1', 'Frog 1 - Beautiful Japanese poster', 4, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 55, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -792,9 +805,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (55, 'large', 79.99);
 
--- Poster: P327 Bluewaves1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P327 Bluewaves1_360x', 'p327-bluewaves1360x', 'P327 Bluewaves1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Blue Waves 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Blue Waves 1', 'blue-waves-1', 'Blue Waves 1 - Beautiful Japanese poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 56, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -806,9 +819,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (56, 'large', 79.99);
 
--- Poster: P375 Yayoikusamaeyes1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P375 Yayoikusamaeyes1_360x', 'p375-yayoikusamaeyes1360x', 'P375 Yayoikusamaeyes1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Eyes 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Eyes 1', 'eyes-1', 'Eyes 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 57, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -820,9 +833,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (57, 'large', 79.99);
 
--- Poster: P336 Hokusaithegreatwaveoffkanagawa21_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P336 Hokusaithegreatwaveoffkanagawa21_360x', 'p336-hokusaithegreatwaveoffkanagawa21360x', 'P336 Hokusaithegreatwaveoffkanagawa21_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: The Great Wave Off Kanagawa 21
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Great Wave Off Kanagawa 21', 'the-great-wave-off-kanagawa-21', 'The Great Wave Off Kanagawa 21 - Beautiful Japanese poster', 3, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 58, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -834,9 +847,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (58, 'large', 79.99);
 
--- Poster: Yayoikusamatokyocolors
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Yayoikusamatokyocolors', 'yayoikusamatokyocolors', 'Yayoikusamatokyocolors - Beautiful Japanese poster', 50, 1);
+-- Poster: Tokyo Colors
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Tokyo Colors', 'tokyo-colors', 'Tokyo Colors - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 59, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -848,9 +861,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (59, 'large', 79.99);
 
--- Poster: P673 Yayoikusamayellowpattern1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P673 Yayoikusamayellowpattern1_360x', 'p673-yayoikusamayellowpattern1360x', 'P673 Yayoikusamayellowpattern1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Yellow Pattern 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Yellow Pattern 1', 'yellow-pattern-1', 'Yellow Pattern 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 60, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -862,9 +875,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (60, 'large', 79.99);
 
--- Poster: Yayoikusamapinkinfinitypumpkin
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Yayoikusamapinkinfinitypumpkin', 'yayoikusamapinkinfinitypumpkin', 'Yayoikusamapinkinfinitypumpkin - Beautiful Japanese poster', 50, 1);
+-- Poster: Pink Infinity Pumpkin
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pink Infinity Pumpkin', 'pink-infinity-pumpkin', 'Pink Infinity Pumpkin - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 61, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -876,9 +889,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (61, 'large', 79.99);
 
--- Poster: P672 Yayoikusamasinglemushroom1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P672 Yayoikusamasinglemushroom1_360x', 'p672-yayoikusamasinglemushroom1360x', 'P672 Yayoikusamasinglemushroom1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Single Mushroom 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Single Mushroom 1', 'single-mushroom-1', 'Single Mushroom 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 62, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -890,9 +903,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (62, 'large', 79.99);
 
--- Poster: P381 Yayoikusamareddots1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P381 Yayoikusamareddots1_360x', 'p381-yayoikusamareddots1360x', 'P381 Yayoikusamareddots1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Red Dots 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Red Dots 1', 'red-dots-1', 'Red Dots 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 63, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -904,9 +917,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (63, 'large', 79.99);
 
--- Poster: P363 Oharakosonkoifish1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P363 Oharakosonkoifish1_360x', 'p363-oharakosonkoifish1360x', 'P363 Oharakosonkoifish1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Koi Fish 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Koi Fish 1', 'koi-fish-1', 'Koi Fish 1 - Beautiful Japanese poster', 2, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 64, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -918,9 +931,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (64, 'large', 79.99);
 
--- Poster: P836 Mountfuji
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P836 Mountfuji', 'p836-mountfuji', 'P836 Mountfuji - Beautiful Japanese poster', 50, 1);
+-- Poster: Mount Fuji
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Mount Fuji', 'mount-fuji', 'Mount Fuji - Beautiful Japanese poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 65, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -932,9 +945,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (65, 'large', 79.99);
 
--- Poster: P671 Yayoikusamainfinitynet21_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P671 Yayoikusamainfinitynet21_360x', 'p671-yayoikusamainfinitynet21360x', 'P671 Yayoikusamainfinitynet21_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Infinity Net 21
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Infinity Net 21', 'infinity-net-21', 'Infinity Net 21 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 66, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -946,9 +959,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (66, 'large', 79.99);
 
--- Poster: P343 Japaneseredsun1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P343 Japaneseredsun1_360x', 'p343-japaneseredsun1360x', 'P343 Japaneseredsun1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Japanese Red Sun 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Japanese Red Sun 1', 'japanese-red-sun-1', 'Japanese Red Sun 1 - Beautiful Japanese poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 67, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -960,9 +973,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (67, 'large', 79.99);
 
--- Poster: P798 Pumpkintokyo
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P798 Pumpkintokyo', 'p798-pumpkintokyo', 'P798 Pumpkintokyo - Beautiful Japanese poster', 50, 1);
+-- Poster: Pumpkin Tokyo
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pumpkin Tokyo', 'pumpkin-tokyo', 'Pumpkin Tokyo - Beautiful Japanese poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 68, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -974,9 +987,12 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (68, 'large', 79.99);
 
--- Poster: Utagawahirokagethetigerofryokoku
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Utagawahirokagethetigerofryokoku', 'utagawahirokagethetigerofryokoku', 'Utagawahirokagethetigerofryokoku - Beautiful Japanese poster', 50, 1);
+-- Author: Utagawa Hirokage
+INSERT INTO `author` (`author_id`, `name`) VALUES
+(5, 'Utagawa Hirokage');
+-- Poster: The Tiger Of Ryokoku
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Tiger Of Ryokoku', 'the-tiger-of-ryokoku', 'The Tiger Of Ryokoku - Beautiful Japanese poster', 5, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 69, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -988,9 +1004,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (69, 'large', 79.99);
 
--- Poster: Oharakosonblossomingcherryonamoonlitnight
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Oharakosonblossomingcherryonamoonlitnight', 'oharakosonblossomingcherryonamoonlitnight', 'Oharakosonblossomingcherryonamoonlitnight - Beautiful Japanese poster', 50, 1);
+-- Poster: Blossoming Cherry On A Moonlit Night
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Blossoming Cherry On A Moonlit Night', 'blossoming-cherry-on-a-moonlit-night', 'Blossoming Cherry On A Moonlit Night - Beautiful Japanese poster', 2, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 70, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1002,9 +1018,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (70, 'large', 79.99);
 
--- Poster: P380 Yayoikusamapumpkinforever1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P380 Yayoikusamapumpkinforever1_360x', 'p380-yayoikusamapumpkinforever1360x', 'P380 Yayoikusamapumpkinforever1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Pumpkin Forever 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pumpkin Forever 1', 'pumpkin-forever-1', 'Pumpkin Forever 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 71, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1016,9 +1032,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (71, 'large', 79.99);
 
--- Poster: P374 Yayoikusamablackdots1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P374 Yayoikusamablackdots1_360x', 'p374-yayoikusamablackdots1360x', 'P374 Yayoikusamablackdots1_360x - Beautiful Japanese poster', 50, 1);
+-- Poster: Black Dots 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Black Dots 1', 'black-dots-1', 'Black Dots 1 - Beautiful Japanese poster', 1, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 72, `category_id` FROM `category` WHERE `title` = 'Japanese';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1030,9 +1046,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (72, 'large', 79.99);
 
--- Poster: P639 Farmgardenwithsunflowers1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P639 Farmgardenwithsunflowers1_360x', 'p639-farmgardenwithsunflowers1360x', 'P639 Farmgardenwithsunflowers1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Farm Garden With Sunflowers 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Farm Garden With Sunflowers 1', 'farm-garden-with-sunflowers-1', 'Farm Garden With Sunflowers 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 73, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1044,9 +1060,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (73, 'large', 79.99);
 
--- Poster: P642 Hygieia1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P642 Hygieia1_360x', 'p642-hygieia1360x', 'P642 Hygieia1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Hygieia 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Hygieia 1', 'hygieia-1', 'Hygieia 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 74, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1058,9 +1074,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (74, 'large', 79.99);
 
--- Poster: P773 Lobstertelephone
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P773 Lobstertelephone', 'p773-lobstertelephone', 'P773 Lobstertelephone - Beautiful Art poster', 50, 1);
+-- Poster: Lobster Telephone
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Lobster Telephone', 'lobster-telephone', 'Lobster Telephone - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 75, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1072,9 +1088,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (75, 'large', 79.99);
 
--- Poster: P838 Theequatorialjungle
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P838 Theequatorialjungle', 'p838-theequatorialjungle', 'P838 Theequatorialjungle - Beautiful Art poster', 50, 1);
+-- Poster: The Equatorial Jungle
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Equatorial Jungle', 'the-equatorial-jungle', 'The Equatorial Jungle - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 76, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1086,9 +1102,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (76, 'large', 79.99);
 
--- Poster: P612 Humanism1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P612 Humanism1_360x', 'p612-humanism1360x', 'P612 Humanism1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Humanism 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Humanism 1', 'humanism-1', 'Humanism 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 77, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1100,9 +1116,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (77, 'large', 79.99);
 
--- Poster: Fridayellowversion
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Fridayellowversion', 'fridayellowversion', 'Fridayellowversion - Beautiful Art poster', 50, 1);
+-- Poster: Frida Yellow Version
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Frida Yellow Version', 'frida-yellow-version', 'Frida Yellow Version - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 78, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1114,9 +1130,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (78, 'large', 79.99);
 
--- Poster: P788 Relativity
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P788 Relativity', 'p788-relativity', 'P788 Relativity - Beautiful Art poster', 50, 1);
+-- Poster: Relativity
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Relativity', 'relativity', 'Relativity - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 79, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1128,9 +1144,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (79, 'large', 79.99);
 
--- Poster: P702 Campbellstomatosoup
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P702 Campbellstomatosoup', 'p702-campbellstomatosoup', 'P702 Campbellstomatosoup - Beautiful Art poster', 50, 1);
+-- Poster: Campbells Tomato Soup
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Campbells Tomato Soup', 'campbells-tomato-soup', 'Campbells Tomato Soup - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 80, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1142,9 +1158,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (80, 'large', 79.99);
 
--- Poster: P724 Thevelvetundergroundandnico
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P724 Thevelvetundergroundandnico', 'p724-thevelvetundergroundandnico', 'P724 Thevelvetundergroundandnico - Beautiful Art poster', 50, 1);
+-- Poster: The Velvet Underground And Nico
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Velvet Underground And Nico', 'the-velvet-underground-and-nico', 'The Velvet Underground And Nico - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 81, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1156,9 +1172,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (81, 'large', 79.99);
 
--- Poster: P526 Cafeterraceatnight1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P526 Cafeterraceatnight1_360x', 'p526-cafeterraceatnight1360x', 'P526 Cafeterraceatnight1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Cafe Terrace At Night 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Cafe Terrace At Night 1', 'cafe-terrace-at-night-1', 'Cafe Terrace At Night 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 82, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1170,9 +1186,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (82, 'large', 79.99);
 
--- Poster: P535 Skullofaskeletonwithburningcigarette1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P535 Skullofaskeletonwithburningcigarette1_360x', 'p535-skullofaskeletonwithburningcigarette1360x', 'P535 Skullofaskeletonwithburningcigarette1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Skull Of A Skeleton With Burning Cigarette 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Skull Of A Skeleton With Burning Cigarette 1', 'skull-of-a-skeleton-with-burning-cigarette-1', 'Skull Of A Skeleton With Burning Cigarette 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 83, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1184,9 +1200,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (83, 'large', 79.99);
 
--- Poster: P608 Dj1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P608 Dj1_360x', 'p608-dj1360x', 'P608 Dj1_360x - Beautiful Art poster', 50, 1);
+-- Poster: D J 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('D J 1', 'd-j-1', 'D J 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 84, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1198,9 +1214,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (84, 'large', 79.99);
 
--- Poster: P611 Flower1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P611 Flower1_360x', 'p611-flower1360x', 'P611 Flower1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Flower 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower 1', 'flower-1', 'Flower 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 85, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1212,9 +1228,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (85, 'large', 79.99);
 
--- Poster: P633 Thetenlargestno.2childhood1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P633 Thetenlargestno.2childhood1_360x', 'p633-thetenlargestno2childhood1360x', 'P633 Thetenlargestno.2childhood1_360x - Beautiful Art poster', 50, 1);
+-- Poster: The Ten Largest No.2 Childhood 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Ten Largest No.2 Childhood 1', 'the-ten-largest-no2-childhood-1', 'The Ten Largest No.2 Childhood 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 86, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1226,9 +1242,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (86, 'large', 79.99);
 
--- Poster: P760 Thelove
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P760 Thelove', 'p760-thelove', 'P760 Thelove - Beautiful Art poster', 50, 1);
+-- Poster: The Love
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Love', 'the-love', 'The Love - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 87, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1240,9 +1256,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (87, 'large', 79.99);
 
--- Poster: P616 Montreux1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P616 Montreux1_360x', 'p616-montreux1360x', 'P616 Montreux1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Montreux 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Montreux 1', 'montreux-1', 'Montreux 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 88, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1254,9 +1270,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (88, 'large', 79.99);
 
--- Poster: P805 Nightshawks
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P805 Nightshawks', 'p805-nightshawks', 'P805 Nightshawks - Beautiful Art poster', 50, 1);
+-- Poster: Nightshawks
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Nightshawks', 'nightshawks', 'Nightshawks - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 89, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1268,9 +1284,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (89, 'large', 79.99);
 
--- Poster: Insidemypersonalgarden
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Insidemypersonalgarden', 'insidemypersonalgarden', 'Insidemypersonalgarden - Beautiful Art poster', 50, 1);
+-- Poster: Inside My Personal Garden
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Inside My Personal Garden', 'inside-my-personal-garden', 'Inside My Personal Garden - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 90, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1282,9 +1298,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (90, 'large', 79.99);
 
--- Poster: P761 Serigraphieno.18
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P761 Serigraphieno.18', 'p761-serigraphieno18', 'P761 Serigraphieno.18 - Beautiful Art poster', 50, 1);
+-- Poster: Serigraphie No.18
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Serigraphie No.18', 'serigraphie-no18', 'Serigraphie No.18 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 91, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1296,9 +1312,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (91, 'large', 79.99);
 
--- Poster: P706 Greencat
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P706 Greencat', 'p706-greencat', 'P706 Greencat - Beautiful Art poster', 50, 1);
+-- Poster: Green Cat
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Green Cat', 'green-cat', 'Green Cat - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 92, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1310,9 +1326,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (92, 'large', 79.99);
 
--- Poster: P607 Dancers1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P607 Dancers1_360x', 'p607-dancers1360x', 'P607 Dancers1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Dancers 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Dancers 1', 'dancers-1', 'Dancers 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 93, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1324,9 +1340,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (93, 'large', 79.99);
 
--- Poster: P755 Miroseriesi1953
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P755 Miroseriesi1953', 'p755-miroseriesi1953', 'P755 Miroseriesi1953 - Beautiful Art poster', 50, 1);
+-- Poster: Miro Series I 1953
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Miro Series I 1953', 'miro-series-i-1953', 'Miro Series I 1953 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 94, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1338,9 +1354,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (94, 'large', 79.99);
 
--- Poster: P723 Thevelvetundergroundandnico2
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P723 Thevelvetundergroundandnico2', 'p723-thevelvetundergroundandnico2', 'P723 Thevelvetundergroundandnico2 - Beautiful Art poster', 50, 1);
+-- Poster: The Velvet Underground And Nico 2
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('The Velvet Underground And Nico 2', 'the-velvet-underground-and-nico-2', 'The Velvet Underground And Nico 2 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 95, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1352,9 +1368,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (95, 'large', 79.99);
 
--- Poster: P622 Skater1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P622 Skater1_360x', 'p622-skater1360x', 'P622 Skater1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Skater 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Skater 1', 'skater-1', 'Skater 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 96, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1366,9 +1382,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (96, 'large', 79.99);
 
--- Poster: P524 Almondblossom1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P524 Almondblossom1_360x', 'p524-almondblossom1360x', 'P524 Almondblossom1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Almond Blossom 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Almond Blossom 1', 'almond-blossom-1', 'Almond Blossom 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 97, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1380,9 +1396,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (97, 'large', 79.99);
 
--- Poster: P792 Aretrospective2
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P792 Aretrospective2', 'p792-aretrospective2', 'P792 Aretrospective2 - Beautiful Art poster', 50, 1);
+-- Poster: A Retrospective 2
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('A Retrospective 2', 'a-retrospective-2', 'A Retrospective 2 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 98, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1394,9 +1410,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (98, 'large', 79.99);
 
--- Poster: P796 Aretrospective6
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P796 Aretrospective6', 'p796-aretrospective6', 'P796 Aretrospective6 - Beautiful Art poster', 50, 1);
+-- Poster: A Retrospective 6
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('A Retrospective 6', 'a-retrospective-6', 'A Retrospective 6 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 99, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1408,9 +1424,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (99, 'large', 79.99);
 
--- Poster: P722 Sunset
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P722 Sunset', 'p722-sunset', 'P722 Sunset - Beautiful Art poster', 50, 1);
+-- Poster: Sunset
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Sunset', 'sunset', 'Sunset - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 100, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1422,9 +1438,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (100, 'large', 79.99);
 
--- Poster: P815 Leslalanne
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P815 Leslalanne', 'p815-leslalanne', 'P815 Leslalanne - Beautiful Art poster', 50, 1);
+-- Poster: Les Lalanne
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Les Lalanne', 'les-lalanne', 'Les Lalanne - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 101, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1436,9 +1452,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (101, 'large', 79.99);
 
--- Poster: P618 Partyoflifeinvitation1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P618 Partyoflifeinvitation1_360x', 'p618-partyoflifeinvitation1360x', 'P618 Partyoflifeinvitation1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Party Of Life Invitation 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Party Of Life Invitation 1', 'party-of-life-invitation-1', 'Party Of Life Invitation 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 102, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1450,9 +1466,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (102, 'large', 79.99);
 
--- Poster: P758 Picassothekiss
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P758 Picassothekiss', 'p758-picassothekiss', 'P758 Picassothekiss - Beautiful Art poster', 50, 1);
+-- Poster: Picasso The Kiss
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Picasso The Kiss', 'picasso-the-kiss', 'Picasso The Kiss - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 103, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1464,9 +1480,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (103, 'large', 79.99);
 
--- Poster: P623 Twofiguresholdingheart1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P623 Twofiguresholdingheart1_360x', 'p623-twofiguresholdingheart1360x', 'P623 Twofiguresholdingheart1_360x - Beautiful Art poster', 50, 1);
+-- Poster: Two Figures Holding Heart 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Two Figures Holding Heart 1', 'two-figures-holding-heart-1', 'Two Figures Holding Heart 1 - Beautiful Art poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 104, `category_id` FROM `category` WHERE `title` = 'Art';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1478,9 +1494,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (104, 'large', 79.99);
 
--- Poster: P121 Diordog1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P121 Diordog1_360x', 'p121-diordog1360x', 'P121 Diordog1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Dior Dog 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Dior Dog 1', 'dior-dog-1', 'Dior Dog 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 105, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1492,9 +1508,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (105, 'large', 79.99);
 
--- Poster: P131 Girlwithchanelsnowboard1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P131 Girlwithchanelsnowboard1_360x', 'p131-girlwithchanelsnowboard1360x', 'P131 Girlwithchanelsnowboard1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Girl With Chanel Snowboard 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Girl With Chanel Snowboard 1', 'girl-with-chanel-snowboard-1', 'Girl With Chanel Snowboard 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 106, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1506,9 +1522,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (106, 'large', 79.99);
 
--- Poster: P813 Guccitiger
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P813 Guccitiger', 'p813-guccitiger', 'P813 Guccitiger - Beautiful Fashion poster', 50, 1);
+-- Poster: Gucci Tiger
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Gucci Tiger', 'gucci-tiger', 'Gucci Tiger - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 107, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1520,9 +1536,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (107, 'large', 79.99);
 
--- Poster: P155 Pradamarfa1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P155 Pradamarfa1_360x', 'p155-pradamarfa1360x', 'P155 Pradamarfa1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Prada Marfa 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Prada Marfa 1', 'prada-marfa-1', 'Prada Marfa 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 108, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1534,9 +1550,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (108, 'large', 79.99);
 
--- Poster: P816 Fashionsurfer
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P816 Fashionsurfer', 'p816-fashionsurfer', 'P816 Fashionsurfer - Beautiful Fashion poster', 50, 1);
+-- Poster: Fashion Surfer
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Fashion Surfer', 'fashion-surfer', 'Fashion Surfer - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 109, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1548,9 +1564,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (109, 'large', 79.99);
 
--- Poster: P806 Playboykylie
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P806 Playboykylie', 'p806-playboykylie', 'P806 Playboykylie - Beautiful Fashion poster', 50, 1);
+-- Poster: Playboy Kylie
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Playboy Kylie', 'playboy-kylie', 'Playboy Kylie - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 110, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1562,9 +1578,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (110, 'large', 79.99);
 
--- Poster: P824 Centralceeteeth
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P824 Centralceeteeth', 'p824-centralceeteeth', 'P824 Centralceeteeth - Beautiful Fashion poster', 50, 1);
+-- Poster: Central Cee Teeth
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Central Cee Teeth', 'central-cee-teeth', 'Central Cee Teeth - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 111, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1576,9 +1592,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (111, 'large', 79.99);
 
--- Poster: P147 No5surfergirl1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P147 No5surfergirl1_360x', 'p147-no5surfergirl1360x', 'P147 No5surfergirl1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: N O 5 Surfer Girl 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('N O 5 Surfer Girl 1', 'n-o-5-surfer-girl-1', 'N O 5 Surfer Girl 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 112, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1590,9 +1606,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (112, 'large', 79.99);
 
--- Poster: Michaeljordan3fingers
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Michaeljordan3fingers', 'michaeljordan3fingers', 'Michaeljordan3fingers - Beautiful Fashion poster', 50, 1);
+-- Poster: Michael Jordan 3 Fingers
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Michael Jordan 3 Fingers', 'michael-jordan-3-fingers', 'Michael Jordan 3 Fingers - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 113, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1604,9 +1620,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (113, 'large', 79.99);
 
--- Poster: P144 Marilynmonroesmoking1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P144 Marilynmonroesmoking1_360x', 'p144-marilynmonroesmoking1360x', 'P144 Marilynmonroesmoking1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Marilyn Monroe Smoking 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Marilyn Monroe Smoking 1', 'marilyn-monroe-smoking-1', 'Marilyn Monroe Smoking 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 114, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1618,9 +1634,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (114, 'large', 79.99);
 
--- Poster: P116 Chanelbeachcabin1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P116 Chanelbeachcabin1_360x', 'p116-chanelbeachcabin1360x', 'P116 Chanelbeachcabin1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Chanel Beach Cabin 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Chanel Beach Cabin 1', 'chanel-beach-cabin-1', 'Chanel Beach Cabin 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 115, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1632,9 +1648,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (115, 'large', 79.99);
 
--- Poster: P118 Coco1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P118 Coco1_360x', 'p118-coco1360x', 'P118 Coco1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: C O C O 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('C O C O 1', 'c-o-c-o-1', 'C O C O 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 116, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1646,9 +1662,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (116, 'large', 79.99);
 
--- Poster: P842 Frankoceanxblond
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P842 Frankoceanxblond', 'p842-frankoceanxblond', 'P842 Frankoceanxblond - Beautiful Fashion poster', 50, 1);
+-- Poster: Frank Ocean X Blond
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Frank Ocean X Blond', 'frank-ocean-x-blond', 'Frank Ocean X Blond - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 117, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1660,9 +1676,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (117, 'large', 79.99);
 
--- Poster: Nikeairjordan
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Nikeairjordan', 'nikeairjordan', 'Nikeairjordan - Beautiful Fashion poster', 50, 1);
+-- Poster: Nike Air Jordan
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Nike Air Jordan', 'nike-air-jordan', 'Nike Air Jordan - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 118, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1674,9 +1690,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (118, 'large', 79.99);
 
--- Poster: P134 Highheelsincar1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P134 Highheelsincar1_360x', 'p134-highheelsincar1360x', 'P134 Highheelsincar1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: High Heels In Car 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('High Heels In Car 1', 'high-heels-in-car-1', 'High Heels In Car 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 119, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1688,9 +1704,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (119, 'large', 79.99);
 
--- Poster: P811 Travisscottastroworld
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P811 Travisscottastroworld', 'p811-travisscottastroworld', 'P811 Travisscottastroworld - Beautiful Fashion poster', 50, 1);
+-- Poster: Travis Scott Astroworld
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Travis Scott Astroworld', 'travis-scott-astroworld', 'Travis Scott Astroworld - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 120, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1702,9 +1718,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (120, 'large', 79.99);
 
--- Poster: P136 Katemossbunny1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P136 Katemossbunny1_360x', 'p136-katemossbunny1360x', 'P136 Katemossbunny1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Kate Moss Bunny 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Kate Moss Bunny 1', 'kate-moss-bunny-1', 'Kate Moss Bunny 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 121, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1716,9 +1732,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (121, 'large', 79.99);
 
--- Poster: Legoutdesautres
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Legoutdesautres', 'legoutdesautres', 'Legoutdesautres - Beautiful Fashion poster', 50, 1);
+-- Poster: Le Gout Des Autres
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Le Gout Des Autres', 'le-gout-des-autres', 'Le Gout Des Autres - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 122, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1730,9 +1746,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (122, 'large', 79.99);
 
--- Poster: Kawsbasketball
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Kawsbasketball', 'kawsbasketball', 'Kawsbasketball - Beautiful Fashion poster', 50, 1);
+-- Poster: Kaws Basketball
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Kaws Basketball', 'kaws-basketball', 'Kaws Basketball - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 123, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1744,9 +1760,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (123, 'large', 79.99);
 
--- Poster: Velvetpumps
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Velvetpumps', 'velvetpumps', 'Velvetpumps - Beautiful Fashion poster', 50, 1);
+-- Poster: Velvet Pumps
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Velvet Pumps', 'velvet-pumps', 'Velvet Pumps - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 124, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1758,9 +1774,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (124, 'large', 79.99);
 
--- Poster: P160 Rogermooredrinking1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P160 Rogermooredrinking1_360x', 'p160-rogermooredrinking1360x', 'P160 Rogermooredrinking1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Roger Moore Drinking 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Roger Moore Drinking 1', 'roger-moore-drinking-1', 'Roger Moore Drinking 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 125, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1772,9 +1788,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (125, 'large', 79.99);
 
--- Poster: P145 Middlefingergirl1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P145 Middlefingergirl1_360x', 'p145-middlefingergirl1360x', 'P145 Middlefingergirl1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Middle Finger Girl 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Middle Finger Girl 1', 'middle-finger-girl-1', 'Middle Finger Girl 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 126, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1786,9 +1802,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (126, 'large', 79.99);
 
--- Poster: P730 Louisvuittonvintage1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P730 Louisvuittonvintage1_360x', 'p730-louisvuittonvintage1360x', 'P730 Louisvuittonvintage1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Louis Vuitton Vintage 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Louis Vuitton Vintage 1', 'louis-vuitton-vintage-1', 'Louis Vuitton Vintage 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 127, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1800,9 +1816,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (127, 'large', 79.99);
 
--- Poster: P809 Playboyxbutterfly
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P809 Playboyxbutterfly', 'p809-playboyxbutterfly', 'P809 Playboyxbutterfly - Beautiful Fashion poster', 50, 1);
+-- Poster: Playboyx Butterfly
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Playboyx Butterfly', 'playboyx-butterfly', 'Playboyx Butterfly - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 128, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1814,9 +1830,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (128, 'large', 79.99);
 
--- Poster: Kawsrobot
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Kawsrobot', 'kawsrobot', 'Kawsrobot - Beautiful Fashion poster', 50, 1);
+-- Poster: Kaws Robot
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Kaws Robot', 'kaws-robot', 'Kaws Robot - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 129, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1828,9 +1844,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (129, 'large', 79.99);
 
--- Poster: P139 Marilynmonroebubblegum1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P139 Marilynmonroebubblegum1_360x', 'p139-marilynmonroebubblegum1360x', 'P139 Marilynmonroebubblegum1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Marilyn Monroe Bubblegum 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Marilyn Monroe Bubblegum 1', 'marilyn-monroe-bubblegum-1', 'Marilyn Monroe Bubblegum 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 130, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1842,9 +1858,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (130, 'large', 79.99);
 
--- Poster: P127 Fridakahlowithflowers1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P127 Fridakahlowithflowers1_360x', 'p127-fridakahlowithflowers1360x', 'P127 Fridakahlowithflowers1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Frida Kahlo With Flowers 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Frida Kahlo With Flowers 1', 'frida-kahlo-with-flowers-1', 'Frida Kahlo With Flowers 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 131, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1856,9 +1872,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (131, 'large', 79.99);
 
--- Poster: Sensualkiss
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Sensualkiss', 'sensualkiss', 'Sensualkiss - Beautiful Fashion poster', 50, 1);
+-- Poster: Sensual Kiss
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Sensual Kiss', 'sensual-kiss', 'Sensual Kiss - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 132, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1871,8 +1887,8 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (132, 'large', 79.99);
 
 -- Poster: Vinyl
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Vinyl', 'vinyl', 'Vinyl - Beautiful Fashion poster', 50, 1);
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Vinyl', 'vinyl', 'Vinyl - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 133, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1884,9 +1900,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (133, 'large', 79.99);
 
--- Poster: P135 Katemossbubblegum1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P135 Katemossbubblegum1_360x', 'p135-katemossbubblegum1360x', 'P135 Katemossbubblegum1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Kate Moss Bubblegum 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Kate Moss Bubblegum 1', 'kate-moss-bubblegum-1', 'Kate Moss Bubblegum 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 134, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1898,9 +1914,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (134, 'large', 79.99);
 
--- Poster: P111 Audreyhepburnlipstick1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P111 Audreyhepburnlipstick1_360x', 'p111-audreyhepburnlipstick1360x', 'P111 Audreyhepburnlipstick1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Audrey Hepburn Lipstick 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Audrey Hepburn Lipstick 1', 'audrey-hepburn-lipstick-1', 'Audrey Hepburn Lipstick 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 135, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1912,9 +1928,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (135, 'large', 79.99);
 
--- Poster: P142 Marilynmonroereading1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P142 Marilynmonroereading1_360x', 'p142-marilynmonroereading1360x', 'P142 Marilynmonroereading1_360x - Beautiful Fashion poster', 50, 1);
+-- Poster: Marilyn Monroe Reading 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Marilyn Monroe Reading 1', 'marilyn-monroe-reading-1', 'Marilyn Monroe Reading 1 - Beautiful Fashion poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 136, `category_id` FROM `category` WHERE `title` = 'Fashion';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1926,9 +1942,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (136, 'large', 79.99);
 
--- Poster: P387 Flowermarketbarcelona21_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P387 Flowermarketbarcelona21_360x', 'p387-flowermarketbarcelona21360x', 'P387 Flowermarketbarcelona21_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Barcelona 21
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Barcelona 21', 'flower-market-barcelona-21', 'Flower Market Barcelona 21 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 137, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1940,9 +1956,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (137, 'large', 79.99);
 
--- Poster: P405 Flowermarketparis1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P405 Flowermarketparis1_360x', 'p405-flowermarketparis1360x', 'P405 Flowermarketparis1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Paris 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Paris 1', 'flower-market-paris-1', 'Flower Market Paris 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 138, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1954,9 +1970,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (138, 'large', 79.99);
 
--- Poster: Flowersatnight
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Flowersatnight', 'flowersatnight', 'Flowersatnight - Beautiful Botanical poster', 50, 1);
+-- Poster: Flowers At Night
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flowers At Night', 'flowers-at-night', 'Flowers At Night - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 139, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1968,9 +1984,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (139, 'large', 79.99);
 
--- Poster: P413 Flowermarketstockholm1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P413 Flowermarketstockholm1_360x', 'p413-flowermarketstockholm1360x', 'P413 Flowermarketstockholm1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Stockholm 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Stockholm 1', 'flower-market-stockholm-1', 'Flower Market Stockholm 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 140, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1982,9 +1998,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (140, 'large', 79.99);
 
--- Poster: P415 Flowermarketstockholm31_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P415 Flowermarketstockholm31_360x', 'p415-flowermarketstockholm31360x', 'P415 Flowermarketstockholm31_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Stockholm 31
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Stockholm 31', 'flower-market-stockholm-31', 'Flower Market Stockholm 31 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 141, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -1996,9 +2012,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (141, 'large', 79.99);
 
--- Poster: P404 Flowermarketnewyork1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P404 Flowermarketnewyork1_360x', 'p404-flowermarketnewyork1360x', 'P404 Flowermarketnewyork1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market New York 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market New York 1', 'flower-market-new-york-1', 'Flower Market New York 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 142, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2010,9 +2026,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (142, 'large', 79.99);
 
--- Poster: P416 Flowermarketsydney1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P416 Flowermarketsydney1_360x', 'p416-flowermarketsydney1360x', 'P416 Flowermarketsydney1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Sydney 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Sydney 1', 'flower-market-sydney-1', 'Flower Market Sydney 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 143, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2024,9 +2040,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (143, 'large', 79.99);
 
--- Poster: P411 Flowermarketseoul21_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P411 Flowermarketseoul21_360x', 'p411-flowermarketseoul21360x', 'P411 Flowermarketseoul21_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Seoul 21
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Seoul 21', 'flower-market-seoul-21', 'Flower Market Seoul 21 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 144, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2038,9 +2054,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (144, 'large', 79.99);
 
--- Poster: P406 Flowermarketprague1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P406 Flowermarketprague1_360x', 'p406-flowermarketprague1360x', 'P406 Flowermarketprague1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Prague 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Prague 1', 'flower-market-prague-1', 'Flower Market Prague 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 145, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2052,9 +2068,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (145, 'large', 79.99);
 
--- Poster: P386 Flowermarketbarcelona1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P386 Flowermarketbarcelona1_360x', 'p386-flowermarketbarcelona1360x', 'P386 Flowermarketbarcelona1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Barcelona 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Barcelona 1', 'flower-market-barcelona-1', 'Flower Market Barcelona 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 146, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2066,9 +2082,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (146, 'large', 79.99);
 
--- Poster: P418 Flowermarkettokyo21_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P418 Flowermarkettokyo21_360x', 'p418-flowermarkettokyo21360x', 'P418 Flowermarkettokyo21_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Tokyo 21
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Tokyo 21', 'flower-market-tokyo-21', 'Flower Market Tokyo 21 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 147, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2080,9 +2096,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (147, 'large', 79.99);
 
--- Poster: P385 Flowermarketamsterdam1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P385 Flowermarketamsterdam1_360x', 'p385-flowermarketamsterdam1360x', 'P385 Flowermarketamsterdam1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Amsterdam 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Amsterdam 1', 'flower-market-amsterdam-1', 'Flower Market Amsterdam 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 148, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2094,9 +2110,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (148, 'large', 79.99);
 
--- Poster: Floralfrida
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Floralfrida', 'floralfrida', 'Floralfrida - Beautiful Botanical poster', 50, 1);
+-- Poster: Floral Frida
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Floral Frida', 'floral-frida', 'Floral Frida - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 149, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2108,9 +2124,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (149, 'large', 79.99);
 
--- Poster: P390 Flowermarketcopenhagen1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P390 Flowermarketcopenhagen1_360x', 'p390-flowermarketcopenhagen1360x', 'P390 Flowermarketcopenhagen1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Copenhagen 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Copenhagen 1', 'flower-market-copenhagen-1', 'Flower Market Copenhagen 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 150, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2122,9 +2138,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (150, 'large', 79.99);
 
--- Poster: P417 Flowermarkettokyo1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P417 Flowermarkettokyo1_360x', 'p417-flowermarkettokyo1360x', 'P417 Flowermarkettokyo1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Tokyo 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Tokyo 1', 'flower-market-tokyo-1', 'Flower Market Tokyo 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 151, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2136,9 +2152,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (151, 'large', 79.99);
 
--- Poster: P410 Flowermarketseoul1_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P410 Flowermarketseoul1_360x', 'p410-flowermarketseoul1360x', 'P410 Flowermarketseoul1_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market Seoul 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market Seoul 1', 'flower-market-seoul-1', 'Flower Market Seoul 1 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 152, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2150,9 +2166,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (152, 'large', 79.99);
 
--- Poster: P398 Flowermarketlondon21_360x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P398 Flowermarketlondon21_360x', 'p398-flowermarketlondon21360x', 'P398 Flowermarketlondon21_360x - Beautiful Botanical poster', 50, 1);
+-- Poster: Flower Market London 21
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Flower Market London 21', 'flower-market-london-21', 'Flower Market London 21 - Beautiful Botanical poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 153, `category_id` FROM `category` WHERE `title` = 'Botanical';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2164,9 +2180,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (153, 'large', 79.99);
 
--- Poster: Ilgodimentodelladolcevita
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Ilgodimentodelladolcevita', 'ilgodimentodelladolcevita', 'Ilgodimentodelladolcevita - Beautiful Kitchen poster', 50, 1);
+-- Poster: Il Godimento Della Dolce Vita
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Il Godimento Della Dolce Vita', 'il-godimento-della-dolce-vita', 'Il Godimento Della Dolce Vita - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 154, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2179,8 +2195,8 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (154, 'large', 79.99);
 
 -- Poster: Limoncello
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Limoncello', 'limoncello', 'Limoncello - Beautiful Kitchen poster', 50, 1);
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Limoncello', 'limoncello', 'Limoncello - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 155, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2192,9 +2208,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (155, 'large', 79.99);
 
--- Poster: Aperolcocktail
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Aperolcocktail', 'aperolcocktail', 'Aperolcocktail - Beautiful Kitchen poster', 50, 1);
+-- Poster: Aperol Cocktail
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Aperol Cocktail', 'aperol-cocktail', 'Aperol Cocktail - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 156, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2206,9 +2222,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (156, 'large', 79.99);
 
--- Poster: Espressoguide
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Espressoguide', 'espressoguide', 'Espressoguide - Beautiful Kitchen poster', 50, 1);
+-- Poster: Espresso Guide
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Espresso Guide', 'espresso-guide', 'Espresso Guide - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 157, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2220,9 +2236,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (157, 'large', 79.99);
 
--- Poster: Espressomartini
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Espressomartini', 'espressomartini', 'Espressomartini - Beautiful Kitchen poster', 50, 1);
+-- Poster: Espresso Martini
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Espresso Martini', 'espresso-martini', 'Espresso Martini - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 158, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2234,9 +2250,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (158, 'large', 79.99);
 
--- Poster: Pizzaest1977
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Pizzaest1977', 'pizzaest1977', 'Pizzaest1977 - Beautiful Kitchen poster', 50, 1);
+-- Poster: Pizza Est 1977
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pizza Est 1977', 'pizza-est-1977', 'Pizza Est 1977 - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 159, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2248,9 +2264,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (159, 'large', 79.99);
 
--- Poster: Spritzsummer
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Spritzsummer', 'spritzsummer', 'Spritzsummer - Beautiful Kitchen poster', 50, 1);
+-- Poster: Spritz Summer
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Spritz Summer', 'spritz-summer', 'Spritz Summer - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 160, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2262,9 +2278,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (160, 'large', 79.99);
 
--- Poster: Americanlobster
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Americanlobster', 'americanlobster', 'Americanlobster - Beautiful Kitchen poster', 50, 1);
+-- Poster: American Lobster
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('American Lobster', 'american-lobster', 'American Lobster - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 161, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2276,9 +2292,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (161, 'large', 79.99);
 
--- Poster: Balconyhygge
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Balconyhygge', 'balconyhygge', 'Balconyhygge - Beautiful Kitchen poster', 50, 1);
+-- Poster: Balcony Hygge
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Balcony Hygge', 'balcony-hygge', 'Balcony Hygge - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 162, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2290,9 +2306,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (162, 'large', 79.99);
 
--- Poster: P847 Negroni
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P847 Negroni', 'p847-negroni', 'P847 Negroni - Beautiful Kitchen poster', 50, 1);
+-- Poster: Negroni
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Negroni', 'negroni', 'Negroni - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 163, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2304,9 +2320,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (163, 'large', 79.99);
 
--- Poster: Lehomard
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Lehomard', 'lehomard', 'Lehomard - Beautiful Kitchen poster', 50, 1);
+-- Poster: Le Homard
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Le Homard', 'le-homard', 'Le Homard - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 164, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2318,9 +2334,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (164, 'large', 79.99);
 
--- Poster: Hotsaucesquares
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Hotsaucesquares', 'hotsaucesquares', 'Hotsaucesquares - Beautiful Kitchen poster', 50, 1);
+-- Poster: Hot Sauce Squares
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Hot Sauce Squares', 'hot-sauce-squares', 'Hot Sauce Squares - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 165, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2332,9 +2348,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (165, 'large', 79.99);
 
--- Poster: P421 Fruitmarketitaly1_540x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P421 Fruitmarketitaly1_540x', 'p421-fruitmarketitaly1540x', 'P421 Fruitmarketitaly1_540x - Beautiful Kitchen poster', 50, 1);
+-- Poster: Fruit Market Italy 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Fruit Market Italy 1', 'fruit-market-italy-1', 'Fruit Market Italy 1 - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 166, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2346,9 +2362,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (166, 'large', 79.99);
 
--- Poster: P846 Ginandtonic2
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P846 Ginandtonic2', 'p846-ginandtonic2', 'P846 Ginandtonic2 - Beautiful Kitchen poster', 50, 1);
+-- Poster: Gin And Tonic 2
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Gin And Tonic 2', 'gin-and-tonic-2', 'Gin And Tonic 2 - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 167, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2360,9 +2376,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (167, 'large', 79.99);
 
--- Poster: Croissantparis
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Croissantparis', 'croissantparis', 'Croissantparis - Beautiful Kitchen poster', 50, 1);
+-- Poster: Croissant Paris
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Croissant Paris', 'croissant-paris', 'Croissant Paris - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 168, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2374,9 +2390,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (168, 'large', 79.99);
 
--- Poster: Ramenjapanesesoup
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Ramenjapanesesoup', 'ramenjapanesesoup', 'Ramenjapanesesoup - Beautiful Kitchen poster', 50, 1);
+-- Poster: Ramen Japanese Soup
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Ramen Japanese Soup', 'ramen-japanese-soup', 'Ramen Japanese Soup - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 169, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2388,9 +2404,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (169, 'large', 79.99);
 
--- Poster: Cheersgirls
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Cheersgirls', 'cheersgirls', 'Cheersgirls - Beautiful Kitchen poster', 50, 1);
+-- Poster: Cheers Girls
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Cheers Girls', 'cheers-girls', 'Cheers Girls - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 170, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2402,9 +2418,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (170, 'large', 79.99);
 
--- Poster: Buongiornoespresso
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Buongiornoespresso', 'buongiornoespresso', 'Buongiornoespresso - Beautiful Kitchen poster', 50, 1);
+-- Poster: Buongiorno Espresso
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Buongiorno Espresso', 'buongiorno-espresso', 'Buongiorno Espresso - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 171, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2416,9 +2432,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (171, 'large', 79.99);
 
--- Poster: P162 Spaghettiwoman1_540x
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P162 Spaghettiwoman1_540x', 'p162-spaghettiwoman1540x', 'P162 Spaghettiwoman1_540x - Beautiful Kitchen poster', 50, 1);
+-- Poster: Spaghetti Woman 1
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Spaghetti Woman 1', 'spaghetti-woman-1', 'Spaghetti Woman 1 - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 172, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2430,9 +2446,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (172, 'large', 79.99);
 
--- Poster: Ipreferthefullone
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Ipreferthefullone', 'ipreferthefullone', 'Ipreferthefullone - Beautiful Kitchen poster', 50, 1);
+-- Poster: I Prefer The Full One
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('I Prefer The Full One', 'i-prefer-the-full-one', 'I Prefer The Full One - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 173, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2444,9 +2460,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (173, 'large', 79.99);
 
--- Poster: Pancakeest1951
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Pancakeest1951', 'pancakeest1951', 'Pancakeest1951 - Beautiful Kitchen poster', 50, 1);
+-- Poster: Pancake Est 1951
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pancake Est 1951', 'pancake-est-1951', 'Pancake Est 1951 - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 174, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2459,8 +2475,8 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (174, 'large', 79.99);
 
 -- Poster: Brunch
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Brunch', 'brunch', 'Brunch - Beautiful Kitchen poster', 50, 1);
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Brunch', 'brunch', 'Brunch - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 175, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2472,9 +2488,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (175, 'large', 79.99);
 
--- Poster: P900 Classicwineguide
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P900 Classicwineguide', 'p900-classicwineguide', 'P900 Classicwineguide - Beautiful Kitchen poster', 50, 1);
+-- Poster: Classic Wine Guide
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Classic Wine Guide', 'classic-wine-guide', 'Classic Wine Guide - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 176, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2486,9 +2502,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (176, 'large', 79.99);
 
--- Poster: P834 Aperolspritz
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P834 Aperolspritz', 'p834-aperolspritz', 'P834 Aperolspritz - Beautiful Kitchen poster', 50, 1);
+-- Poster: Aperol Spritz
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Aperol Spritz', 'aperol-spritz', 'Aperol Spritz - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 177, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2500,9 +2516,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (177, 'large', 79.99);
 
--- Poster: Coffeeest1979
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Coffeeest1979', 'coffeeest1979', 'Coffeeest1979 - Beautiful Kitchen poster', 50, 1);
+-- Poster: Coffee Est 1979
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Coffee Est 1979', 'coffee-est-1979', 'Coffee Est 1979 - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 178, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2514,9 +2530,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (178, 'large', 79.99);
 
--- Poster: Morewineplease
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Morewineplease', 'morewineplease', 'Morewineplease - Beautiful Kitchen poster', 50, 1);
+-- Poster: More Wine Please
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('More Wine Please', 'more-wine-please', 'More Wine Please - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 179, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2528,9 +2544,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (179, 'large', 79.99);
 
--- Poster: Moreespressolessdepresso
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Moreespressolessdepresso', 'moreespressolessdepresso', 'Moreespressolessdepresso - Beautiful Kitchen poster', 50, 1);
+-- Poster: More Espresso Less Depresso
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('More Espresso Less Depresso', 'more-espresso-less-depresso', 'More Espresso Less Depresso - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 180, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2542,9 +2558,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (180, 'large', 79.99);
 
--- Poster: Werideuntildawn
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Werideuntildawn', 'werideuntildawn', 'Werideuntildawn - Beautiful Kitchen poster', 50, 1);
+-- Poster: We Ride Until Dawn
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('We Ride Until Dawn', 'we-ride-until-dawn', 'We Ride Until Dawn - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 181, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2556,9 +2572,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (181, 'large', 79.99);
 
--- Poster: Ramenjapanesefood
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Ramenjapanesefood', 'ramenjapanesefood', 'Ramenjapanesefood - Beautiful Kitchen poster', 50, 1);
+-- Poster: Ramen Japanese Food
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Ramen Japanese Food', 'ramen-japanese-food', 'Ramen Japanese Food - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 182, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2571,8 +2587,8 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (182, 'large', 79.99);
 
 -- Poster: Pomodori
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Pomodori', 'pomodori', 'Pomodori - Beautiful Kitchen poster', 50, 1);
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pomodori', 'pomodori', 'Pomodori - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 183, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2584,9 +2600,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (183, 'large', 79.99);
 
--- Poster: Dolcezzaamara
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dolcezzaamara', 'dolcezzaamara', 'Dolcezzaamara - Beautiful Kitchen poster', 50, 1);
+-- Poster: Dolcezza Amara
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Dolcezza Amara', 'dolcezza-amara', 'Dolcezza Amara - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 184, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2598,9 +2614,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (184, 'large', 79.99);
 
--- Poster: Yourbestfriendsforgetyougetold
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Yourbestfriendsforgetyougetold', 'yourbestfriendsforgetyougetold', 'Yourbestfriendsforgetyougetold - Beautiful Kitchen poster', 50, 1);
+-- Poster: Your Best Friends Forget You Get Old
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Your Best Friends Forget You Get Old', 'your-best-friends-forget-you-get-old', 'Your Best Friends Forget You Get Old - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 185, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2612,9 +2628,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (185, 'large', 79.99);
 
--- Poster: Mydrinkneedsadrink
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Mydrinkneedsadrink', 'mydrinkneedsadrink', 'Mydrinkneedsadrink - Beautiful Kitchen poster', 50, 1);
+-- Poster: My Drink Needs A Drink
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('My Drink Needs A Drink', 'my-drink-needs-a-drink', 'My Drink Needs A Drink - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 186, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2626,9 +2642,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (186, 'large', 79.99);
 
--- Poster: Italianmenu
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Italianmenu', 'italianmenu', 'Italianmenu - Beautiful Kitchen poster', 50, 1);
+-- Poster: Italian Menu
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Italian Menu', 'italian-menu', 'Italian Menu - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 187, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2640,9 +2656,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (187, 'large', 79.99);
 
--- Poster: Sushiest1966
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Sushiest1966', 'sushiest1966', 'Sushiest1966 - Beautiful Kitchen poster', 50, 1);
+-- Poster: Sushi Est 1966
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Sushi Est 1966', 'sushi-est-1966', 'Sushi Est 1966 - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 188, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2654,9 +2670,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (188, 'large', 79.99);
 
--- Poster: P848 Pizzadoublecheese
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('P848 Pizzadoublecheese', 'p848-pizzadoublecheese', 'P848 Pizzadoublecheese - Beautiful Kitchen poster', 50, 1);
+-- Poster: Pizza Double Cheese
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Pizza Double Cheese', 'pizza-double-cheese', 'Pizza Double Cheese - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 189, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2668,9 +2684,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (189, 'large', 79.99);
 
--- Poster: Ildolcefarniente
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Ildolcefarniente', 'ildolcefarniente', 'Ildolcefarniente - Beautiful Kitchen poster', 50, 1);
+-- Poster: Il Dolce Far Niente
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Il Dolce Far Niente', 'il-dolce-far-niente', 'Il Dolce Far Niente - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 190, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2683,8 +2699,8 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (190, 'large', 79.99);
 
 -- Poster: Limone
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Limone', 'limone', 'Limone - Beautiful Kitchen poster', 50, 1);
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Limone', 'limone', 'Limone - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 191, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2696,9 +2712,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (191, 'large', 79.99);
 
--- Poster: Lecitron
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Lecitron', 'lecitron', 'Lecitron - Beautiful Kitchen poster', 50, 1);
+-- Poster: Le Citron
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Le Citron', 'le-citron', 'Le Citron - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 192, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2710,9 +2726,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (192, 'large', 79.99);
 
--- Poster: Morningrituals
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Morningrituals', 'morningrituals', 'Morningrituals - Beautiful Kitchen poster', 50, 1);
+-- Poster: Morning Rituals
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Morning Rituals', 'morning-rituals', 'Morning Rituals - Beautiful Kitchen poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 193, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2724,9 +2740,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (193, 'large', 79.99);
 
--- Poster: Scandisleepingtiger
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Scandisleepingtiger', 'scandisleepingtiger', 'Scandisleepingtiger - Beautiful Kids poster', 50, 1);
+-- Poster: Scandi Sleeping Tiger
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Scandi Sleeping Tiger', 'scandi-sleeping-tiger', 'Scandi Sleeping Tiger - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 194, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2738,9 +2754,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (194, 'large', 79.99);
 
--- Poster: Dinosaursin80sjumpers
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dinosaursin80sjumpers', 'dinosaursin80sjumpers', 'Dinosaursin80sjumpers - Beautiful Kids poster', 50, 1);
+-- Poster: Dinosaurs In 80s Jumpers
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Dinosaurs In 80s Jumpers', 'dinosaurs-in-80s-jumpers', 'Dinosaurs In 80s Jumpers - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 195, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2752,9 +2768,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (195, 'large', 79.99);
 
--- Poster: Babylion
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babylion', 'babylion', 'Babylion - Beautiful Kids poster', 50, 1);
+-- Poster: Baby Lion
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Baby Lion', 'baby-lion', 'Baby Lion - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 196, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2766,9 +2782,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (196, 'large', 79.99);
 
--- Poster: Babyfox
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babyfox', 'babyfox', 'Babyfox - Beautiful Kids poster', 50, 1);
+-- Poster: Baby Fox
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Baby Fox', 'baby-fox', 'Baby Fox - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 197, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2780,9 +2796,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (197, 'large', 79.99);
 
--- Poster: Howareyoufeeling
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Howareyoufeeling', 'howareyoufeeling', 'Howareyoufeeling - Beautiful Kids poster', 50, 1);
+-- Poster: How Are You Feeling
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('How Are You Feeling', 'how-are-you-feeling', 'How Are You Feeling - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 198, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2794,9 +2810,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (198, 'large', 79.99);
 
--- Poster: Littlelion
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Littlelion', 'littlelion', 'Littlelion - Beautiful Kids poster', 50, 1);
+-- Poster: Little Lion
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Little Lion', 'little-lion', 'Little Lion - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 199, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2808,9 +2824,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (199, 'large', 79.99);
 
--- Poster: Babypig
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babypig', 'babypig', 'Babypig - Beautiful Kids poster', 50, 1);
+-- Poster: Baby Pig
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Baby Pig', 'baby-pig', 'Baby Pig - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 200, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2822,9 +2838,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (200, 'large', 79.99);
 
--- Poster: Babygiraffe
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babygiraffe', 'babygiraffe', 'Babygiraffe - Beautiful Kids poster', 50, 1);
+-- Poster: Baby Giraffe
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Baby Giraffe', 'baby-giraffe', 'Baby Giraffe - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 201, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2836,9 +2852,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (201, 'large', 79.99);
 
--- Poster: Littletoucan
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Littletoucan', 'littletoucan', 'Littletoucan - Beautiful Kids poster', 50, 1);
+-- Poster: Little Toucan
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Little Toucan', 'little-toucan', 'Little Toucan - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 202, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2850,9 +2866,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (202, 'large', 79.99);
 
--- Poster: Bunnyonskateboard
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Bunnyonskateboard', 'bunnyonskateboard', 'Bunnyonskateboard - Beautiful Kids poster', 50, 1);
+-- Poster: Bunny On Skateboard
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Bunny On Skateboard', 'bunny-on-skateboard', 'Bunny On Skateboard - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 203, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2864,9 +2880,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (203, 'large', 79.99);
 
--- Poster: Swingsetdreams
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Swingsetdreams', 'swingsetdreams', 'Swingsetdreams - Beautiful Kids poster', 50, 1);
+-- Poster: Swingset Dreams
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Swingset Dreams', 'swingset-dreams', 'Swingset Dreams - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 204, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2878,9 +2894,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (204, 'large', 79.99);
 
--- Poster: Babyrabbit
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babyrabbit', 'babyrabbit', 'Babyrabbit - Beautiful Kids poster', 50, 1);
+-- Poster: Baby Rabbit
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Baby Rabbit', 'baby-rabbit', 'Baby Rabbit - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 205, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2892,9 +2908,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (205, 'large', 79.99);
 
--- Poster: Guineapigworking
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Guineapigworking', 'guineapigworking', 'Guineapigworking - Beautiful Kids poster', 50, 1);
+-- Poster: Guinea Pig Working
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Guinea Pig Working', 'guinea-pig-working', 'Guinea Pig Working - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 206, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2906,9 +2922,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (206, 'large', 79.99);
 
--- Poster: Rocketlove
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Rocketlove', 'rocketlove', 'Rocketlove - Beautiful Kids poster', 50, 1);
+-- Poster: Rocket Love
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Rocket Love', 'rocket-love', 'Rocket Love - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 207, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2920,9 +2936,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (207, 'large', 79.99);
 
--- Poster: Dreambigpink
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dreambigpink', 'dreambigpink', 'Dreambigpink - Beautiful Kids poster', 50, 1);
+-- Poster: Dream Big Pink
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Dream Big Pink', 'dream-big-pink', 'Dream Big Pink - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 208, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2934,9 +2950,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (208, 'large', 79.99);
 
--- Poster: Babyelephant
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babyelephant', 'babyelephant', 'Babyelephant - Beautiful Kids poster', 50, 1);
+-- Poster: Baby Elephant
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Baby Elephant', 'baby-elephant', 'Baby Elephant - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 209, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2949,8 +2965,8 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (209, 'large', 79.99);
 
 -- Poster: Matahari
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Matahari', 'matahari', 'Matahari - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Matahari', 'matahari', 'Matahari - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 210, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2962,9 +2978,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (210, 'large', 79.99);
 
--- Poster: Intheclouds
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Intheclouds', 'intheclouds', 'Intheclouds - Beautiful Kids poster', 50, 1);
+-- Poster: In The Clouds
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('In The Clouds', 'in-the-clouds', 'In The Clouds - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 211, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2976,9 +2992,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (211, 'large', 79.99);
 
--- Poster: Happinesshomework
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Happinesshomework', 'happinesshomework', 'Happinesshomework - Beautiful Kids poster', 50, 1);
+-- Poster: Happiness Homework
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Happiness Homework', 'happiness-homework', 'Happiness Homework - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 212, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -2990,9 +3006,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (212, 'large', 79.99);
 
--- Poster: Animallettersabc
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Animallettersabc', 'animallettersabc', 'Animallettersabc - Beautiful Kids poster', 50, 1);
+-- Poster: Animal Letters A B C
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Animal Letters A B C', 'animal-letters-a-b-c', 'Animal Letters A B C - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 213, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3004,9 +3020,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (213, 'large', 79.99);
 
--- Poster: Scandipantha
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Scandipantha', 'scandipantha', 'Scandipantha - Beautiful Kids poster', 50, 1);
+-- Poster: Scandi Pantha
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Scandi Pantha', 'scandi-pantha', 'Scandi Pantha - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 214, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3018,9 +3034,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (214, 'large', 79.99);
 
--- Poster: Dailyaffirmations
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dailyaffirmations', 'dailyaffirmations', 'Dailyaffirmations - Beautiful Kids poster', 50, 1);
+-- Poster: Daily Affirmations
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Daily Affirmations', 'daily-affirmations', 'Daily Affirmations - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 215, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3033,8 +3049,8 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (215, 'large', 79.99);
 
 -- Poster: Dreamland
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dreamland', 'dreamland', 'Dreamland - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Dreamland', 'dreamland', 'Dreamland - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 216, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3046,9 +3062,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (216, 'large', 79.99);
 
--- Poster: Babyracoon
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babyracoon', 'babyracoon', 'Babyracoon - Beautiful Kids poster', 50, 1);
+-- Poster: Baby Racoon
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Baby Racoon', 'baby-racoon', 'Baby Racoon - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 217, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3060,9 +3076,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (217, 'large', 79.99);
 
--- Poster: Dogsinglasses
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dogsinglasses', 'dogsinglasses', 'Dogsinglasses - Beautiful Kids poster', 50, 1);
+-- Poster: Dogs In Glasses
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Dogs In Glasses', 'dogs-in-glasses', 'Dogs In Glasses - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 218, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3074,9 +3090,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (218, 'large', 79.99);
 
--- Poster: Whalesinhats
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Whalesinhats', 'whalesinhats', 'Whalesinhats - Beautiful Kids poster', 50, 1);
+-- Poster: Whales In Hats
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Whales In Hats', 'whales-in-hats', 'Whales In Hats - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 219, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3088,9 +3104,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (219, 'large', 79.99);
 
--- Poster: Beunique
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Beunique', 'beunique', 'Beunique - Beautiful Kids poster', 50, 1);
+-- Poster: Be Unique
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Be Unique', 'be-unique', 'Be Unique - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 220, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3102,9 +3118,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (220, 'large', 79.99);
 
--- Poster: Junglebabies
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Junglebabies', 'junglebabies', 'Junglebabies - Beautiful Kids poster', 50, 1);
+-- Poster: Jungle Babies
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Jungle Babies', 'jungle-babies', 'Jungle Babies - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 221, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3116,9 +3132,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (221, 'large', 79.99);
 
--- Poster: Reptilesinglasses
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Reptilesinglasses', 'reptilesinglasses', 'Reptilesinglasses - Beautiful Kids poster', 50, 1);
+-- Poster: Reptiles In Glasses
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Reptiles In Glasses', 'reptiles-in-glasses', 'Reptiles In Glasses - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 222, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3130,9 +3146,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (222, 'large', 79.99);
 
--- Poster: Bekind
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Bekind', 'bekind', 'Bekind - Beautiful Kids poster', 50, 1);
+-- Poster: Be Kind
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Be Kind', 'be-kind', 'Be Kind - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 223, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3144,9 +3160,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (223, 'large', 79.99);
 
--- Poster: Babymonkey
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babymonkey', 'babymonkey', 'Babymonkey - Beautiful Kids poster', 50, 1);
+-- Poster: Baby Monkey
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Baby Monkey', 'baby-monkey', 'Baby Monkey - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 224, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3158,9 +3174,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (224, 'large', 79.99);
 
--- Poster: Clevergirl
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Clevergirl', 'clevergirl', 'Clevergirl - Beautiful Kids poster', 50, 1);
+-- Poster: Clever Girl
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Clever Girl', 'clever-girl', 'Clever Girl - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 225, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3172,9 +3188,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (225, 'large', 79.99);
 
--- Poster: Giantgirl
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Giantgirl', 'giantgirl', 'Giantgirl - Beautiful Kids poster', 50, 1);
+-- Poster: Giant Girl
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Giant Girl', 'giant-girl', 'Giant Girl - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 226, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3186,9 +3202,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (226, 'large', 79.99);
 
--- Poster: Littlemonkey
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Littlemonkey', 'littlemonkey', 'Littlemonkey - Beautiful Kids poster', 50, 1);
+-- Poster: Little Monkey
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Little Monkey', 'little-monkey', 'Little Monkey - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 227, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3200,9 +3216,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (227, 'large', 79.99);
 
--- Poster: Behappy
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Behappy', 'behappy', 'Behappy - Beautiful Kids poster', 50, 1);
+-- Poster: Be Happy
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Be Happy', 'be-happy', 'Be Happy - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 228, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
@@ -3214,9 +3230,9 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (228, 'large', 79.99);
 
--- Poster: Becurious
-INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Becurious', 'becurious', 'Becurious - Beautiful Kids poster', 50, 1);
+-- Poster: Be Curious
+INSERT INTO `poster` (`title`, `url`, `description`, `author_id`, `stock`, `available`) VALUES
+('Be Curious', 'be-curious', 'Be Curious - Beautiful Kids poster', NULL, 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
 SELECT 229, `category_id` FROM `category` WHERE `title` = 'Kids';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES

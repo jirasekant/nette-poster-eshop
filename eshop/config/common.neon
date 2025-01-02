@@ -47,6 +47,7 @@ services:
 	- App\Model\Facades\CartFacade
 	- App\Model\Facades\UsersFacade
 
+	- App\Model\Repositories\AuthorRepository
 	- App\Model\Repositories\CategoryRepository
 	- App\Model\Repositories\CartItemRepository
 	- App\Model\Repositories\CartRepository

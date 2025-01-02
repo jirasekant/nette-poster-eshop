@@ -1,22 +1,33 @@
 {block content}
 <div class="container-fluid py-5">
     <div class="row">
-        <!-- Categories Sidebar -->
+        <!-- Sidebar -->
         <div class="col-md-3">
-            <div class="card border-0 rounded-0">
-                <div class="card-body">
-                    <h5 class="text-uppercase mb-4">Categories</h5>
-                    <div class="list-group list-group-flush">
-                        <a href="{plink Product:list}" 
-                           class="list-group-item list-group-item-action border-0 {if !$currentCategoryId}active{/if}">
-                            All Posters
-                        </a>
-                        <a n:foreach="$categories as $category" 
-                           href="{plink Product:list, categoryId => $category->categoryId}"
-                           class="list-group-item list-group-item-action border-0 {if $currentCategoryId == $category->categoryId}active{/if}">
-                            {$category->title}
-                        </a>
-                    </div>
+            <!-- Categories -->
+            <div class="border-0 rounded-0 mb-4">
+                <h5 class="text-uppercase mb-4">Categories</h5>
+                <div class="list-group list-group-flush">
+                    <a href="{plink Product:list}" 
+                        class="list-group-item list-group-item-action border-0 {if !$currentCategoryId}active{/if}">
+                        All Posters
+                    </a>
+                    <a n:foreach="$categories as $category" 
+                        href="{plink Product:list, categoryId => $category->categoryId}"
+                        class="list-group-item list-group-item-action border-0 {if $currentCategoryId == $category->categoryId}active{/if}">
+                        {$category->title}
+                    </a>
+                </div>
+            </div>
+
+            <!-- Authors -->
+            <div class="border-0 rounded-0">
+                <h5 class="text-uppercase mb-4">Authors</h5>
+                <div class="list-group list-group-flush">
+                    <a n:foreach="$authors as $author" 
+                        href="{plink Product:list, authorId => $author->authorId}"
+                        class="list-group-item list-group-item-action border-0 {if $currentAuthorId == $author->authorId}active{/if}">
+                        {$author->name}
+                    </a>
                 </div>
             </div>
         </div>
@@ -26,14 +37,16 @@
             <div class="row g-4">
                 {foreach $posters as $poster}
                     <div class="col-md-4">
-                        <div class="card border-0 h-100 position-relative">
+                        <div class="card border-0 h-100">
                             <!-- Image -->
                             {if $poster->posterImages && count($poster->posterImages) > 0}
-                                <div class="position-relative">
-                                    <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
-                                         class="card-img-top" 
-                                         alt="{$poster->title}" 
-                                         style="height: 300px; object-fit: cover;">
+                                <div class="position-relative poster-image-container">
+                                    <a href="{plink Product:show $poster->posterId}" class="d-block">
+                                        <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
+                                             class="card-img-top" 
+                                             alt="{$poster->title}" 
+                                             style="height: 300px; object-fit: cover;">
+                                    </a>
                                 </div>
                             {else}
                                 <div class="bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
@@ -44,6 +57,9 @@
                             <!-- Content -->
                             <div class="card-body px-0 text-center">
                                 <h5 class="card-title mb-2">{$poster->title}</h5>
+                                {if $poster->author}
+                                    <p class="text-muted mb-2">{$poster->author->name}</p>
+                                {/if}
                                 {if $poster->posterSizes && count($poster->posterSizes) > 0}
                                     <div class="price-container">
                                         <span class="text-danger">from ${$poster->posterSizes[0]->price|number:2}</span>
@@ -66,3 +82,36 @@
         </div>
     </div>
 </div>
+
+<style>
+    .poster-image-container {
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+    
+    .poster-image-container:hover {
+        opacity: 0.9;
+    }
+
+    .list-group-item {
+        padding: 0.75rem 0;
+        background: none;
+        transition: color 0.3s ease;
+    }
+
+    .list-group-item:hover {
+        color: #000;
+        font-weight: normal;
+        background: none;
+    }
+
+    .list-group-item.active {
+        color: #000;
+        font-weight: bold;
+        background: none;
+    }
+
+    .list-group-item.active:hover {
+        background: none;
+    }
+</style>
