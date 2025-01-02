@@ -21,7 +21,7 @@ class HomepagePresenter extends BasePresenter
 
     public function renderDefault(): void
     {
-        // Get 4 newest posters
+        // Get 4 newest posters (using created_at timestamp)
         $this->template->newArrivals = $this->posterRepository->findNewest();
 
         // Get main categories (those without parent)
@@ -29,7 +29,7 @@ class HomepagePresenter extends BasePresenter
             'parent_category_id' => null
         ]);
 
-        // Get 4 popular posters (for now just random ones)
-        $this->template->popularPosters = $this->posterRepository->findPopular();
+        // Get 4 random posters for the Popular section
+        $this->template->popularPosters = $this->posterRepository->findRandom();
     }
 }

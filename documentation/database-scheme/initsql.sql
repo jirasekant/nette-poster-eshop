@@ -98,10 +98,12 @@ CREATE TABLE `poster` (
     `author_id` int(11) DEFAULT NULL,
     `stock` int(11) DEFAULT 0,
     `available` tinyint(1) NOT NULL DEFAULT 1,
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (`poster_id`),
     UNIQUE KEY `url` (`url`),
     KEY `author_id` (`author_id`),
     KEY `available` (`available`),
+    KEY `created_at` (`created_at`),
     CONSTRAINT `poster_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 

@@ -31,10 +31,21 @@ class PosterRepository extends Repository
     {
         $result = $this->connection->select('DISTINCT p.*')
             ->from('[poster] p')
-            ->orderBy('RAND()')
+            ->orderBy('p.created_at DESC')
             ->limit($limit)
             ->fetchAll();
         
+        return $this->createEntities($result);
+    }
+
+    public function findRandom(int $limit = 4): array
+    {
+        $result = $this->connection->select('DISTINCT p.*')
+            ->from('[poster] p')
+            ->orderBy('RAND()')
+            ->limit($limit)
+            ->fetchAll();
+            
         return $this->createEntities($result);
     }
 
