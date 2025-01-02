@@ -18,6 +18,8 @@ INSERT INTO `category` (`title`, `description`) VALUES
 INSERT INTO `category` (`title`, `description`) VALUES
 ('Botanical', 'Botanical collection of posters');
 INSERT INTO `category` (`title`, `description`) VALUES
+('Kitchen', 'Kitchen collection of posters');
+INSERT INTO `category` (`title`, `description`) VALUES
 ('Kids', 'Kids collection of posters');
 
 -- Poster: P308 Bauhausredsun1_360x
@@ -2162,13 +2164,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (153, 'large', 79.99);
 
--- Poster: Scandisleepingtiger
+-- Poster: Ilgodimentodelladolcevita
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Scandisleepingtiger', 'scandisleepingtiger', 'Scandisleepingtiger - Beautiful Kids poster', 50, 1);
+('Ilgodimentodelladolcevita', 'ilgodimentodelladolcevita', 'Ilgodimentodelladolcevita - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 154, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 154, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(154, '/images/posters/Kids/X731-ScandiSleepingTiger-1_360x.png');
+(154, '/images/posters/Kitchen/X967-IlGodimentoDellaDolceVita-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (154, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2176,13 +2178,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (154, 'large', 79.99);
 
--- Poster: Dinosaursin80sjumpers
+-- Poster: Limoncello
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dinosaursin80sjumpers', 'dinosaursin80sjumpers', 'Dinosaursin80sjumpers - Beautiful Kids poster', 50, 1);
+('Limoncello', 'limoncello', 'Limoncello - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 155, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 155, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(155, '/images/posters/Kids/X728-DinosaursIn80sJumpers-1_360x.png');
+(155, '/images/posters/Kitchen/X328-Limoncello-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (155, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2190,13 +2192,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (155, 'large', 79.99);
 
--- Poster: Babylion
+-- Poster: Aperolcocktail
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babylion', 'babylion', 'Babylion - Beautiful Kids poster', 50, 1);
+('Aperolcocktail', 'aperolcocktail', 'Aperolcocktail - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 156, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 156, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(156, '/images/posters/Kids/X708-BabyLion-1_360x.png');
+(156, '/images/posters/Kitchen/X187-AperolCocktail-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (156, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2204,13 +2206,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (156, 'large', 79.99);
 
--- Poster: Babyfox
+-- Poster: Espressoguide
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babyfox', 'babyfox', 'Babyfox - Beautiful Kids poster', 50, 1);
+('Espressoguide', 'espressoguide', 'Espressoguide - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 157, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 157, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(157, '/images/posters/Kids/X706-BabyFox-1_360x.png');
+(157, '/images/posters/Kitchen/X382-EspressoGuide-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (157, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2218,13 +2220,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (157, 'large', 79.99);
 
--- Poster: Howareyoufeeling
+-- Poster: Espressomartini
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Howareyoufeeling', 'howareyoufeeling', 'Howareyoufeeling - Beautiful Kids poster', 50, 1);
+('Espressomartini', 'espressomartini', 'Espressomartini - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 158, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 158, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(158, '/images/posters/Kids/X735-HowAreYouFeeling-1_360x.png');
+(158, '/images/posters/Kitchen/X1008-EspressoMartini-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (158, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2232,13 +2234,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (158, 'large', 79.99);
 
--- Poster: Littlelion
+-- Poster: Pizzaest1977
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Littlelion', 'littlelion', 'Littlelion - Beautiful Kids poster', 50, 1);
+('Pizzaest1977', 'pizzaest1977', 'Pizzaest1977 - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 159, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 159, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(159, '/images/posters/Kids/X719-LittleLion-1_360x.png');
+(159, '/images/posters/Kitchen/X165-PizzaEst1977-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (159, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2246,13 +2248,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (159, 'large', 79.99);
 
--- Poster: Babypig
+-- Poster: Spritzsummer
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babypig', 'babypig', 'Babypig - Beautiful Kids poster', 50, 1);
+('Spritzsummer', 'spritzsummer', 'Spritzsummer - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 160, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 160, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(160, '/images/posters/Kids/X710-BabyPig-1_360x.png');
+(160, '/images/posters/Kitchen/X189-SpritzSummer-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (160, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2260,13 +2262,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (160, 'large', 79.99);
 
--- Poster: Babygiraffe
+-- Poster: Americanlobster
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babygiraffe', 'babygiraffe', 'Babygiraffe - Beautiful Kids poster', 50, 1);
+('Americanlobster', 'americanlobster', 'Americanlobster - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 161, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 161, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(161, '/images/posters/Kids/X707-BabyGiraffe-1_360x.png');
+(161, '/images/posters/Kitchen/X231-AmericanLobster-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (161, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2274,13 +2276,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (161, 'large', 79.99);
 
--- Poster: Littletoucan
+-- Poster: Balconyhygge
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Littletoucan', 'littletoucan', 'Littletoucan - Beautiful Kids poster', 50, 1);
+('Balconyhygge', 'balconyhygge', 'Balconyhygge - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 162, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 162, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(162, '/images/posters/Kids/X870-LittleToucan-1_360x.png');
+(162, '/images/posters/Kitchen/X470-BalconyHygge-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (162, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2288,13 +2290,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (162, 'large', 79.99);
 
--- Poster: Bunnyonskateboard
+-- Poster: P847 Negroni
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Bunnyonskateboard', 'bunnyonskateboard', 'Bunnyonskateboard - Beautiful Kids poster', 50, 1);
+('P847 Negroni', 'p847-negroni', 'P847 Negroni - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 163, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 163, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(163, '/images/posters/Kids/X721-BunnyOnSkateboard-1_360x.png');
+(163, '/images/posters/Kitchen/P847-Negroni-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (163, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2302,13 +2304,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (163, 'large', 79.99);
 
--- Poster: Swingsetdreams
+-- Poster: Lehomard
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Swingsetdreams', 'swingsetdreams', 'Swingsetdreams - Beautiful Kids poster', 50, 1);
+('Lehomard', 'lehomard', 'Lehomard - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 164, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 164, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(164, '/images/posters/Kids/X667-SwingsetDreams-1_360x.png');
+(164, '/images/posters/Kitchen/X1012-LeHomard-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (164, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2316,13 +2318,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (164, 'large', 79.99);
 
--- Poster: Babyrabbit
+-- Poster: Hotsaucesquares
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babyrabbit', 'babyrabbit', 'Babyrabbit - Beautiful Kids poster', 50, 1);
+('Hotsaucesquares', 'hotsaucesquares', 'Hotsaucesquares - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 165, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 165, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(165, '/images/posters/Kids/X711-BabyRabbit-1_360x.png');
+(165, '/images/posters/Kitchen/X241-HotSauceSquares-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (165, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2330,13 +2332,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (165, 'large', 79.99);
 
--- Poster: Guineapigworking
+-- Poster: P421 Fruitmarketitaly1_540x
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Guineapigworking', 'guineapigworking', 'Guineapigworking - Beautiful Kids poster', 50, 1);
+('P421 Fruitmarketitaly1_540x', 'p421-fruitmarketitaly1540x', 'P421 Fruitmarketitaly1_540x - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 166, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 166, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(166, '/images/posters/Kids/X726-GuineaPigWorking-1_360x.png');
+(166, '/images/posters/Kitchen/P421-FruitMarketItaly1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (166, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2344,13 +2346,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (166, 'large', 79.99);
 
--- Poster: Rocketlove
+-- Poster: P846 Ginandtonic2
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Rocketlove', 'rocketlove', 'Rocketlove - Beautiful Kids poster', 50, 1);
+('P846 Ginandtonic2', 'p846-ginandtonic2', 'P846 Ginandtonic2 - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 167, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 167, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(167, '/images/posters/Kids/X742-RocketLove-1_360x.png');
+(167, '/images/posters/Kitchen/P846-GinAndTonic2-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (167, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2358,13 +2360,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (167, 'large', 79.99);
 
--- Poster: Dreambigpink
+-- Poster: Croissantparis
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dreambigpink', 'dreambigpink', 'Dreambigpink - Beautiful Kids poster', 50, 1);
+('Croissantparis', 'croissantparis', 'Croissantparis - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 168, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 168, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(168, '/images/posters/Kids/X747-DreamBigPink-1_360x.png');
+(168, '/images/posters/Kitchen/X474-CroissantParis-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (168, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2372,13 +2374,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (168, 'large', 79.99);
 
--- Poster: Babyelephant
+-- Poster: Ramenjapanesesoup
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babyelephant', 'babyelephant', 'Babyelephant - Beautiful Kids poster', 50, 1);
+('Ramenjapanesesoup', 'ramenjapanesesoup', 'Ramenjapanesesoup - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 169, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 169, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(169, '/images/posters/Kids/X705-BabyElephant-1_360x.png');
+(169, '/images/posters/Kitchen/X193-RamenJapaneseSoup-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (169, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2386,13 +2388,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (169, 'large', 79.99);
 
--- Poster: Matahari
+-- Poster: Cheersgirls
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Matahari', 'matahari', 'Matahari - Beautiful Kids poster', 50, 1);
+('Cheersgirls', 'cheersgirls', 'Cheersgirls - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 170, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 170, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(170, '/images/posters/Kids/X715-Matahari-1_360x.png');
+(170, '/images/posters/Kitchen/X329-CheersGirls-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (170, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2400,13 +2402,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (170, 'large', 79.99);
 
--- Poster: Intheclouds
+-- Poster: Buongiornoespresso
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Intheclouds', 'intheclouds', 'Intheclouds - Beautiful Kids poster', 50, 1);
+('Buongiornoespresso', 'buongiornoespresso', 'Buongiornoespresso - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 171, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 171, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(171, '/images/posters/Kids/X659-InTheClouds-1_360x.png');
+(171, '/images/posters/Kitchen/X845-BuongiornoEspresso-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (171, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2414,13 +2416,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (171, 'large', 79.99);
 
--- Poster: Happinesshomework
+-- Poster: P162 Spaghettiwoman1_540x
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Happinesshomework', 'happinesshomework', 'Happinesshomework - Beautiful Kids poster', 50, 1);
+('P162 Spaghettiwoman1_540x', 'p162-spaghettiwoman1540x', 'P162 Spaghettiwoman1_540x - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 172, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 172, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(172, '/images/posters/Kids/X733-HappinessHomework-1_360x.png');
+(172, '/images/posters/Kitchen/P162-SpaghettiWoman1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (172, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2428,13 +2430,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (172, 'large', 79.99);
 
--- Poster: Animallettersabc
+-- Poster: Ipreferthefullone
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Animallettersabc', 'animallettersabc', 'Animallettersabc - Beautiful Kids poster', 50, 1);
+('Ipreferthefullone', 'ipreferthefullone', 'Ipreferthefullone - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 173, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 173, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(173, '/images/posters/Kids/X749-AnimalLettersABC-1_360x.png');
+(173, '/images/posters/Kitchen/X85-IPreferTheFullOne-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (173, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2442,13 +2444,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (173, 'large', 79.99);
 
--- Poster: Scandipantha
+-- Poster: Pancakeest1951
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Scandipantha', 'scandipantha', 'Scandipantha - Beautiful Kids poster', 50, 1);
+('Pancakeest1951', 'pancakeest1951', 'Pancakeest1951 - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 174, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 174, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(174, '/images/posters/Kids/X729-ScandiPantha-1_360x.png');
+(174, '/images/posters/Kitchen/X163-PancakeEst1951-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (174, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2456,13 +2458,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (174, 'large', 79.99);
 
--- Poster: Dailyaffirmations
+-- Poster: Brunch
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dailyaffirmations', 'dailyaffirmations', 'Dailyaffirmations - Beautiful Kids poster', 50, 1);
+('Brunch', 'brunch', 'Brunch - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 175, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 175, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(175, '/images/posters/Kids/X734-DailyAffirmations-1_360x.png');
+(175, '/images/posters/Kitchen/X186-Brunch-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (175, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2470,13 +2472,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (175, 'large', 79.99);
 
--- Poster: Dreamland
+-- Poster: P900 Classicwineguide
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dreamland', 'dreamland', 'Dreamland - Beautiful Kids poster', 50, 1);
+('P900 Classicwineguide', 'p900-classicwineguide', 'P900 Classicwineguide - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 176, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 176, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(176, '/images/posters/Kids/X654-Dreamland-1_360x.png');
+(176, '/images/posters/Kitchen/P900-ClassicWineGuide-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (176, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2484,13 +2486,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (176, 'large', 79.99);
 
--- Poster: Babyracoon
+-- Poster: P834 Aperolspritz
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babyracoon', 'babyracoon', 'Babyracoon - Beautiful Kids poster', 50, 1);
+('P834 Aperolspritz', 'p834-aperolspritz', 'P834 Aperolspritz - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 177, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 177, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(177, '/images/posters/Kids/X712-BabyRacoon-1_360x.png');
+(177, '/images/posters/Kitchen/P834-AperolSpritz-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (177, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2498,13 +2500,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (177, 'large', 79.99);
 
--- Poster: Dogsinglasses
+-- Poster: Coffeeest1979
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Dogsinglasses', 'dogsinglasses', 'Dogsinglasses - Beautiful Kids poster', 50, 1);
+('Coffeeest1979', 'coffeeest1979', 'Coffeeest1979 - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 178, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 178, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(178, '/images/posters/Kids/X724-DogsInGlasses-1_360x.png');
+(178, '/images/posters/Kitchen/X164-CoffeeEst1979-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (178, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2512,13 +2514,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (178, 'large', 79.99);
 
--- Poster: Whalesinhats
+-- Poster: Morewineplease
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Whalesinhats', 'whalesinhats', 'Whalesinhats - Beautiful Kids poster', 50, 1);
+('Morewineplease', 'morewineplease', 'Morewineplease - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 179, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 179, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(179, '/images/posters/Kids/X725-WhalesInHats-1_360x.png');
+(179, '/images/posters/Kitchen/X219-MoreWinePlease-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (179, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2526,13 +2528,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (179, 'large', 79.99);
 
--- Poster: Beunique
+-- Poster: Moreespressolessdepresso
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Beunique', 'beunique', 'Beunique - Beautiful Kids poster', 50, 1);
+('Moreespressolessdepresso', 'moreespressolessdepresso', 'Moreespressolessdepresso - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 180, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 180, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(180, '/images/posters/Kids/X783-BeUnique-1_360x.png');
+(180, '/images/posters/Kitchen/X472-MoreEspressoLessDepresso-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (180, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2540,13 +2542,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (180, 'large', 79.99);
 
--- Poster: Junglebabies
+-- Poster: Werideuntildawn
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Junglebabies', 'junglebabies', 'Junglebabies - Beautiful Kids poster', 50, 1);
+('Werideuntildawn', 'werideuntildawn', 'Werideuntildawn - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 181, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 181, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(181, '/images/posters/Kids/X660-JungleBabies-1_360x.png');
+(181, '/images/posters/Kitchen/X26-WeRideUntilDawn-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (181, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2554,13 +2556,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (181, 'large', 79.99);
 
--- Poster: Reptilesinglasses
+-- Poster: Ramenjapanesefood
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Reptilesinglasses', 'reptilesinglasses', 'Reptilesinglasses - Beautiful Kids poster', 50, 1);
+('Ramenjapanesefood', 'ramenjapanesefood', 'Ramenjapanesefood - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 182, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 182, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(182, '/images/posters/Kids/X727-ReptilesInGlasses-1_360x.png');
+(182, '/images/posters/Kitchen/X837-RamenJapaneseFood-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (182, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2568,13 +2570,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (182, 'large', 79.99);
 
--- Poster: Bekind
+-- Poster: Pomodori
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Bekind', 'bekind', 'Bekind - Beautiful Kids poster', 50, 1);
+('Pomodori', 'pomodori', 'Pomodori - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 183, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 183, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(183, '/images/posters/Kids/X784-BeKind-1_360x.png');
+(183, '/images/posters/Kitchen/X789-Pomodori-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (183, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2582,13 +2584,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (183, 'large', 79.99);
 
--- Poster: Babymonkey
+-- Poster: Dolcezzaamara
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Babymonkey', 'babymonkey', 'Babymonkey - Beautiful Kids poster', 50, 1);
+('Dolcezzaamara', 'dolcezzaamara', 'Dolcezzaamara - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 184, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 184, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(184, '/images/posters/Kids/X709-BabyMonkey-1_360x.png');
+(184, '/images/posters/Kitchen/X1009-DolcezzaAmara-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (184, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2596,13 +2598,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (184, 'large', 79.99);
 
--- Poster: Clevergirl
+-- Poster: Yourbestfriendsforgetyougetold
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Clevergirl', 'clevergirl', 'Clevergirl - Beautiful Kids poster', 50, 1);
+('Yourbestfriendsforgetyougetold', 'yourbestfriendsforgetyougetold', 'Yourbestfriendsforgetyougetold - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 185, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 185, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(185, '/images/posters/Kids/X745-CleverGirl-1_360x.png');
+(185, '/images/posters/Kitchen/X22-YourBestFriendsForgetYouGetOld-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (185, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2610,13 +2612,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (185, 'large', 79.99);
 
--- Poster: Giantgirl
+-- Poster: Mydrinkneedsadrink
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Giantgirl', 'giantgirl', 'Giantgirl - Beautiful Kids poster', 50, 1);
+('Mydrinkneedsadrink', 'mydrinkneedsadrink', 'Mydrinkneedsadrink - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 186, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 186, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(186, '/images/posters/Kids/X713-GiantGirl-1_360x.png');
+(186, '/images/posters/Kitchen/X20-MyDrinkNeedsADrink-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (186, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2624,13 +2626,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (186, 'large', 79.99);
 
--- Poster: Littlemonkey
+-- Poster: Italianmenu
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Littlemonkey', 'littlemonkey', 'Littlemonkey - Beautiful Kids poster', 50, 1);
+('Italianmenu', 'italianmenu', 'Italianmenu - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 187, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 187, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(187, '/images/posters/Kids/X865-LittleMonkey-1_360x.png');
+(187, '/images/posters/Kitchen/X222-ItalianMenu-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (187, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2638,13 +2640,13 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (187, 'large', 79.99);
 
--- Poster: Behappy
+-- Poster: Sushiest1966
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Behappy', 'behappy', 'Behappy - Beautiful Kids poster', 50, 1);
+('Sushiest1966', 'sushiest1966', 'Sushiest1966 - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 188, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 188, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(188, '/images/posters/Kids/X786-BeHappy-1_360x.png');
+(188, '/images/posters/Kitchen/X162-SushiEst1966-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (188, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
@@ -2652,16 +2654,576 @@ INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (188, 'large', 79.99);
 
--- Poster: Becurious
+-- Poster: P848 Pizzadoublecheese
 INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
-('Becurious', 'becurious', 'Becurious - Beautiful Kids poster', 50, 1);
+('P848 Pizzadoublecheese', 'p848-pizzadoublecheese', 'P848 Pizzadoublecheese - Beautiful Kitchen poster', 50, 1);
 INSERT INTO `poster_category` (`poster_id`, `category_id`)
-SELECT 189, `category_id` FROM `category` WHERE `title` = 'Kids';
+SELECT 189, `category_id` FROM `category` WHERE `title` = 'Kitchen';
 INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
-(189, '/images/posters/Kids/X785-BeCurious-1_360x.png');
+(189, '/images/posters/Kitchen/P848-PizzaDoubleCheese-1_540x.png');
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (189, 'small', 29.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (189, 'medium', 49.99);
 INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
 (189, 'large', 79.99);
+
+-- Poster: Ildolcefarniente
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Ildolcefarniente', 'ildolcefarniente', 'Ildolcefarniente - Beautiful Kitchen poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 190, `category_id` FROM `category` WHERE `title` = 'Kitchen';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(190, '/images/posters/Kitchen/X968-IlDolceFarNiente-1_540x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(190, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(190, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(190, 'large', 79.99);
+
+-- Poster: Limone
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Limone', 'limone', 'Limone - Beautiful Kitchen poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 191, `category_id` FROM `category` WHERE `title` = 'Kitchen';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(191, '/images/posters/Kitchen/X965-Limone-1_540x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(191, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(191, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(191, 'large', 79.99);
+
+-- Poster: Lecitron
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Lecitron', 'lecitron', 'Lecitron - Beautiful Kitchen poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 192, `category_id` FROM `category` WHERE `title` = 'Kitchen';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(192, '/images/posters/Kitchen/X60-LeCitron-1_540x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(192, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(192, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(192, 'large', 79.99);
+
+-- Poster: Morningrituals
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Morningrituals', 'morningrituals', 'Morningrituals - Beautiful Kitchen poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 193, `category_id` FROM `category` WHERE `title` = 'Kitchen';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(193, '/images/posters/Kitchen/X28-MorningRituals-1_540x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(193, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(193, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(193, 'large', 79.99);
+
+-- Poster: Scandisleepingtiger
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Scandisleepingtiger', 'scandisleepingtiger', 'Scandisleepingtiger - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 194, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(194, '/images/posters/Kids/X731-ScandiSleepingTiger-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(194, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(194, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(194, 'large', 79.99);
+
+-- Poster: Dinosaursin80sjumpers
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Dinosaursin80sjumpers', 'dinosaursin80sjumpers', 'Dinosaursin80sjumpers - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 195, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(195, '/images/posters/Kids/X728-DinosaursIn80sJumpers-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(195, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(195, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(195, 'large', 79.99);
+
+-- Poster: Babylion
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Babylion', 'babylion', 'Babylion - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 196, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(196, '/images/posters/Kids/X708-BabyLion-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(196, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(196, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(196, 'large', 79.99);
+
+-- Poster: Babyfox
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Babyfox', 'babyfox', 'Babyfox - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 197, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(197, '/images/posters/Kids/X706-BabyFox-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(197, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(197, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(197, 'large', 79.99);
+
+-- Poster: Howareyoufeeling
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Howareyoufeeling', 'howareyoufeeling', 'Howareyoufeeling - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 198, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(198, '/images/posters/Kids/X735-HowAreYouFeeling-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(198, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(198, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(198, 'large', 79.99);
+
+-- Poster: Littlelion
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Littlelion', 'littlelion', 'Littlelion - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 199, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(199, '/images/posters/Kids/X719-LittleLion-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(199, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(199, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(199, 'large', 79.99);
+
+-- Poster: Babypig
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Babypig', 'babypig', 'Babypig - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 200, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(200, '/images/posters/Kids/X710-BabyPig-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(200, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(200, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(200, 'large', 79.99);
+
+-- Poster: Babygiraffe
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Babygiraffe', 'babygiraffe', 'Babygiraffe - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 201, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(201, '/images/posters/Kids/X707-BabyGiraffe-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(201, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(201, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(201, 'large', 79.99);
+
+-- Poster: Littletoucan
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Littletoucan', 'littletoucan', 'Littletoucan - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 202, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(202, '/images/posters/Kids/X870-LittleToucan-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(202, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(202, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(202, 'large', 79.99);
+
+-- Poster: Bunnyonskateboard
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Bunnyonskateboard', 'bunnyonskateboard', 'Bunnyonskateboard - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 203, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(203, '/images/posters/Kids/X721-BunnyOnSkateboard-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(203, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(203, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(203, 'large', 79.99);
+
+-- Poster: Swingsetdreams
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Swingsetdreams', 'swingsetdreams', 'Swingsetdreams - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 204, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(204, '/images/posters/Kids/X667-SwingsetDreams-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(204, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(204, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(204, 'large', 79.99);
+
+-- Poster: Babyrabbit
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Babyrabbit', 'babyrabbit', 'Babyrabbit - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 205, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(205, '/images/posters/Kids/X711-BabyRabbit-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(205, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(205, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(205, 'large', 79.99);
+
+-- Poster: Guineapigworking
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Guineapigworking', 'guineapigworking', 'Guineapigworking - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 206, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(206, '/images/posters/Kids/X726-GuineaPigWorking-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(206, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(206, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(206, 'large', 79.99);
+
+-- Poster: Rocketlove
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Rocketlove', 'rocketlove', 'Rocketlove - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 207, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(207, '/images/posters/Kids/X742-RocketLove-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(207, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(207, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(207, 'large', 79.99);
+
+-- Poster: Dreambigpink
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Dreambigpink', 'dreambigpink', 'Dreambigpink - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 208, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(208, '/images/posters/Kids/X747-DreamBigPink-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(208, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(208, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(208, 'large', 79.99);
+
+-- Poster: Babyelephant
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Babyelephant', 'babyelephant', 'Babyelephant - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 209, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(209, '/images/posters/Kids/X705-BabyElephant-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(209, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(209, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(209, 'large', 79.99);
+
+-- Poster: Matahari
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Matahari', 'matahari', 'Matahari - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 210, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(210, '/images/posters/Kids/X715-Matahari-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(210, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(210, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(210, 'large', 79.99);
+
+-- Poster: Intheclouds
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Intheclouds', 'intheclouds', 'Intheclouds - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 211, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(211, '/images/posters/Kids/X659-InTheClouds-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(211, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(211, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(211, 'large', 79.99);
+
+-- Poster: Happinesshomework
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Happinesshomework', 'happinesshomework', 'Happinesshomework - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 212, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(212, '/images/posters/Kids/X733-HappinessHomework-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(212, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(212, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(212, 'large', 79.99);
+
+-- Poster: Animallettersabc
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Animallettersabc', 'animallettersabc', 'Animallettersabc - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 213, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(213, '/images/posters/Kids/X749-AnimalLettersABC-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(213, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(213, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(213, 'large', 79.99);
+
+-- Poster: Scandipantha
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Scandipantha', 'scandipantha', 'Scandipantha - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 214, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(214, '/images/posters/Kids/X729-ScandiPantha-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(214, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(214, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(214, 'large', 79.99);
+
+-- Poster: Dailyaffirmations
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Dailyaffirmations', 'dailyaffirmations', 'Dailyaffirmations - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 215, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(215, '/images/posters/Kids/X734-DailyAffirmations-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(215, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(215, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(215, 'large', 79.99);
+
+-- Poster: Dreamland
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Dreamland', 'dreamland', 'Dreamland - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 216, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(216, '/images/posters/Kids/X654-Dreamland-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(216, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(216, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(216, 'large', 79.99);
+
+-- Poster: Babyracoon
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Babyracoon', 'babyracoon', 'Babyracoon - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 217, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(217, '/images/posters/Kids/X712-BabyRacoon-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(217, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(217, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(217, 'large', 79.99);
+
+-- Poster: Dogsinglasses
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Dogsinglasses', 'dogsinglasses', 'Dogsinglasses - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 218, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(218, '/images/posters/Kids/X724-DogsInGlasses-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(218, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(218, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(218, 'large', 79.99);
+
+-- Poster: Whalesinhats
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Whalesinhats', 'whalesinhats', 'Whalesinhats - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 219, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(219, '/images/posters/Kids/X725-WhalesInHats-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(219, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(219, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(219, 'large', 79.99);
+
+-- Poster: Beunique
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Beunique', 'beunique', 'Beunique - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 220, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(220, '/images/posters/Kids/X783-BeUnique-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(220, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(220, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(220, 'large', 79.99);
+
+-- Poster: Junglebabies
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Junglebabies', 'junglebabies', 'Junglebabies - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 221, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(221, '/images/posters/Kids/X660-JungleBabies-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(221, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(221, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(221, 'large', 79.99);
+
+-- Poster: Reptilesinglasses
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Reptilesinglasses', 'reptilesinglasses', 'Reptilesinglasses - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 222, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(222, '/images/posters/Kids/X727-ReptilesInGlasses-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(222, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(222, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(222, 'large', 79.99);
+
+-- Poster: Bekind
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Bekind', 'bekind', 'Bekind - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 223, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(223, '/images/posters/Kids/X784-BeKind-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(223, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(223, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(223, 'large', 79.99);
+
+-- Poster: Babymonkey
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Babymonkey', 'babymonkey', 'Babymonkey - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 224, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(224, '/images/posters/Kids/X709-BabyMonkey-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(224, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(224, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(224, 'large', 79.99);
+
+-- Poster: Clevergirl
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Clevergirl', 'clevergirl', 'Clevergirl - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 225, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(225, '/images/posters/Kids/X745-CleverGirl-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(225, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(225, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(225, 'large', 79.99);
+
+-- Poster: Giantgirl
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Giantgirl', 'giantgirl', 'Giantgirl - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 226, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(226, '/images/posters/Kids/X713-GiantGirl-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(226, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(226, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(226, 'large', 79.99);
+
+-- Poster: Littlemonkey
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Littlemonkey', 'littlemonkey', 'Littlemonkey - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 227, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(227, '/images/posters/Kids/X865-LittleMonkey-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(227, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(227, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(227, 'large', 79.99);
+
+-- Poster: Behappy
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Behappy', 'behappy', 'Behappy - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 228, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(228, '/images/posters/Kids/X786-BeHappy-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(228, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(228, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(228, 'large', 79.99);
+
+-- Poster: Becurious
+INSERT INTO `poster` (`title`, `url`, `description`, `stock`, `available`) VALUES
+('Becurious', 'becurious', 'Becurious - Beautiful Kids poster', 50, 1);
+INSERT INTO `poster_category` (`poster_id`, `category_id`)
+SELECT 229, `category_id` FROM `category` WHERE `title` = 'Kids';
+INSERT INTO `poster_image` (`poster_id`, `image_url`) VALUES
+(229, '/images/posters/Kids/X785-BeCurious-1_360x.png');
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(229, 'small', 29.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(229, 'medium', 49.99);
+INSERT INTO `poster_size` (`poster_id`, `size`, `price`) VALUES
+(229, 'large', 79.99);

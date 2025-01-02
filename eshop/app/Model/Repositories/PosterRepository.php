@@ -31,7 +31,7 @@ class PosterRepository extends Repository
     {
         $result = $this->connection->select('DISTINCT p.*')
             ->from('[poster] p')
-            ->orderBy('p.poster_id DESC')
+            ->orderBy('RAND()')
             ->limit($limit)
             ->fetchAll();
         
@@ -42,6 +42,7 @@ class PosterRepository extends Repository
     {
         $result = $this->connection->select('DISTINCT p.*')
             ->from('[poster] p')
+            ->orderBy('RAND()')
             ->limit($limit)
             ->fetchAll();
             
