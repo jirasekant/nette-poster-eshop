@@ -25,9 +25,10 @@ class ProductPresenter extends BasePresenter
 
     public function renderList(): void
     {
-        // Get category and author filters from query params
+        // Get filters from query params
         $categoryId = $this->getParameter('categoryId');
         $authorId = $this->getParameter('authorId');
+        $filter = $this->getParameter('filter');
         
         // Get all categories for the sidebar
         $this->template->categories = $this->categoryRepository->findAll();
@@ -35,20 +36,31 @@ class ProductPresenter extends BasePresenter
         // Get all authors for the sidebar
         $this->template->authors = $this->authorRepository->findAuthorsWithPosters();
         
-        // Get posters, filtered by category or author if specified
+        // Get posters based on filters
         if ($categoryId) {
             $this->template->posters = $this->posterRepository->findByCategory($categoryId);
             $this->template->currentAuthorId = null;
+            $this->template->filter = null;
         } elseif ($authorId) {
             $this->template->posters = $this->posterRepository->findByAuthor($authorId);
             $this->template->currentCategoryId = null;
+            $this->template->filter = null;
+        } elseif ($filter === 'new') {
+            $this->template->posters = $this->posterRepository->findNewest(50);
+            $this->template->currentCategoryId = null;
+            $this->template->currentAuthorId = null;
+        } elseif ($filter === 'popular') {
+            $this->template->posters = $this->posterRepository->findPopular(50);
+            $this->template->currentCategoryId = null;
+            $this->template->currentAuthorId = null;
         } else {
             $this->template->posters = $this->posterRepository->findAll();
         }
         
-        // Pass the current filter IDs to the template
+        // Pass the current filter states to the template
         $this->template->currentCategoryId = $categoryId;
         $this->template->currentAuthorId = $authorId;
+        $this->template->filter = $filter;
     }
 
     public function renderShow(int $id): void

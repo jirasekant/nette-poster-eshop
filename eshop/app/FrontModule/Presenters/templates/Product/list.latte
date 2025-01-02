@@ -1,42 +1,116 @@
 {block content}
-<div class="container-fluid py-5">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-md-3">
-            <!-- Categories -->
-            <div class="border-0 rounded-0 mb-4">
-                <h5 class="text-uppercase mb-4">Categories</h5>
-                <div class="list-group list-group-flush">
-                    <a href="{plink Product:list}" 
-                        class="list-group-item list-group-item-action border-0 {if !$currentCategoryId}active{/if}">
-                        All Posters
-                    </a>
-                    <a n:foreach="$categories as $category" 
-                        href="{plink Product:list, categoryId => $category->categoryId}"
-                        class="list-group-item list-group-item-action border-0 {if $currentCategoryId == $category->categoryId}active{/if}">
-                        {$category->title}
-                    </a>
+<div class="container-fluid px-0">
+    <!-- Mobile Filter Button Container -->
+    <div class="d-lg-none sticky-top">
+        <div class="mobile-filter-wrapper">
+            <button class="btn btn-outline-dark w-100 d-flex justify-content-between align-items-center py-2" 
+                    type="button" 
+                    data-bs-toggle="offcanvas" 
+                    data-bs-target="#filterOffcanvas">
+                <div class="d-flex align-items-center">
+                    <span>Filters</span>
+                    {if $currentCategoryId || $currentAuthorId || $filter}
+                        <span class="active-filter-badge ms-2">
+                            {if $currentCategoryId}
+                                {foreach $categories as $category}
+                                    {if $currentCategoryId == $category->categoryId}
+                                        {$category->title}
+                                    {/if}
+                                {/foreach}
+                            {elseif $currentAuthorId}
+                                {foreach $authors as $author}
+                                    {if $currentAuthorId == $author->authorId}
+                                        {$author->name}
+                                    {/if}
+                                {/foreach}
+                            {elseif $filter}
+                                {$filter|firstUpper}
+                            {/if}
+                        </span>
+                    {/if}
+                </div>
+                <i class="fas fa-sliders-h"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="d-flex pt-lg-5">
+        <!-- Sidebar - Desktop -->
+        <div class="d-none d-lg-block sidebar-container" style="width: 220px;">
+            <!-- Filter sections remain the same -->
+            <div class="filter-section mb-4">
+                <h5 class="text-uppercase d-flex justify-content-between align-items-center" 
+                    data-bs-toggle="collapse" 
+                    href="#postersCollapse" 
+                    role="button" 
+                    aria-expanded="true">
+                    Posters
+                    <i class="fas fa-chevron-down filter-arrow"></i>
+                </h5>
+                <div class="collapse show" id="postersCollapse">
+                    <div class="list-group list-group-flush">
+                        <a href="{plink Product:list}" 
+                            class="list-group-item list-group-item-action {if !$currentCategoryId && !$currentAuthorId && !$filter}active{/if}">
+                            All Posters
+                        </a>
+                        <a href="{plink Product:list, filter => 'new'}" 
+                            class="list-group-item list-group-item-action {if $filter === 'new'}active{/if}">
+                            New
+                        </a>
+                        <a href="{plink Product:list, filter => 'popular'}" 
+                            class="list-group-item list-group-item-action {if $filter === 'popular'}active{/if}">
+                            Popular
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Authors -->
-            <div class="border-0 rounded-0">
-                <h5 class="text-uppercase mb-4">Authors</h5>
-                <div class="list-group list-group-flush">
-                    <a n:foreach="$authors as $author" 
-                        href="{plink Product:list, authorId => $author->authorId}"
-                        class="list-group-item list-group-item-action border-0 {if $currentAuthorId == $author->authorId}active{/if}">
-                        {$author->name}
-                    </a>
+            <div class="filter-section mb-4">
+                <h5 class="text-uppercase d-flex justify-content-between align-items-center" 
+                    data-bs-toggle="collapse" 
+                    href="#categoriesCollapse" 
+                    role="button" 
+                    aria-expanded="true">
+                    Categories
+                    <i class="fas fa-chevron-down filter-arrow"></i>
+                </h5>
+                <div class="collapse show" id="categoriesCollapse">
+                    <div class="list-group list-group-flush">
+                        <a n:foreach="$categories as $category" 
+                            href="{plink Product:list, categoryId => $category->categoryId}"
+                            class="list-group-item list-group-item-action {if $currentCategoryId == $category->categoryId}active{/if}">
+                            {$category->title}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h5 class="text-uppercase d-flex justify-content-between align-items-center" 
+                    data-bs-toggle="collapse" 
+                    href="#authorsCollapse" 
+                    role="button" 
+                    aria-expanded="true">
+                    Authors
+                    <i class="fas fa-chevron-down filter-arrow"></i>
+                </h5>
+                <div class="collapse show" id="authorsCollapse">
+                    <div class="list-group list-group-flush">
+                        <a n:foreach="$authors as $author" 
+                            href="{plink Product:list, authorId => $author->authorId}"
+                            class="list-group-item list-group-item-action {if $currentAuthorId == $author->authorId}active{/if}">
+                            {$author->name}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Products Grid -->
-        <div class="col-md-9">
-            <div class="row g-4">
+        <div class="flex-grow-1">
+            <div class="row g-3">
                 {foreach $posters as $poster}
-                    <div class="col-md-4">
+                    <div class="col-6 col-md-4 col-lg-3">
                         <div class="card border-0 h-100">
                             <!-- Image -->
                             {if $poster->posterImages && count($poster->posterImages) > 0}
@@ -44,8 +118,7 @@
                                     <a href="{plink Product:show $poster->posterId}" class="d-block">
                                         <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
                                              class="card-img-top" 
-                                             alt="{$poster->title}" 
-                                             style="height: 300px; object-fit: cover;">
+                                             alt="{$poster->title}">
                                     </a>
                                 </div>
                             {else}
@@ -55,7 +128,7 @@
                             {/if}
                             
                             <!-- Content -->
-                            <div class="card-body px-0 text-center">
+                            <div class="card-body px-2 text-center">
                                 <h5 class="card-title mb-2">{$poster->title}</h5>
                                 {if $poster->author}
                                     <p class="text-muted mb-2">{$poster->author->name}</p>
@@ -83,35 +156,290 @@
     </div>
 </div>
 
+<!-- Mobile Filters Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="filterOffcanvas">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title">Filters</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Mobile filter content - same as desktop but without d-none d-lg-block -->
+        <div class="filter-section mb-4">
+            <h5 class="text-uppercase mb-3">Posters</h5>
+            <div class="list-group list-group-flush">
+                <a href="{plink Product:list}" 
+                    class="list-group-item list-group-item-action {if !$currentCategoryId && !$currentAuthorId && !$filter}active{/if}">
+                    All Posters
+                </a>
+                <a href="{plink Product:list, filter => 'new'}" 
+                    class="list-group-item list-group-item-action {if $filter === 'new'}active{/if}">
+                    New
+                </a>
+                <a href="{plink Product:list, filter => 'popular'}" 
+                    class="list-group-item list-group-item-action {if $filter === 'popular'}active{/if}">
+                    Popular
+                </a>
+            </div>
+        </div>
+
+        <div class="filter-section mb-4">
+            <h5 class="text-uppercase mb-3">Categories</h5>
+            <div class="list-group list-group-flush">
+                <a n:foreach="$categories as $category" 
+                    href="{plink Product:list, categoryId => $category->categoryId}"
+                    class="list-group-item list-group-item-action {if $currentCategoryId == $category->categoryId}active{/if}">
+                    {$category->title}
+                </a>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h5 class="text-uppercase mb-3">Authors</h5>
+            <div class="list-group list-group-flush">
+                <a n:foreach="$authors as $author" 
+                    href="{plink Product:list, authorId => $author->authorId}"
+                    class="list-group-item list-group-item-action {if $currentAuthorId == $author->authorId}active{/if}">
+                    {$author->name}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
-    .poster-image-container {
-        cursor: pointer;
-        transition: opacity 0.3s ease;
+    /* Mobile filter styles */
+    .sticky-top {
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+        background: white;
     }
-    
-    .poster-image-container:hover {
-        opacity: 0.9;
+
+    .mobile-filter-wrapper {
+        padding: 0.75rem;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .btn-outline-dark {
+        border-width: 1px;
+        border-radius: 0;
+    }
+
+    .active-filter-badge {
+        background: #000;
+        color: white;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.8rem;
+        border-radius: 2px;
+    }
+
+    /* Filter section styles */
+    .filter-section {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .filter-section h5 {
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .filter-section h5:hover {
+        color: #666;
+    }
+
+    .filter-arrow {
+        font-size: 0.8em;
+        transition: transform 0.3s ease;
+    }
+
+    [aria-expanded="false"] .filter-arrow {
+        transform: rotate(-90deg);
     }
 
     .list-group-item {
-        padding: 0.75rem 0;
-        background: none;
-        transition: color 0.3s ease;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 0.25rem;
+        background: transparent;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        font-size: 0.9rem;
+        border: none;
     }
 
     .list-group-item:hover {
+        background: rgba(0, 0, 0, 0.05);
         color: #000;
-        font-weight: normal;
-        background: none;
     }
 
     .list-group-item.active {
-        color: #000;
-        font-weight: bold;
-        background: none;
+        background: #000;
+        color: #fff;
+        font-weight: normal;
     }
 
     .list-group-item.active:hover {
-        background: none;
+        background: #000;
+        color: #fff;
+    }
+
+    /* Offcanvas styles */
+    .offcanvas {
+        max-width: 300px;
+    }
+
+    .offcanvas .filter-section {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+    }
+
+    .offcanvas-title {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    /* Card and image styles */
+    .card {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .poster-image-container {
+        width: 100%;
+        padding-top: 133.33%; /* 3:4 aspect ratio */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .poster-image-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+        .container-fluid {
+            padding: 0;
+        }
+        
+        .row {
+            margin: 0;
+        }
+        
+        .col-6 {
+            padding: 0.5rem;
+        }
+        
+        .card-body {
+            padding: 0.75rem 0.5rem;
+        }
+    }
+
+    /* Desktop specific styles */
+    @media (min-width: 992px) {
+        .filter-section {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Mobile specific styles */
+    @media (max-width: 991.98px) {
+        .container-fluid {
+            padding: 0;
+        }
+        
+        .row {
+            margin: 0;
+        }
+        
+        .col-6 {
+            padding: 0.5rem;
+        }
+        
+        .card-body {
+            padding: 0.75rem 0.5rem;
+        }
+
+        /* Ensure offcanvas filters are not cut off */
+        .offcanvas .filter-section {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    /* Filter section styles */
+    .sidebar-container {
+        min-width: 220px;
+        flex-shrink: 0;
+    }
+
+    .filter-section {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 0;
+        min-width: 200px;
+    }
+
+    /* Desktop specific styles */
+    @media (min-width: 992px) {
+        .filter-section {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Mobile specific styles */
+    @media (max-width: 991.98px) {
+        .offcanvas {
+            min-width: 280px;
+        }
+
+        .offcanvas .filter-section {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            min-width: 100%;
+        }
+    }
+
+    /* Layout styles */
+    .sidebar-container {
+        min-width: 220px;
+        flex-shrink: 0;
+    }
+
+    @media (min-width: 992px) {
+        .flex-grow-1 {
+            padding-left: 1rem;
+        }
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const collapseElements = document.querySelectorAll('.collapse');
+        collapseElements.forEach(collapse => {
+            collapse.addEventListener('show.bs.collapse', function() {
+                const arrow = this.previousElementSibling.querySelector('.filter-arrow');
+                arrow.style.transform = 'rotate(0deg)';
+            });
+            collapse.addEventListener('hide.bs.collapse', function() {
+                const arrow = this.previousElementSibling.querySelector('.filter-arrow');
+                arrow.style.transform = 'rotate(-90deg)';
+            });
+        });
+    });
+</script>
