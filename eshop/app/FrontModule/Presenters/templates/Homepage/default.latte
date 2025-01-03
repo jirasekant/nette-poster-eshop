@@ -18,12 +18,13 @@
 
                 <!-- Carousel items -->
                 <div class="carousel-inner">
-                    {var $chunks = array_chunk($newArrivals, 4)}
+                    {var $itemsPerSlide = isset($isMobile) && $isMobile ? 2 : 4}
+                    {var $chunks = array_chunk($newArrivals, $itemsPerSlide)}
                     {foreach $chunks as $chunk}
                         <div class="carousel-item {if $iterator->isFirst()}active{/if}">
-                            <div class="row g-4">
+                            <div class="row g-4 flex-nowrap">
                                 {foreach $chunk as $poster}
-                                    <div class="col-md-3">
+                                    <div class="col-6 col-md-6 col-lg-4 col-xl-3">
                                         <div class="card border-0 h-100">
                                             <!-- Image -->
                                             {if $poster->posterImages && count($poster->posterImages) > 0}
@@ -31,8 +32,7 @@
                                                     <a href="{plink Product:show $poster->posterId}" class="d-block">
                                                         <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
                                                              class="card-img-top" 
-                                                             alt="{$poster->title}" 
-                                                             style="height: 300px; object-fit: cover;">
+                                                             alt="{$poster->title}">
                                                     </a>
                                                 </div>
                                             {else}
@@ -74,8 +74,8 @@
         /* Custom styles for carousel arrows */
         .carousel-control-prev,
         .carousel-control-next {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 50%;
             top: 50%;
@@ -93,17 +93,18 @@
 
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
-            width: 20px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
         }
 
-        #newArrivalsCarousel {
+        #newArrivalsCarousel,
+        #popularCarousel {
             position: relative;
-            padding: 0 60px;
+            padding: 0 45px;
             overflow: hidden;
         }
 
-        #newArrivalsCarousel .carousel-inner {
+        .carousel-inner {
             overflow: hidden;
         }
 
@@ -121,10 +122,113 @@
         .poster-image-container {
             cursor: pointer;
             transition: opacity 0.3s ease;
+            aspect-ratio: 3/4;
+            width: 100%;
+            position: relative;
         }
         
         .poster-image-container:hover {
             opacity: 0.9;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 100% !important;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Responsive styles */
+        @media (min-width: 1200px) {
+            .col-xl-3 {
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .col-lg-4 {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 35px;
+                height: 35px;
+            }
+
+            #newArrivalsCarousel,
+            #popularCarousel {
+                padding: 0 45px;
+            }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 767px) {
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 18px;
+                height: 18px;
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 8px;
+                height: 8px;
+            }
+
+            .carousel-control-prev {
+                left: 2px;
+            }
+            
+            .carousel-control-next {
+                right: 2px;
+            }
+
+            #newArrivalsCarousel,
+            #popularCarousel {
+                padding: 0 15px;
+            }
+
+            .carousel-item .row {
+                flex-wrap: nowrap;
+                margin: 0;
+            }
+
+            .carousel-item .col-6 {
+                width: 50%;
+                flex: 0 0 auto;
+                padding: 0 6px;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+            }
+
+            .price-container {
+                font-size: 0.85rem;
+            }
+
+            .btn {
+                padding: 0.375rem 1rem !important;
+                font-size: 0.85rem;
+            }
+
+            .carousel-inner {
+                overflow-x: hidden;
+                overflow-y: visible;
+            }
         }
     </style>
 
@@ -228,12 +332,13 @@
 
                 <!-- Carousel items -->
                 <div class="carousel-inner">
-                    {var $chunks = array_chunk($popularPosters, 4)}
+                    {var $itemsPerSlide = isset($isMobile) && $isMobile ? 2 : 4}
+                    {var $chunks = array_chunk($popularPosters, $itemsPerSlide)}
                     {foreach $chunks as $chunk}
                         <div class="carousel-item {if $iterator->isFirst()}active{/if}">
-                            <div class="row g-4">
+                            <div class="row g-4 flex-nowrap">
                                 {foreach $chunk as $poster}
-                                    <div class="col-md-3">
+                                    <div class="col-6 col-md-6 col-lg-4 col-xl-3">
                                         <div class="card border-0 h-100">
                                             <!-- Image -->
                                             {if $poster->posterImages && count($poster->posterImages) > 0}
@@ -241,8 +346,7 @@
                                                     <a href="{plink Product:show $poster->posterId}" class="d-block">
                                                         <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
                                                              class="card-img-top" 
-                                                             alt="{$poster->title}" 
-                                                             style="height: 300px; object-fit: cover;">
+                                                             alt="{$poster->title}">
                                                     </a>
                                                 </div>
                                             {else}
@@ -279,56 +383,6 @@
             </div>
         </div>
     </section>
-
-    <style>
-        /* Shared carousel styles */
-        .carousel-control-prev,
-        .carousel-control-next {
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-        }
-        
-        .carousel-control-prev {
-            left: 10px;
-        }
-        
-        .carousel-control-next {
-            right: 10px;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        #newArrivalsCarousel,
-        #popularCarousel {
-            position: relative;
-            padding: 0 60px;
-            overflow: hidden;
-        }
-
-        #newArrivalsCarousel .carousel-inner,
-        #popularCarousel .carousel-inner {
-            overflow: hidden;
-        }
-
-        .carousel-item {
-            transition: transform .6s ease-in-out;
-        }
-
-        .carousel-container {
-            position: relative;
-            overflow: visible;
-            margin: 0 -15px;
-        }
-    </style>
 
     <!-- Info Sections -->
     <section class="mb-5">
