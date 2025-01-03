@@ -92,7 +92,8 @@ class CartControl extends Control {
         }
         
         if ($this->presenter->isAjax()) {
-            $this->redrawControl();
+            $this->presenter->redrawControl('cartBadge');
+            $this->presenter->redrawControl('flashes');
         } else {
             $this->redirect('this');
         }
@@ -118,7 +119,8 @@ class CartControl extends Control {
         }
         
         if ($this->presenter->isAjax()) {
-            $this->redrawControl();
+            $this->presenter->redrawControl('cartBadge');
+            $this->presenter->redrawControl('flashes');
         } else {
             $this->redirect('this');
         }
@@ -144,7 +146,8 @@ class CartControl extends Control {
         }
         
         if ($this->presenter->isAjax()) {
-            $this->redrawControl();
+            $this->presenter->redrawControl('cartBadge');
+            $this->presenter->redrawControl('flashes');
         } else {
             $this->redirect('this');
         }
@@ -182,6 +185,36 @@ class CartControl extends Control {
             } catch (\Exception $e) {
                 // Guest cart not found, nothing to do
             }
+        }
+    }
+
+    public function handleAddToCart(int $posterId, int $posterSizeId, int $count = 1): void {
+        try {
+            $cart = $this->getCurrentCart();
+            if (!$cart) {
+                throw new \Exception('Cart not found');
+            }
+
+            // Add item to cart
+            $cartItem = new CartItem();
+            $cartItem->cart = $cart;
+            $cartItem->posterSize = $this->cartFacade->getPosterSizeById($posterSizeId);
+            $cartItem->count = $count;
+            $this->cartFacade->saveCartItem($cartItem);
+            
+            $cart->updateCartItems();
+            $this->cartFacade->saveCart($cart);
+            
+            $this->flashMessage('Item added to cart', 'success');
+        } catch (\Exception $e) {
+            $this->flashMessage('Error adding item to cart', 'error');
+        }
+        
+        if ($this->presenter->isAjax()) {
+            $this->presenter->redrawControl('cartBadge');
+            $this->presenter->redrawControl('flashes');
+        } else {
+            $this->redirect('this');
         }
     }
 }

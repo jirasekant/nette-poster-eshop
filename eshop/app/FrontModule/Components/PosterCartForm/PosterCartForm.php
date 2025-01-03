@@ -62,7 +62,8 @@ class PosterCartForm extends Form {
             ->setHtmlAttribute('min', 1);
 
         $this->addSubmit('add', 'Add to Cart')
-            ->setHtmlAttribute('class', 'btn btn-dark flex-grow-1 rounded-0 py-3');
+            ->setHtmlAttribute('class', 'btn btn-dark flex-grow-1 rounded-0 py-3')
+            ->setHtmlAttribute('data-naja-history', 'off');
 
         $this->onSuccess[] = [$this, 'submitSucceeded'];
     }
@@ -132,9 +133,7 @@ class PosterCartForm extends Form {
             
             if ($this->getPresenter()->isAjax()) {
                 $this->getPresenter()->redrawControl('flashes');
-                if (isset($this->cartControl)) {
-                    $this->cartControl->redrawControl();
-                }
+                $this->getPresenter()->redrawControl('cartBadge');
             }
 
         } catch (\Exception $e) {

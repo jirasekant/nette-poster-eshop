@@ -257,9 +257,11 @@
 			<div class="d-flex align-items-center ms-lg-4">
 				<a class="nav-link position-relative me-3" n:href="Cart:default">
 					<i class="fas fa-shopping-cart"></i>
+					<div n:snippet="cartBadge" data-naja-snippet-update="true">
 					{if $cart && $cart->getTotalCount() > 0}
 						<span class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle-x" style="transform: translateY(-50%); margin-top: 2px;">{$cart->getTotalCount()}</span>
 					{/if}
+					</div>
 				</a>
 
 				{if $user->isLoggedIn()}
@@ -332,12 +334,13 @@
 		</div>
 	</div>
 
-	{snippet flashes}
+	<!-- Flash Messages -->
+	<div n:snippet="flashes" data-naja-snippet-update="true">
 		<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} alert-dismissible fade show" role="alert">
 			{$flash->message}
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
-	{/snippet}
+	</div>
 
 	<!-- Main Content -->
 	<main>
