@@ -15,9 +15,11 @@
                                     {var $poster = $item->getPoster()}
                                     {if $poster && $poster->posterImages && count($poster->posterImages) > 0}
                                         <div class="position-relative h-100 d-flex align-items-center">
-                                            <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
-                                                 alt="{$poster->title}"
-                                                 class="img-fluid">
+                                            <a href="{plink Product:show $poster->posterId}" class="d-block w-100">
+                                                <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
+                                                     alt="{$poster->title}"
+                                                     class="img-fluid">
+                                            </a>
                                         </div>
                                     {else}
                                         <div class="bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
