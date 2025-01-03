@@ -2,200 +2,186 @@
 
 namespace App\FrontModule\Components\CartControl;
 
-use App\Model\Entities\Cart;
-use App\Model\Entities\CartItem;
-use App\Model\Entities\Product;
 use App\Model\Facades\CartFacade;
+use App\Model\Entities\Cart;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Template;
+use Nette\Security\User;
 use Nette\Http\Session;
 use Nette\Http\SessionSection;
-use Nette\Security\User;
 
 /**
  * Class CartControl
  * @package App\FrontModule\Components\CartControl
  */
-class CartControl extends Control{
-  private User $user;
-  private SessionSection $cartSession;
-  private CartFacade $cartFacade;
-  private Cart $cart;
+class CartControl extends Control {
+    private CartFacade $cartFacade;
+    private User $user;
+    private SessionSection $cartSession;
 
-  /**
-   * Akce renderující šablonu s odkazem pro zobrazení košíku
-   * @param array $params = []
-   */
-  public function render($params=[]):void {
-    $template=$this->prepareTemplate('default');
-    $template->cart=$this->cart;
-    $template->render();
-  }
-
-  public function renderList():void {
-    $template=$this->prepareTemplate('list');
-    $template->cart=$this->cart;
-    $template->render();
-  }
-
-  public function handleRemove(int $cartItemId):void {
-    $this->cartFacade->deleteCartItem($cartItemId);
-    $this->cart->updateCartItems();
-    
-    if ($this->presenter->isAjax()) {
-        $this->redrawControl('cart');
-    } else {
-        $this->redirect('this');
+    public function __construct(CartFacade $cartFacade, User $user, Session $session) {
+        $this->cartFacade = $cartFacade;
+        $this->user = $user;
+        $this->cartSession = $session->getSection('cart');
     }
-  }
 
-  public function handleIncrease(int $cartItemId):void {
-    $this->cartFacade->increaseCartItem($cartItemId);
-    $this->cart->updateCartItems();
-    
-    if ($this->presenter->isAjax()) {
-        $this->redrawControl('cart');
-    } else {
-        $this->redirect('this');
-    }
-  }
+    /**
+     * Get or create cart for current user (guest or logged in)
+     */
+    public function getCurrentCart(): ?Cart {
+        try {
+            if ($this->user->isLoggedIn()) {
+                try {
+                    return $this->cartFacade->getCartByUser($this->user->getId());
+                } catch (\Exception $e) {
+                    // Cart doesn't exist for user, will create new one
+                }
+            } else if ($cartId = $this->cartSession->get('cartId')) {
+                try {
+                    return $this->cartFacade->getCartById((int)$cartId);
+                } catch (\Exception $e) {
+                    // Session cart not found, will create new one
+                }
+            }
 
-  public function handleDecrease(int $cartItemId):void {
-    $this->cartFacade->decreaseCartItem($cartItemId);
-    $this->cart->updateCartItems();
-    
-    if ($this->presenter->isAjax()) {
-        $this->redrawControl('cart');
-    } else {
-        $this->redirect('this');
-    }
-  }
+            // Create new cart
+            $cart = new Cart();
+            if ($this->user->isLoggedIn()) {
+                $cart->userId = $this->user->getId();
+            }
+            $this->cartFacade->saveCart($cart);
+            
+            // Save cart ID to session for guests
+            if (!$this->user->isLoggedIn()) {
+                $this->cartSession->set('cartId', $cart->cartId);
+            }
 
-  /**
-   * Metoda pro přidání produktu do košíku
-   * @param Product $product
-   */
-  public function addToCart(Product $product, int $count):void {
-    //aktualní košík je v $this->cart
-    $cartItem = null;
-
-    //pokud je košík neprázdný, zkontrolujeme, zda produkt již v košíku není
-    if (!empty($this->cart->items)) {
-      foreach ($this->cart->items as $item) {
-        if ($item->product->productId == $product->productId) {
-          $cartItem = $item;
-          break;
+            return $cart;
+        } catch (\Exception $e) {
+            return null;
         }
-      }
     }
-    //pokud produkt není v košíku, vytvoříme nový produkt v košíku
-    if (!$cartItem) {
-      $cartItem = new CartItem();
-      $cartItem->product = $product;
-      $cartItem->count = $count;
-      $this->cart->items[] = $cartItem;
+
+    /**
+     * Renders the cart control
+     */
+    public function render(): void {
+        $template = $this->getTemplate();
+        $template->setFile(__DIR__ . '/templates/default.latte');
+        $template->cart = $this->getCurrentCart();
+        $template->render();
     }
-    //TODO: volání funkce s count < 0
-    //pokud produkt již v košíku je, zvýšíme jeho množství
-    $cartItem->count += $count;
 
-    $this->cartFacade->saveCartItem($cartItem);
-    $this->cartFacade->saveCart($this->cart);
-    $this->cart->updateCartItems();
-  }
+    /**
+     * Handler for removing items from cart
+     */
+    public function handleRemove(int $cartItemId): void {
+        try {
+            $cart = $this->getCurrentCart();
+            if (!$cart) {
+                throw new \Exception('Cart not found');
+            }
 
-  /**
-   * UserLoginControl constructor.
-   * @param User $user
-   * @param Session $session
-   * @param CartFacade $cartFacade
-   */
-  public function __construct(User $user, Session $session, CartFacade $cartFacade){
-    $this->user=$user;
-    $this->cartFacade=$cartFacade;
-    $this->cartSession=$session->getSection('cart');
-    $this->cart=$this->prepareCart();
-  }
-
-  /**
-   * Metoda pro smazání ID košíku ze session
-   * TODO tuto metodu by bylo vhodné zavolat např. při odhlášení uživatele
-   */
-  public function unsetSessionCart():void {
-    $this->cartSession->remove('cartId');
-  }
-
-  /**
-   * Metoda pro smazání již neplatných košíků z databáze
-   * TODO tuto metodu je vhodné volat buď cronem, nebo při nějaké pravidelně se opakující události (ale ne při každém načtení stránky); v tomto ukázkovém kódu ji voláme při přípravě nového košíku, ale určitě by šlo najít i vhodnější místo
-   */
-  public function deleteOldCarts():void {
-    $this->cartFacade->deleteOldCarts();
-  }
-
-  /**
-   * Metoda pro přípravu košíku uloženého v DB
-   */
-  private function prepareCart():Cart {
-    #region zkusíme najít košík podle ID ze session
-    try {
-      if ($cartId = $this->cartSession->get('cartId')){
-        $cart = $this->cartFacade->getCartById((int)$cartId);
-        //zkontrolujeme, jestli tu není košík od předchozího uživatele, nebo se nepřihlásil uživatel s prázdným košíkem (případně ho zahodíme)
-        if (($cart->userId || empty($cart->items)) && ($cart->userId!=$this->user->id || !$this->user->isLoggedIn())){
-          $cart=null;
+            $this->cartFacade->deleteCartItem($cartItemId);
+            $cart->updateCartItems();
+            $this->cartFacade->saveCart($cart);
+            
+            $this->flashMessage('Item removed from cart', 'success');
+        } catch (\Exception $e) {
+            $this->flashMessage('Error removing item from cart', 'error');
         }
-      }
-    }catch (\Exception $e){
-      /*košík se nepovedlo najít*/
-    }
-    #endregion zkusíme najít košík podle ID ze session
-    #region vyřešíme vazbu košíku na uživatele, případně vytvoříme košík nový
-    if ($this->user->isLoggedIn()){
-      if ($cart){
-        //přiřadíme do košíku načteného podle session vazbu na aktuálního uživatele
-        if ($cart->userId != $this->user->id){
-          $this->cartFacade->deleteCartByUser($this->user->id);
+        
+        if ($this->presenter->isAjax()) {
+            $this->redrawControl();
+        } else {
+            $this->redirect('this');
         }
-        $cart->userId=$this->user->id;
-        $this->cartFacade->saveCart($cart);
-      }else{
-        //zkusíme najít košík podle ID uživatele - pokud ho nenajdeme, vytvoříme nový
-        try{
-          $cart=$this->cartFacade->getCartByUser($this->user->id);
-        }catch (\Exception $e){
-          /*košík nebyl pro daného uživatele nalezen*/
-          $cart=new Cart();
-          $cart->userId=$this->user->id;
-          $this->cartFacade->saveCart($cart);
-          $this->deleteOldCarts();
+    }
+
+    /**
+     * Handler for increasing item quantity
+     */
+    public function handleIncrease(int $cartItemId): void {
+        try {
+            $cart = $this->getCurrentCart();
+            if (!$cart) {
+                throw new \Exception('Cart not found');
+            }
+
+            $this->cartFacade->increaseCartItem($cartItemId);
+            $cart->updateCartItems();
+            $this->cartFacade->saveCart($cart);
+            
+            $this->flashMessage('Item quantity increased', 'success');
+        } catch (\Exception $e) {
+            $this->flashMessage('Error increasing item quantity', 'error');
         }
-      }
-    }elseif(!$cart){
-      //košík jsme zatím nijak nezvládli najít, vytvoříme nový prázdný
-      $cart=new Cart();
-      $this->cartFacade->saveCart($cart);
-      $this->deleteOldCarts();
+        
+        if ($this->presenter->isAjax()) {
+            $this->redrawControl();
+        } else {
+            $this->redirect('this');
+        }
     }
-    #endregion vyřešíme vazbu košíku na uživatele, případně vytvoříme košík nový
 
-    //aktualizujeme ID košíku v session
-    $this->cartSession->set('cartId',$cart->cartId);
+    /**
+     * Handler for decreasing item quantity
+     */
+    public function handleDecrease(int $cartItemId): void {
+        try {
+            $cart = $this->getCurrentCart();
+            if (!$cart) {
+                throw new \Exception('Cart not found');
+            }
 
-    return $cart;
-  }
-
-  /**
-   * Metoda vytvářející šablonu komponenty
-   * @param string $templateName=''
-   * @return Template
-   */
-  private function prepareTemplate(string $templateName=''):Template{
-    $template=$this->template;
-    if (!empty($templateName)){
-      $template->setFile(__DIR__.'/templates/'.$templateName.'.latte');
+            $this->cartFacade->decreaseCartItem($cartItemId);
+            $cart->updateCartItems();
+            $this->cartFacade->saveCart($cart);
+            
+            $this->flashMessage('Item quantity decreased', 'success');
+        } catch (\Exception $e) {
+            $this->flashMessage('Error decreasing item quantity', 'error');
+        }
+        
+        if ($this->presenter->isAjax()) {
+            $this->redrawControl();
+        } else {
+            $this->redirect('this');
+        }
     }
-    return $template;
-  }
 
+    /**
+     * Method to transfer guest cart to user after login
+     */
+    public function attachCartToUser(int $userId): void {
+        if ($cartId = $this->cartSession->get('cartId')) {
+            try {
+                $guestCart = $this->cartFacade->getCartById((int)$cartId);
+                
+                // Try to get existing user cart
+                try {
+                    $userCart = $this->cartFacade->getCartByUser($userId);
+                    // Merge guest cart items into user cart
+                    foreach ($guestCart->items as $item) {
+                        $item->cartId = $userCart->cartId;
+                        $this->cartFacade->saveCartItem($item);
+                    }
+                    $userCart->updateCartItems();
+                    $this->cartFacade->saveCart($userCart);
+                    
+                    // Delete guest cart
+                    $this->cartFacade->deleteCartByUser($guestCart->cartId);
+                } catch (\Exception $e) {
+                    // User has no cart, just update guest cart
+                    $guestCart->userId = $userId;
+                    $this->cartFacade->saveCart($guestCart);
+                }
+                
+                // Clear session cart ID
+                $this->cartSession->remove('cartId');
+            } catch (\Exception $e) {
+                // Guest cart not found, nothing to do
+            }
+        }
+    }
 }

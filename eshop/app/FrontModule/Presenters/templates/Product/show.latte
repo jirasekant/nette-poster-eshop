@@ -35,30 +35,43 @@
                 <p class="text-muted mb-4">By {$poster->author->name}</p>
             {/if}
 
-            <!-- Size Selection -->
+            <!-- Size Selection and Add to Cart Form -->
             {if $poster->posterSizes && count($poster->posterSizes) > 0}
-                <div class="mb-4">
-                    <h5 class="text-uppercase mb-3">Select Size</h5>
-                    <div class="row g-2">
-                        {foreach $poster->posterSizes as $size}
-                            <div class="col-12">
-                                <div class="border p-3 text-center position-relative {if $size->size === 'medium'}border-success{/if}">
-                                    <div class="h5 mb-1">${$size->price|number:2}</div>
-                                    <div class="mb-1">{$size->displayName} ({$size->width} × {$size->height} cm)</div>
-                                    {if $size->size === 'medium'}
-                                        <span class="badge bg-success position-absolute top-0 end-0 m-2">Most popular</span>
-                                    {/if}
+                {form posterCartForm-$poster->posterId class => "mb-4 ajax"}
+                    <div class="mb-4">
+                        <h5 class="text-uppercase mb-3">Select Size</h5>
+                        <div class="row g-2">
+                            {foreach $poster->posterSizes as $size}
+                                <div class="col-12">
+                                    <label class="w-100">
+                                        <input type="radio" 
+                                               name="size" 
+                                               n:name="size" 
+                                               value="{$size->posterSizeId}" 
+                                               class="d-none" 
+                                               {if $size->size === 'medium'}checked{/if}>
+                                        <div class="border p-3 text-center position-relative size-option {if $size->size === 'medium'}border-success{/if}">
+                                            <div class="h5 mb-1">${$size->price|number:2}</div>
+                                            <div class="mb-1">{$size->displayName} ({$size->width} × {$size->height} cm)</div>
+                                            {if $size->size === 'medium'}
+                                                <span class="badge bg-success position-absolute top-0 end-0 m-2">Most popular</span>
+                                            {/if}
+                                        </div>
+                                    </label>
                                 </div>
-                            </div>
-                        {/foreach}
+                            {/foreach}
+                        </div>
                     </div>
-                </div>
-            {/if}
 
-            <!-- Add to Cart Button -->
-            <div class="mb-4">
-                <button class="btn btn-dark w-100 rounded-0 py-3">Add to Cart</button>
-            </div>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            {label count class => "me-2"/}
+                            {input count class => "form-control w-auto"}
+                            {input add class => "btn btn-dark flex-grow-1 rounded-0 py-3"}
+                        </div>
+                    </div>
+                {/form}
+            {/if}
 
             <!-- Description -->
             <div class="mb-4">
@@ -126,5 +139,19 @@
     
     .poster-image-container:hover {
         opacity: 0.9;
+    }
+
+    .size-option {
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    input[type="radio"]:checked + .size-option {
+        border-color: #198754 !important;
+        background-color: #f8f9fa;
+    }
+
+    .size-option:hover {
+        border-color: #198754 !important;
     }
 </style>

@@ -15,7 +15,7 @@ use LeanMapper\Entity;
  */
 class Cart extends Entity
 {
-    public function updateCartItems()
+    public function updateCartItems(): void
     {
         $this->row->cleanReferencingRowsCache('cart_item');
     }
@@ -36,7 +36,7 @@ class Cart extends Entity
         $result = 0;
         if (!empty($this->items)) {
             foreach ($this->items as $item) {
-                $result += $item->posterSize->price * $item->count;
+                $result += $item->getTotalPrice();
             }
         }
         return $result;

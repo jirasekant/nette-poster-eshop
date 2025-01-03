@@ -1,0 +1,99 @@
+{block content}
+<div class="container py-5">
+    <h1 class="mb-4">Shopping Cart</h1>
+
+    {if $cart && count($cart->items) > 0}
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Cart Items -->
+                <div class="border-0 rounded-0 mb-4">
+                    <div class="p-4">
+                        {foreach $cart->items as $item}
+                            <div class="row mb-4 border-bottom pb-4">
+                                <div class="col-md-3">
+                                    {var $poster = $item->getPoster()}
+                                    {if $poster && $poster->posterImages && count($poster->posterImages) > 0}
+                                        <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
+                                             alt="{$poster->title}"
+                                             class="img-fluid">
+                                    {else}
+                                        <div class="bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
+                                            <i class="fas fa-image text-muted fa-2x"></i>
+                                        </div>
+                                    {/if}
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h5 class="mb-2">{$poster->title}</h5>
+                                            <p class="text-muted mb-2">Size: {$item->posterSize->width}x{$item->posterSize->height} cm</p>
+                                            <p class="text-muted mb-0">Price: ${$item->posterSize->price|number:2}</p>
+                                        </div>
+                                        <div class="quantity-controls d-flex align-items-center">
+                                            <a n:href="decrease! $item->cartItemId" class="btn btn-sm btn-outline-dark me-2">-</a>
+                                            <span class="mx-2">{$item->getQuantity()}</span>
+                                            <a n:href="increase! $item->cartItemId" class="btn btn-sm btn-outline-dark ms-2">+</a>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 d-flex justify-content-between align-items-center">
+                                        <p class="mb-0"><strong>Total: ${$item->getTotalPrice()|number:2}</strong></p>
+                                        <a n:href="remove! $item->cartItemId" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i> Remove
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-lg-4">
+                <div class="border-0 rounded-0">
+                    <div class="p-4">
+                        <h5 class="mb-3">Order Summary</h5>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Subtotal</span>
+                            <span>${$cart->getTotalPrice()|number:2}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Shipping</span>
+                            <span class="text-success">Free</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4">
+                            <strong>Total</strong>
+                            <strong>${$cart->getTotalPrice()|number:2}</strong>
+                        </div>
+                        <a href="{plink Checkout:default}" class="btn btn-dark w-100 rounded-0">
+                            Proceed to Checkout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {else}
+        <div class="text-center py-5">
+            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+            <h3>Your cart is empty</h3>
+            <p class="text-muted">Looks like you haven't added anything to your cart yet.</p>
+            <a href="{plink Homepage:default}" class="btn btn-dark rounded-0 px-4 mt-3">
+                Continue Shopping
+            </a>
+        </div>
+    {/if}
+</div>
+
+<style>
+    .quantity-controls .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    @media (max-width: 767.98px) {
+        .quantity-controls {
+            margin-top: 1rem;
+        }
+    }
+</style> 

@@ -1,13 +1,71 @@
 {varType App\Model\Entities\Cart $cart}
-{snippet}
-  <div>
-
-    {if empty($cart) || $cart->getTotalCount()==0}
-      košík je prázdný
+{snippet cart}
+<div class="cart-widget">
+    {if $cart && count($cart->items) > 0}
+        <div class="cart-items">
+            {foreach $cart->items as $item}
+                <div class="cart-item">
+                    <div class="item-info">
+                        <h4>{$item->posterSize->poster->title}</h4>
+                        <p>Size: {$item->posterSize->getDisplayName()}</p>
+                        <p>Price: ${$item->posterSize->price}</p>
+                    </div>
+                    <div class="item-controls">
+                        <a n:href="decrease! $item->cartItemId" class="ajax btn btn-sm btn-outline-secondary">-</a>
+                        <span class="quantity">{$item->count}</span>
+                        <a n:href="increase! $item->cartItemId" class="ajax btn btn-sm btn-outline-secondary">+</a>
+                        <a n:href="remove! $item->cartItemId" class="ajax btn btn-sm btn-danger">×</a>
+                    </div>
+                </div>
+            {/foreach}
+            <div class="cart-summary">
+                <p>Total Items: {$cart->getTotalCount()}</p>
+                <p>Total Price: ${$cart->getTotalPrice()}</p>
+                <a n:href=":Front:Cart:default" class="btn btn-primary">View Cart</a>
+            </div>
+        </div>
     {else}
-      {var $cartTotalCount = $cart->getTotalCount();}
-      v košíku je {$cartTotalCount} {if $cartTotalCount==1}položka{elseif $cartTotalCount<5}položky{else}položek{/if} za {$cart->getTotalPrice()|number:0,',',' '} Kč
+        <div class="cart-empty">
+            <p>Your cart is empty</p>
+        </div>
     {/if}
+</div>
 
-  </div>
+<style>
+.cart-widget {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity {
+    min-width: 2rem;
+    text-align: center;
+}
+
+.cart-summary {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid #eee;
+}
+
+.cart-empty {
+    text-align: center;
+    color: #666;
+}
+</style>
 {/snippet}
