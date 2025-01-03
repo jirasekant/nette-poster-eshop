@@ -7,16 +7,18 @@
         <div class="row">
             <div class="col-lg-8">
                 <!-- Cart Items -->
-                <div class="border rounded-0 mb-4">
+                <div class="border rounded-0 mb-4 bg-white">
                     <div class="p-4">
                         {foreach $cart->items as $item}
-                            <div class="row mb-4 border-bottom pb-4">
+                            <div class="row mb-4 {if !$iterator->last}border-bottom pb-4{/if}">
                                 <div class="col-md-3">
                                     {var $poster = $item->getPoster()}
                                     {if $poster && $poster->posterImages && count($poster->posterImages) > 0}
-                                        <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
-                                             alt="{$poster->title}"
-                                             class="img-fluid">
+                                        <div class="position-relative h-100 d-flex align-items-center">
+                                            <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
+                                                 alt="{$poster->title}"
+                                                 class="img-fluid">
+                                        </div>
                                     {else}
                                         <div class="bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
                                             <i class="fas fa-image text-muted fa-2x"></i>
@@ -24,25 +26,41 @@
                                     {/if}
                                 </div>
                                 <div class="col-md-9">
-                                    <div class="d-flex justify-content-between align-items-start">
-                                        <div>
-                                            <h5 class="mb-2">{$poster->title}</h5>
-                                            <p class="text-muted mb-2">Size: {$item->posterSize->width}x{$item->posterSize->height} cm</p>
-                                            <p class="text-muted mb-0">Price: ${$item->posterSize->price|number:2}</p>
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
+                                            <div>
+                                                <h5 class="mb-1">{$poster->title}</h5>
+                                                <p class="text-muted small mb-0">Size: {$item->posterSize->width}x{$item->posterSize->height} cm</p>
+                                            </div>
+                                            <button type="button" class="btn btn-link text-danger p-0 border-0" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#removeModal{$item->cartItemId}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
                                         </div>
-                                        <div class="quantity-controls d-flex align-items-center">
-                                            <a n:href="decrease! $item->cartItemId" class="btn btn-sm btn-outline-dark me-2" data-naja-history="off">-</a>
-                                            <span class="mx-2">{$item->count}</span>
-                                            <a n:href="increase! $item->cartItemId" class="btn btn-sm btn-outline-dark ms-2" data-naja-history="off">+</a>
+                                        <div class="mt-auto d-flex justify-content-between align-items-end">
+                                            <div class="quantity-controls d-flex align-items-center">
+                                                {if $item->count === 1}
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary px-3" 
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-target="#removeModal{$item->cartItemId}">
+                                                        <i class="fas fa-minus text-muted"></i>
+                                                    </button>
+                                                {else}
+                                                    <a n:href="decrease! $item->cartItemId" class="btn btn-sm btn-outline-secondary px-3" data-naja-history="off">
+                                                        <i class="fas fa-minus text-muted"></i>
+                                                    </a>
+                                                {/if}
+                                                <span class="mx-3 h4 mb-0">{$item->count}</span>
+                                                <a n:href="increase! $item->cartItemId" class="btn btn-sm btn-outline-secondary px-3" data-naja-history="off">
+                                                    <i class="fas fa-plus text-muted"></i>
+                                                </a>
+                                            </div>
+                                            <div class="text-end">
+                                                <p class="text-muted small mb-1">Price: ${$item->posterSize->price|number:2}</p>
+                                                <p class="h5 mb-0">Total: ${$item->getTotalPrice()|number:2}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="mt-3 d-flex justify-content-between align-items-center">
-                                        <p class="mb-0"><strong>Total: ${$item->getTotalPrice()|number:2}</strong></p>
-                                        <button type="button" class="btn btn-sm btn-outline-danger" 
-                                                data-bs-toggle="modal" 
-                                                data-bs-target="#removeModal{$item->cartItemId}">
-                                            <i class="fas fa-trash"></i> Remove
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -87,23 +105,23 @@
 
             <!-- Order Summary -->
             <div class="col-lg-4">
-                <div class="border rounded-0">
+                <div class="border rounded-0 bg-light">
                     <div class="p-4">
-                        <h5 class="mb-3">Order Summary</h5>
+                        <h5 class="mb-4">Order Summary</h5>
                         <div class="d-flex justify-content-between mb-3">
-                            <span>Subtotal</span>
-                            <span>${$cart->getTotalPrice()|number:2}</span>
+                            <span class="text-muted">Subtotal</span>
+                            <span class="fw-medium">${$cart->getTotalPrice()|number:2}</span>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
-                            <span>Shipping</span>
-                            <span class="text-success">Free</span>
+                            <span class="text-muted">Shipping</span>
+                            <span class="text-success fw-medium">Free</span>
                         </div>
-                        <hr>
+                        <hr class="my-4">
                         <div class="d-flex justify-content-between mb-4">
-                            <strong>Total</strong>
-                            <strong>${$cart->getTotalPrice()|number:2}</strong>
+                            <span class="h5 mb-0">Total</span>
+                            <span class="h5 mb-0">${$cart->getTotalPrice()|number:2}</span>
                         </div>
-                        <a href="{plink Checkout:default}" class="btn btn-dark w-100 rounded-0">
+                        <a href="{plink Checkout:default}" class="btn btn-dark w-100 rounded-0 py-3">
                             Proceed to Checkout
                         </a>
                     </div>
@@ -112,7 +130,7 @@
         </div>
     {else}
         <div class="text-center py-5">
-            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+            <i class="fas fa-shopping-cart empty-cart-icon"></i>
             <h3>Your cart is empty</h3>
             <p class="text-muted">Looks like you haven't added anything to your cart yet.</p>
             <a href="{plink Homepage:default}" class="btn btn-dark rounded-0 px-4 mt-3">
@@ -124,20 +142,17 @@
 </div>
 
 <style>
+    /* Quantity controls */
     .quantity-controls .btn {
-        padding: 0.25rem 0.5rem;
+        padding: 0.25rem 0.75rem;
         font-size: 0.875rem;
+        border-radius: 4px;
     }
     
-    @media (max-width: 767.98px) {
-        .quantity-controls {
-            margin-top: 1rem;
-        }
-    }
-
-    /* Override card hover animation */
+    /* Item container */
     .border {
         transition: none !important;
+        background: white;
     }
     .border:hover {
         transform: none !important;
@@ -147,9 +162,24 @@
     .modal-backdrop {
         width: 100vw;
         height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
     }
 
     .modal-content {
         border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Empty cart */
+    .empty-cart-icon {
+        color: #e9ecef;
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 767.98px) {
+        .quantity-controls {
+            margin-top: 1rem;
+        }
     }
 </style> 
