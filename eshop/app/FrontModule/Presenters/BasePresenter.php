@@ -2,6 +2,9 @@
 
 namespace App\FrontModule\Presenters;
 
+use App\Model\Repositories\PosterRepository;
+use App\Model\Repositories\CategoryRepository;
+use App\Model\Repositories\AuthorRepository;
 use App\FrontModule\Components\CartControl\CartControl;
 use App\FrontModule\Components\CartControl\CartControlFactory;
 use App\FrontModule\Components\UserLoginControl\UserLoginControl;
@@ -16,6 +19,21 @@ use Nette\Application\ForbiddenRequestException;
 abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   private UserLoginControlFactory $userLoginControlFactory;
   private CartControlFactory $cartControlFactory;
+  private PosterRepository $posterRepository;
+  private CategoryRepository $categoryRepository;
+  private AuthorRepository $authorRepository;
+
+  public function injectPosterRepository(PosterRepository $posterRepository): void {
+    $this->posterRepository = $posterRepository;
+  }
+
+  public function injectCategoryRepository(CategoryRepository $categoryRepository): void {
+    $this->categoryRepository = $categoryRepository;
+  }
+
+  public function injectAuthorRepository(AuthorRepository $authorRepository): void {
+    $this->authorRepository = $authorRepository;
+  }
 
   /**
    * @throws ForbiddenRequestException
@@ -62,4 +80,19 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->cartControlFactory=$cartControlFactory;
   }
   #endregion injections
+
+  protected function beforeRender(): void
+  {
+    parent::beforeRender();
+    
+    // Add cart item count to template
+    $this->template->cartItemCount = 0; // Replace with actual cart count
+    
+    // Add categories and authors to template for navigation
+    $this->template->categories = $this->categoryRepository->findAll();
+    $this->template->authors = $this->authorRepository->findAuthorsWithPosters();
+    
+    // Add user info to template
+    $this->template->user = $this->getUser();
+  }
 }
