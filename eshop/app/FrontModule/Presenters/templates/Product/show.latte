@@ -6,7 +6,7 @@
         <div class="col-md-6 mb-4">
             {if $poster->posterImages && count($poster->posterImages) > 0}
                 <img src="{$basePath}{$poster->posterImages[0]->imageUrl}" 
-                     class="img-fluid" 
+                     class="img-fluid main-poster-image" 
                      alt="{$poster->title}">
                 
                 <!-- Thumbnail Images -->
@@ -14,7 +14,7 @@
                     {foreach $poster->posterImages as $image}
                         <div class="col-3">
                             <img src="{$basePath}{$image->imageUrl}" 
-                                 class="img-fluid border" 
+                                 class="img-fluid border thumbnail-image" 
                                  alt="{$poster->title}">
                         </div>
                     {/foreach}
@@ -28,71 +28,122 @@
 
         <!-- Right Column - Product Info -->
         <div class="col-md-6">
-            <h1 class="h2 mb-4">{$poster->title}</h1>
-            
-            <!-- Author -->
-            {if $poster->author}
-                <p class="text-muted mb-4">By {$poster->author->name}</p>
-            {/if}
+            <!-- Breadcrumb -->
+            <nav class="mb-2">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{plink Homepage:default}" class="text-decoration-none text-dark">Home</a></li>
+                    {if $poster->categories && count($poster->categories) > 0}
+                        <li class="breadcrumb-item">
+                            <a href="{plink Product:list, categoryId => $poster->categories[0]->categoryId}" class="text-decoration-none text-dark">
+                                {$poster->categories[0]->title}
+                            </a>
+                        </li>
+                    {/if}
+                </ol>
+            </nav>
 
-            <!-- Size Selection and Add to Cart Form -->
+            <!-- Title with Author -->
+            <h1 class="h2 mb-4">
+                {if $poster->author}{$poster->author->name} - {/if}{$poster->title}
+            </h1>
+
+            <!-- Size Selection and Cart Form -->
             {if $poster->posterSizes && count($poster->posterSizes) > 0}
                 {form posterCartForm-$poster->posterId class => "mb-4 ajax"}
                     <div class="mb-4">
-                        <h5 class="text-uppercase mb-3">Select Size</h5>
-                        <div class="row g-2">
+                        <h5 class="mb-3">SIZE</h5>
+                        <div class="size-selection mb-4">
                             {foreach $poster->posterSizes as $size}
-                                <div class="col-12">
-                                    <label class="w-100">
-                                        <input type="radio" 
-                                               name="size" 
-                                               n:name="size" 
-                                               value="{$size->posterSizeId}" 
-                                               class="d-none" 
-                                               {if $size->size === 'medium'}checked{/if}>
-                                        <div class="border p-3 text-center position-relative size-option {if $size->size === 'medium'}border-success{/if}">
-                                            <div class="h5 mb-1">${$size->price|number:2}</div>
-                                            <div class="mb-1">{$size->displayName} ({$size->width} × {$size->height} cm)</div>
-                                            {if $size->size === 'medium'}
-                                                <span class="badge bg-success position-absolute top-0 end-0 m-2">Most popular</span>
-                                            {/if}
+                                <label class="w-100 mb-2">
+                                    <input type="radio" 
+                                           name="size" 
+                                           n:name="size" 
+                                           value="{$size->posterSizeId}" 
+                                           class="d-none" 
+                                           {if $size->size === 'medium'}checked{/if}>
+                                    <div class="border p-3 d-flex justify-content-between align-items-center position-relative size-option {if $size->size === 'medium'}border-success{/if}">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="size-radio"></div>
+                                            <div>
+                                                <div>{$size->displayName}</div>
+                                                <div class="text-muted small">{$size->width} × {$size->height} cm</div>
+                                            </div>
                                         </div>
-                                    </label>
-                                </div>
+                                        <div class="h5 mb-0">${$size->price|number:2}</div>
+                                        {if $size->size === 'medium'}
+                                            <span class="badge bg-success position-absolute top-0 end-0 m-2">Most popular</span>
+                                        {/if}
+                                    </div>
+                                </label>
                             {/foreach}
                         </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <div class="d-flex align-items-center gap-3">
-                            {label count class => "me-2"/}
-                            {input count class => "form-control w-auto"}
-                            {input add class => "btn btn-dark flex-grow-1 rounded-0 py-3"}
+                        <!-- Add to Cart Section -->
+                        <div class="d-flex gap-3">
+                            <div class="quantity-selector">
+                                <div class="input-group">
+                                    <span class="input-group-text border-dark rounded-0">Qty</span>
+                                    {input count class => "form-control border-dark rounded-0 text-center"}
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-dark border-dark rounded-0 quantity-btn" data-action="increment">▲</button>
+                                        <button type="button" class="btn btn-outline-dark border-dark rounded-0 quantity-btn" data-action="decrement">▼</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {input add class => "btn btn-dark flex-grow-1 rounded-0"}
                         </div>
                     </div>
                 {/form}
             {/if}
+            <!-- Shipping Info -->
+            <div class="d-flex align-items-center gap-2 text-success mb-2">
+                <i class="fas fa-check-circle"></i>
+                <span>In stock</span>
+                <span class="mx-2">|</span>
+                <span>Delivery 2-7 business days</span>
+            </div>
+            <p class="text-muted small mb-4">
+                Free shipping (€69 EU / £80 UK) / Return policy 90 days
+            </p>
+
+            <!-- Collapsible Sections -->
+            <div class="accordion mb-4">
+                <div class="accordion-item border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#deliveryInfo">
+                            DELIVERY AND RETURN
+                        </button>
+                    </h2>
+                    <div id="deliveryInfo" class="accordion-collapse collapse">
+                        <div class="accordion-body px-0">
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2">• Free shipping on orders over €69 (EU) / £80 (UK)</li>
+                                <li class="mb-2">• Delivery within 2-7 business days</li>
+                                <li class="mb-2">• Secure packaging ensures safe delivery</li>
+                                <li>• 90-day return policy for your peace of mind</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#sustainability">
+                            SUSTAINABILITY
+                        </button>
+                    </h2>
+                    <div id="sustainability" class="accordion-collapse collapse">
+                        <div class="accordion-body px-0">
+                            <p class="mb-0">We're committed to sustainability. Each poster is printed on high-quality, FSC-certified paper, and we plant trees for every order placed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Description -->
             <div class="mb-4">
-                <h5 class="text-uppercase mb-3">Description</h5>
-                <p>{$poster->description}</p>
+                <p class="text-muted">{$poster->description}</p>
             </div>
-
-            <!-- Categories -->
-            {if $poster->categories && count($poster->categories) > 0}
-                <div class="mb-4">
-                    <h5 class="text-uppercase mb-3">Categories</h5>
-                    <div class="d-flex flex-wrap gap-2">
-                        {foreach $poster->categories as $category}
-                            <a href="{plink Product:list, categoryId => $category->categoryId}" 
-                               class="btn btn-outline-dark btn-sm rounded-0">
-                                {$category->title}
-                            </a>
-                        {/foreach}
-                    </div>
-                </div>
-            {/if}
         </div>
     </div>
 
@@ -146,6 +197,26 @@
         transition: all 0.2s ease;
     }
 
+    .size-radio {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #dee2e6;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    input[type="radio"]:checked + .size-option .size-radio::after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #198754;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     input[type="radio"]:checked + .size-option {
         border-color: #198754 !important;
         background-color: #f8f9fa;
@@ -154,4 +225,90 @@
     .size-option:hover {
         border-color: #198754 !important;
     }
+
+    .main-poster-image {
+        max-height: 600px;
+        object-fit: contain;
+    }
+
+    .thumbnail-image {
+        height: 100px;
+        object-fit: cover;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+    }
+
+    .thumbnail-image:hover {
+        opacity: 0.8;
+    }
+
+    .quantity-selector {
+        width: 140px;
+    }
+
+    .quantity-selector .input-group {
+        flex-wrap: nowrap;
+    }
+
+    .quantity-selector input {
+        min-width: 50px;
+        border-right: none;
+    }
+
+    /* Hide default number input spinners */
+    .quantity-selector input::-webkit-outer-spin-button,
+    .quantity-selector input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .quantity-selector input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .quantity-btn {
+        padding: 0;
+        width: 24px;
+        height: 22px;
+        line-height: 1;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .quantity-btn:first-child {
+        border-bottom: none;
+    }
+
+    .accordion-button {
+        font-weight: 500;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background: none;
+        color: inherit;
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+    }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle quantity buttons
+    document.querySelectorAll('.quantity-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.closest('.input-group').querySelector('input');
+            const currentValue = parseInt(input.value) || 1;
+            
+            if (this.dataset.action === 'increment') {
+                input.value = currentValue + 1;
+            } else {
+                input.value = Math.max(1, currentValue - 1);
+            }
+        });
+    });
+});
+</script>
