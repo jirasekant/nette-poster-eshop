@@ -103,11 +103,15 @@ class CartFacade{
   }
 
   public function decreaseCartItem(CartItem|int $cartItem):void {
-    //ošetření chyby když se nepodaří najít položku v košíku
     try {
       $cartItem = $this->cartItemRepository->find($cartItem);
       $cartItem->count--;
-      $this->cartItemRepository->persist($cartItem);
+      
+      if ($cartItem->count <= 0) {
+        $this->deleteCartItem($cartItem);
+      } else {
+        $this->cartItemRepository->persist($cartItem);
+      }
     } catch (\Exception $e) {
       // Handle the error silently or log it if needed
     }
