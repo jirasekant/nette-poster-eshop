@@ -255,28 +255,27 @@
 
 			<!-- User Controls -->
 			<div class="d-flex align-items-center ms-lg-4">
-				<li class="nav-item">
-					<a class="nav-link" n:href="Cart:default">
-						<i class="fas fa-shopping-cart"></i>
-						{if $cart && count($cart->items) > 0}
-							<span class="badge bg-danger rounded-pill">{count($cart->items)}</span>
-						{/if}
-					</a>
-				</li>
+				<a class="nav-link position-relative me-3" n:href="Cart:default">
+					<i class="fas fa-shopping-cart"></i>
+					{if $cart && $cart->getTotalCount() > 0}
+						<span class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle-x" style="transform: translateY(-50%); margin-top: 2px;">{$cart->getTotalCount()}</span>
+					{/if}
+				</a>
+
 				{if $user->isLoggedIn()}
 					<div class="dropdown">
-						<button class="btn btn-link dropdown-toggle text-dark" type="button" data-bs-toggle="dropdown">
+						<button class="nav-link dropdown-toggle border-0 bg-transparent p-0" type="button" data-bs-toggle="dropdown">
 							<i class="fas fa-user"></i>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="{plink User:profile}">Profile</a></li>
-							<li><a class="dropdown-item" href="{plink User:orders}">Orders</a></li>
+							<li><a class="dropdown-item" n:href="User:profile">Profile</a></li>
+							<li><a class="dropdown-item" n:href="User:orders">Orders</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="{plink User:logout}">Logout</a></li>
+							<li><a class="dropdown-item" n:href="User:logout">Logout</a></li>
 						</ul>
 					</div>
 				{else}
-					<a href="{plink User:login}" class="btn btn-link text-dark">
+					<a class="nav-link" n:href="User:login">
 						<i class="fas fa-user"></i>
 					</a>
 				{/if}

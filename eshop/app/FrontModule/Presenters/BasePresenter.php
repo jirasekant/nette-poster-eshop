@@ -85,8 +85,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   {
     parent::beforeRender();
     
-    // Add cart item count to template
-    $this->template->cartItemCount = 0; // Replace with actual cart count
+    // Add cart data to template
+    $cartControl = $this->getComponent('cart');
+    if ($cartControl instanceof CartControl) {
+        $this->template->cart = $cartControl->getCurrentCart();
+    }
     
     // Add categories and authors to template for navigation
     $this->template->categories = $this->categoryRepository->findAll();
