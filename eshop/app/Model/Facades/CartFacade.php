@@ -7,113 +7,73 @@ use App\Model\Entities\CartItem;
 use App\Model\Entities\User;
 use App\Model\Repositories\CartItemRepository;
 use App\Model\Repositories\CartRepository;
+use App\Model\Repositories\PosterSizeRepository;
 use Dibi\DateTime;
 
-class CartFacade{
-  private CartRepository $cartRepository;
-  private CartItemRepository $cartItemRepository;
+class CartFacade {
+    private CartRepository $cartRepository;
+    private CartItemRepository $cartItemRepository;
+    private PosterSizeRepository $posterSizeRepository;
 
-  /**
-   * Metoda vracející košík podle cartId
-   * @param int $id
-   * @return Cart
-   * @throws \Exception
-   */
-  public function getCartById(int $id):Cart {
-    return $this->cartRepository->find($id);
-  }
-
-  /**
-   * Metoda vracející košík konkrétního uživatele
-   * @param User|int $user
-   * @return Cart
-   * @throws \Exception
-   */
-  public function getCartByUser($user):Cart {
-    if ($user instanceof User){
-      $user=$user->userId;
+    public function __construct(
+        CartRepository $cartRepository,
+        CartItemRepository $cartItemRepository,
+        PosterSizeRepository $posterSizeRepository
+    ) {
+        $this->cartRepository = $cartRepository;
+        $this->cartItemRepository = $cartItemRepository;
+        $this->posterSizeRepository = $posterSizeRepository;
     }
-    return $this->cartRepository->findBy(['user_id'=>$user]);
-  }
 
-  /**
-   * Metoda pro smazání košíku konkrétního uživatele
-   * @param User|int $user
-   */
-  public function deleteCartByUser($user):void {
-    try{
-      $this->cartRepository->delete($this->getCartByUser($user));
-    }catch (\Exception $e){}
-  }
-
-  /**
-   * Metoda pro smazání starých košíků
-   */
-  public function deleteOldCarts():void {
-    try{
-      $this->cartRepository->deleteOldCarts();
-    }catch (\Exception $e){}
-  }
-
-  /**
-   * Metoda pro uložení položky v košíku
-   * @param CartItem $cartItem
-   */
-  public function saveCartItem(CartItem $cartItem):void {
-    $this->cartItemRepository->persist($cartItem);
-  }
-
-  /**
-   * Metoda pro uložení košíku, automaticky aktualizuje informaci o jeho poslední změně
-   * @param Cart $cart
-   */
-  public function saveCart(Cart $cart):void {
-    $cart->lastModified = new DateTime();
-    $this->cartRepository->persist($cart);
-  }
-
-  /**
-   * CartFacade constructor.
-   * @param CartRepository $cartRepository
-   * @param CartItemRepository $cartItemRepository
-   */
-  public function __construct(CartRepository $cartRepository, CartItemRepository $cartItemRepository){
-    $this->cartRepository=$cartRepository;
-    $this->cartItemRepository=$cartItemRepository;
-  }
-
-  public function deleteCartItem(CartItem|int $cartItem):void {
-    //ošetření chyby když se nepodaří najít položku v košíku
-    try {
-      $this->cartItemRepository->delete($cartItem);
-    } catch (\Exception $e) {
-      // Handle the error silently or log it if needed
+    public function getCartByUser($user): ?Cart {
+        if ($user instanceof User) {
+            $user = $user->userId;
+        }
+        try {
+            return $this->cartRepository->findByUser($user);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
-  }
 
-  public function increaseCartItem(CartItem|int $cartItem):void {
-    //ošetření chyby když se nepodaří najít položku v košíku
-    try {
-      $cartItem = $this->cartItemRepository->find($cartItem);
-      $cartItem->count++;
-      $this->cartItemRepository->persist($cartItem);
-    } catch (\Exception $e) {
-      // Handle the error silently or log it if needed
+    public function getCartById(int $id): ?Cart {
+        try {
+            return $this->cartRepository->find($id);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
-  }
 
-  public function decreaseCartItem(CartItem|int $cartItem):void {
-    try {
-      $cartItem = $this->cartItemRepository->find($cartItem);
-      $cartItem->count--;
-      
-      if ($cartItem->count <= 0) {
-        $this->deleteCartItem($cartItem);
-      } else {
+    public function getPosterSizeById(int $id) {
+        return $this->posterSizeRepository->find($id);
+    }
+
+    public function saveCartItem(CartItem $cartItem): void {
         $this->cartItemRepository->persist($cartItem);
-      }
-    } catch (\Exception $e) {
-      // Handle the error silently or log it if needed
+        if ($cartItem->cart) {
+            $cartItem->cart->lastModified = new DateTime();
+            $this->cartRepository->persist($cartItem->cart);
+        }
     }
-  }
+
+    public function saveCart(Cart $cart): void {
+        $cart->lastModified = new DateTime();
+        $this->cartRepository->persist($cart);
+    }
+
+    public function deleteCartItem(CartItem|int $cartItem): void {
+        try {
+            $this->cartItemRepository->delete($cartItem);
+        } catch (\Exception $e) {
+            // Handle the error silently or log it if needed
+        }
+    }
+
+    public function deleteOldCarts(): void {
+        try {
+            $this->cartRepository->deleteOldCarts();
+        } catch (\Exception $e) {
+            // Handle the error silently or log it if needed
+        }
+    }
 }

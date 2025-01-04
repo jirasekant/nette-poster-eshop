@@ -4,6 +4,7 @@ namespace App\FrontModule\Components\CartControl;
 
 use App\Model\Facades\CartFacade;
 use App\Model\Entities\Cart;
+use App\Model\Entities\CartItem;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Template;
 use Nette\Security\User;
@@ -18,139 +19,83 @@ class CartControl extends Control {
     private CartFacade $cartFacade;
     private User $user;
     private SessionSection $cartSession;
+    private ?Cart $cart = null;
 
     public function __construct(CartFacade $cartFacade, User $user, Session $session) {
         $this->cartFacade = $cartFacade;
         $this->user = $user;
         $this->cartSession = $session->getSection('cart');
+        
+        // Debug session
+        bdump($session->getId(), 'Session ID');
+        bdump($this->cartSession->get('cartId'), 'Cart ID in session');
     }
 
     /**
      * Get or create cart for current user (guest or logged in)
      */
     public function getCurrentCart(): ?Cart {
-        try {
-            if ($this->user->isLoggedIn()) {
-                try {
-                    return $this->cartFacade->getCartByUser($this->user->getId());
-                } catch (\Exception $e) {
-                    // Cart doesn't exist for user, will create new one
-                }
-            } else if ($cartId = $this->cartSession->get('cartId')) {
-                try {
-                    return $this->cartFacade->getCartById((int)$cartId);
-                } catch (\Exception $e) {
-                    // Session cart not found, will create new one
+        // Debug session state
+        bdump($this->cartSession->get('cartId'), 'Cart ID before processing');
+        
+        if ($this->cart !== null) {
+            return $this->cart;
+        }
+
+        // For logged in users
+        if ($this->user->isLoggedIn()) {
+            $cart = $this->cartFacade->getCartByUser($this->user->getId());
+            if ($cart) {
+                $this->cart = $cart;
+                return $this->cart;
+            }
+
+            // If user has no cart but there's a session cart, transfer it
+            if ($cartId = $this->cartSession->get('cartId')) {
+                bdump($cartId, 'Found cart ID in session for logged user');
+                $cart = $this->cartFacade->getCartById((int)$cartId);
+                if ($cart && $cart->userId === null) {
+                    $cart->userId = $this->user->getId();
+                    $this->cartFacade->saveCart($cart);
+                    $this->cartSession->remove('cartId');
+                    $this->cart = $cart;
+                    return $this->cart;
                 }
             }
 
-            // Create new cart
+            // Create new cart for logged user
             $cart = new Cart();
-            if ($this->user->isLoggedIn()) {
-                $cart->userId = $this->user->getId();
-            }
+            $cart->userId = $this->user->getId();
             $this->cartFacade->saveCart($cart);
-            
-            // Save cart ID to session for guests
-            if (!$this->user->isLoggedIn()) {
-                $this->cartSession->set('cartId', $cart->cartId);
+            $this->cart = $cart;
+            return $this->cart;
+        }
+
+        // For guests
+        if ($cartId = $this->cartSession->get('cartId')) {
+            bdump($cartId, 'Found cart ID in session for guest');
+            $cart = $this->cartFacade->getCartById((int)$cartId);
+            if ($cart && $cart->userId === null) {
+                bdump('Using existing guest cart');
+                $this->cart = $cart;
+                return $this->cart;
             }
-
-            return $cart;
-        } catch (\Exception $e) {
-            return null;
-        }
-    }
-
-    /**
-     * Renders the cart control
-     */
-    public function render(): void {
-        $template = $this->getTemplate();
-        $template->setFile(__DIR__ . '/templates/default.latte');
-        $template->cart = $this->getCurrentCart();
-        $template->render();
-    }
-
-    /**
-     * Handler for removing items from cart
-     */
-    public function handleRemove(int $cartItemId): void {
-        try {
-            $cart = $this->getCurrentCart();
-            if (!$cart) {
-                throw new \Exception('Cart not found');
+            // Only remove session if cart was taken by a user
+            if ($cart && $cart->userId !== null) {
+                bdump('Removing cart ID from session - cart was taken by user');
+                $this->cartSession->remove('cartId');
             }
+        }
 
-            $this->cartFacade->deleteCartItem($cartItemId);
-            $cart->updateCartItems();
-            $this->cartFacade->saveCart($cart);
-            
-            $this->flashMessage('Item removed from cart', 'success');
-        } catch (\Exception $e) {
-            $this->flashMessage('Error removing item from cart', 'error');
-        }
-        
-        if ($this->presenter->isAjax()) {
-            $this->presenter->redrawControl('cartBadge');
-            $this->presenter->redrawControl('flashes');
-        } else {
-            $this->redirect('this');
-        }
-    }
-
-    /**
-     * Handler for increasing item quantity
-     */
-    public function handleIncrease(int $cartItemId): void {
-        try {
-            $cart = $this->getCurrentCart();
-            if (!$cart) {
-                throw new \Exception('Cart not found');
-            }
-
-            $this->cartFacade->increaseCartItem($cartItemId);
-            $cart->updateCartItems();
-            $this->cartFacade->saveCart($cart);
-            
-            $this->flashMessage('Item quantity increased', 'success');
-        } catch (\Exception $e) {
-            $this->flashMessage('Error increasing item quantity', 'error');
-        }
-        
-        if ($this->presenter->isAjax()) {
-            $this->presenter->redrawControl('cartBadge');
-            $this->presenter->redrawControl('flashes');
-        } else {
-            $this->redirect('this');
-        }
-    }
-
-    /**
-     * Handler for decreasing item quantity
-     */
-    public function handleDecrease(int $cartItemId): void {
-        try {
-            $cart = $this->getCurrentCart();
-            if (!$cart) {
-                throw new \Exception('Cart not found');
-            }
-
-            $this->cartFacade->decreaseCartItem($cartItemId);
-            $cart->updateCartItems();
-            $this->cartFacade->saveCart($cart);
-            
-            $this->flashMessage('Item quantity decreased', 'success');
-        } catch (\Exception $e) {
-            $this->flashMessage('Error decreasing item quantity', 'error');
-        }
-        
-        if ($this->presenter->isAjax()) {
-            $this->presenter->redrawControl('cartBadge');
-            $this->presenter->redrawControl('flashes');
-        } else {
-            $this->redirect('this');
-        }
+        bdump('Creating new guest cart');
+        // Create new cart for guest
+        $cart = new Cart();
+        $cart->userId = null;
+        $this->cartFacade->saveCart($cart);
+        $this->cartSession->set('cartId', $cart->cartId);
+        bdump($cart->cartId, 'New cart ID saved to session');
+        $this->cart = $cart;
+        return $this->cart;
     }
 
     /**
@@ -160,32 +105,34 @@ class CartControl extends Control {
         if ($cartId = $this->cartSession->get('cartId')) {
             try {
                 $guestCart = $this->cartFacade->getCartById((int)$cartId);
-                
-                // Try to get existing user cart
-                try {
-                    $userCart = $this->cartFacade->getCartByUser($userId);
-                    // Merge guest cart items into user cart
-                    foreach ($guestCart->items as $item) {
-                        $item->cartId = $userCart->cartId;
-                        $this->cartFacade->saveCartItem($item);
-                    }
-                    $userCart->updateCartItems();
-                    $this->cartFacade->saveCart($userCart);
-                    
-                    // Delete guest cart
-                    $this->cartFacade->deleteCartByUser($guestCart->cartId);
-                } catch (\Exception $e) {
-                    // User has no cart, just update guest cart
-                    $guestCart->userId = $userId;
-                    $this->cartFacade->saveCart($guestCart);
+                if (!$guestCart || $guestCart->userId !== null) {
+                    return;
                 }
-                
-                // Clear session cart ID
+
+                $guestCart->userId = $userId;
+                $this->cartFacade->saveCart($guestCart);
                 $this->cartSession->remove('cartId');
             } catch (\Exception $e) {
                 // Guest cart not found, nothing to do
             }
         }
+    }
+
+    /**
+     * Renders the cart control
+     */
+    public function render(): void {
+        $template = $this->getTemplate();
+        $template->setFile(__DIR__ . '/templates/default.latte');
+        $cart = $this->getCurrentCart();
+        $template->cart = $cart;
+        
+        // Make cart available to parent template
+        if ($this->getPresenter()) {
+            $this->getPresenter()->template->cart = $cart;
+        }
+        
+        $template->render();
     }
 
     public function handleAddToCart(int $posterId, int $posterSizeId, int $count = 1): void {
@@ -195,22 +142,39 @@ class CartControl extends Control {
                 throw new \Exception('Cart not found');
             }
 
-            // Add item to cart
-            $cartItem = new CartItem();
-            $cartItem->cart = $cart;
-            $cartItem->posterSize = $this->cartFacade->getPosterSizeById($posterSizeId);
-            $cartItem->count = $count;
-            $this->cartFacade->saveCartItem($cartItem);
+            // Check if item already exists in cart
+            $existingItem = null;
+            foreach ($cart->items as $item) {
+                if ($item->posterSize->posterSizeId === $posterSizeId) {
+                    $existingItem = $item;
+                    break;
+                }
+            }
+
+            if ($existingItem) {
+                // Update existing item count
+                $existingItem->count += $count;
+                $this->cartFacade->saveCartItem($existingItem);
+            } else {
+                // Add new item to cart
+                $cartItem = new CartItem();
+                $cartItem->cart = $cart;
+                $cartItem->posterSize = $this->cartFacade->getPosterSizeById($posterSizeId);
+                $cartItem->count = $count;
+                $this->cartFacade->saveCartItem($cartItem);
+            }
             
             $cart->updateCartItems();
             $this->cartFacade->saveCart($cart);
             
             $this->flashMessage('Item added to cart', 'success');
         } catch (\Exception $e) {
-            $this->flashMessage('Error adding item to cart', 'error');
+            $this->flashMessage('Error adding item to cart: ' . $e->getMessage(), 'error');
         }
         
         if ($this->presenter->isAjax()) {
+            $this->redrawControl();
+            $this->presenter->redrawControl('cartContent');
             $this->presenter->redrawControl('cartBadge');
             $this->presenter->redrawControl('flashes');
         } else {
