@@ -34,17 +34,13 @@ class CartControl extends Control {
      * Get or create cart for current user (guest or logged in)
      */
     public function getCurrentCart(): ?Cart {
-        // Debug session state
-        bdump($this->cartSession->get('cartId'), 'Cart ID before processing');
-        
         if ($this->cart !== null) {
-            bdump($this->cart->cartId, 'Returning cached cart');
-            bdump($this->cart->items, 'Cached cart items');
             return $this->cart;
         }
 
         // For logged in users
         if ($this->user->isLoggedIn()) {
+            // First try to get user's cart
             $cart = $this->cartFacade->getCartByUser($this->user->getId());
             if ($cart) {
                 $this->cart = $cart;
@@ -53,7 +49,6 @@ class CartControl extends Control {
 
             // If user has no cart but there's a session cart, transfer it
             if ($cartId = $this->cartSession->get('cartId')) {
-                bdump($cartId, 'Found cart ID in session for logged user');
                 $cart = $this->cartFacade->getCartById((int)$cartId);
                 if ($cart && $cart->userId === null) {
                     $cart->userId = $this->user->getId();
@@ -64,42 +59,48 @@ class CartControl extends Control {
                 }
             }
 
-            // Create new cart for logged user
-            $cart = new Cart();
-            $cart->userId = $this->user->getId();
-            $this->cartFacade->saveCart($cart);
-            $this->cart = $cart;
-            return $this->cart;
+            // Only create new cart if we need to add items
+            return null;
         }
 
         // For guests
         if ($cartId = $this->cartSession->get('cartId')) {
-            bdump($cartId, 'Found cart ID in session for guest');
             $cart = $this->cartFacade->getCartById((int)$cartId);
             if ($cart && $cart->userId === null) {
-                bdump('Using existing guest cart');
-                bdump($cart->cartId, 'Guest cart ID');
-                bdump($cart->items, 'Guest cart items');
                 $this->cart = $cart;
                 return $this->cart;
             }
             // Only remove session if cart was taken by a user
             if ($cart && $cart->userId !== null) {
-                bdump('Removing cart ID from session - cart was taken by user');
                 $this->cartSession->remove('cartId');
             }
         }
 
-        bdump('Creating new guest cart');
-        // Create new cart for guest
+        // Only create new cart if we need to add items
+        return null;
+    }
+
+    /**
+     * Get or create cart, ensuring a cart exists
+     */
+    private function getOrCreateCart(): Cart {
+        $cart = $this->getCurrentCart();
+        if ($cart) {
+            return $cart;
+        }
+
+        // Create new cart
         $cart = new Cart();
-        $cart->userId = null;
+        $cart->userId = $this->user->isLoggedIn() ? $this->user->getId() : null;
         $this->cartFacade->saveCart($cart);
-        bdump($cart->cartId, 'New cart ID');
-        $this->cartSession->set('cartId', $cart->cartId);
-        bdump($this->cartSession->get('cartId'), 'Cart ID in session after save');
+        
+        // For guests, store cart ID in session
+        if (!$this->user->isLoggedIn()) {
+            $this->cartSession->set('cartId', $cart->cartId);
+        }
+
         $this->cart = $cart;
-        return $this->cart;
+        return $cart;
     }
 
     /**
@@ -176,10 +177,7 @@ class CartControl extends Control {
 
     public function handleAddToCart(int $posterId, int $posterSizeId, int $count = 1): void {
         try {
-            $cart = $this->getCurrentCart();
-            if (!$cart) {
-                throw new \Exception('Cart not found');
-            }
+            $cart = $this->getOrCreateCart();
 
             // Check if item already exists in cart
             $existingItem = null;
