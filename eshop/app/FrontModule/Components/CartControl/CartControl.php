@@ -190,6 +190,11 @@ class CartControl extends Control {
                 }
             }
 
+            $posterSize = $this->cartFacade->getPosterSizeById($posterSizeId);
+            if (!$posterSize) {
+                throw new \Exception('Poster size not found');
+            }
+
             if ($existingItem) {
                 // Update existing item count
                 $existingItem->count += $count;
@@ -198,7 +203,7 @@ class CartControl extends Control {
                 // Add new item to cart
                 $cartItem = new CartItem();
                 $cartItem->cart = $cart;
-                $cartItem->posterSize = $this->cartFacade->getPosterSizeById($posterSizeId);
+                $cartItem->posterSize = $posterSize;
                 $cartItem->count = $count;
                 $this->cartFacade->saveCartItem($cartItem);
             }
@@ -207,8 +212,29 @@ class CartControl extends Control {
             $cart->updateCartItems();
             $this->cartFacade->saveCart($cart);
             $this->cart = null; // Clear cache to force reload
+
+            // Set toast message with product details
+            $poster = $posterSize->poster;
+            $toastContent = "
+                <div class='d-flex align-items-start'>
+                    <div class='me-3' style='width: 50px;'>
+                        <img src='" . $this->template->basePath . $poster->posterImages[0]->imageUrl . "' class='img-fluid' alt='{$poster->title}'>
+                    </div>
+                    <div>
+                        <div class='fw-medium'>{$poster->title}</div>
+                        <div class='text-muted small'>Size: {$posterSize->width}x{$posterSize->height} cm</div>
+                        <div class='text-muted small'>Quantity: {$count}</div>
+                    </div>
+                </div>
+                <div class='mt-2 pt-2 border-top d-flex justify-content-between align-items-center'>
+                    <div>
+                        <span class='h5 mb-0 text-success'>Added to cart</span>
+                    </div>
+                    <a href='{$this->presenter->link('Cart:default')}' class='btn btn-dark btn-sm rounded-0'>View Cart</a>
+                </div>
+            ";
             
-            $this->flashMessage('Item added to cart', 'success');
+            $this->presenter->template->toast = $toastContent;
         } catch (\Exception $e) {
             $this->flashMessage('Error adding item to cart: ' . $e->getMessage(), 'error');
         }
@@ -217,6 +243,7 @@ class CartControl extends Control {
             $this->redrawControl();
             $this->presenter->redrawControl('cartContent');
             $this->presenter->redrawControl('cartBadge');
+            $this->presenter->redrawControl('toast');
             $this->presenter->redrawControl('flashes');
         } else {
             $this->redirect('this');

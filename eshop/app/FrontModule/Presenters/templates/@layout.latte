@@ -170,6 +170,39 @@
 		.sticky-top {
 			background-color: white;
 		}
+
+		/* Toast styles */
+		.toast {
+			background-color: white;
+			border: none;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+			min-width: 300px;
+		}
+
+		.toast-header {
+			background-color: white;
+			border-bottom: none;
+			padding: 1rem 1rem 0.5rem;
+		}
+
+		.toast-body {
+			padding: 0.5rem 1rem 1rem;
+		}
+
+		.toast .btn-close {
+			font-size: 0.8rem;
+		}
+
+		.toast .btn-dark:hover {
+			background-color: #343a40;
+		}
+
+		@media (max-width: 991.98px) {
+			.toast {
+				min-width: auto;
+				width: calc(100vw - 2rem);
+			}
+		}
 	</style>
 
 	{block head}{/block}
@@ -334,12 +367,22 @@
 		</div>
 	</div>
 
-	<!-- Flash Messages -->
-	<div n:snippet="flashes" data-naja-snippet-update="true">
-		<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} alert-dismissible fade show" role="alert">
-			{$flash->message}
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
+	<!-- Toast Container -->
+	<div class="toast-container position-fixed bottom-0 end-0 p-3">
+		{snippet toast}
+		{if $toast}
+			<div id="cartToast" class="toast show" role="alert">
+				<div class="toast-header">
+					<i class="fas fa-shopping-cart me-2"></i>
+					<strong class="me-auto">Cart</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+				</div>
+				<div class="toast-body">
+					{$toast|noescape}
+				</div>
+			</div>
+		{/if}
+		{/snippet}
 	</div>
 
 	<!-- Main Content -->
@@ -352,61 +395,23 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://unpkg.com/naja@2/dist/Naja.min.js"></script>
 	<script>
-		document.addEventListener('DOMContentLoaded', naja.initialize.bind(naja));
-	</script>
-	{block scripts}{/block}
-
-	<script>
 		document.addEventListener('DOMContentLoaded', function() {
-			const dropdownToggle = document.querySelector('.dropdown-toggle');
-			const dropdownMenu = document.querySelector('.dropdown-menu');
-			let timeoutId;
-
-			// Show dropdown on hover
-			dropdownToggle.addEventListener('mouseenter', function() {
-				clearTimeout(timeoutId);
-				dropdownMenu.classList.add('show');
-			});
-
-			dropdownMenu.addEventListener('mouseenter', function() {
-				clearTimeout(timeoutId);
-			});
-
-			// Hide dropdown when mouse leaves both toggle and menu
-			dropdownToggle.addEventListener('mouseleave', function(e) {
-				if (!e.relatedTarget || !e.relatedTarget.closest('.dropdown-menu')) {
-					timeoutId = setTimeout(() => {
-						if (!dropdownMenu.matches(':hover')) {
-							dropdownMenu.classList.remove('show');
-						}
-					}, 100);
-				}
-			});
-
-			dropdownMenu.addEventListener('mouseleave', function(e) {
-				if (!e.relatedTarget || !e.relatedTarget.closest('.dropdown-toggle')) {
-					timeoutId = setTimeout(() => {
-						if (!dropdownToggle.matches(':hover')) {
-							dropdownMenu.classList.remove('show');
-						}
-					}, 100);
-				}
-			});
-
-			// Handle click
-			dropdownToggle.addEventListener('click', function(e) {
-				e.preventDefault();
-				dropdownMenu.classList.toggle('show');
-			});
-
-			// Close dropdown when clicking outside
-			document.addEventListener('click', function(e) {
-				if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-					dropdownMenu.classList.remove('show');
+			naja.initialize();
+			
+			// Auto-hide toasts after 5 seconds
+			naja.snippetHandler.addEventListener('afterUpdate', function(event) {
+				if (event.detail.snippet.id === 'toast') {
+					const toast = document.querySelector('#cartToast');
+					if (toast) {
+						setTimeout(() => {
+							toast.classList.remove('show');
+						}, 5000);
+					}
 				}
 			});
 		});
 	</script>
+	{block scripts}{/block}
 </body>
 </html>
 
