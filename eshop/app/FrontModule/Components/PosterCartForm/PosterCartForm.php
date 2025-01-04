@@ -78,63 +78,16 @@ class PosterCartForm extends Form {
 
     public function submitSucceeded(Form $form, ArrayHash $values): void {
         try {
-            // Get or create cart
-            $cart = null;
-            $user = $this->getPresenter()->getUser();
-            
-            if ($user->isLoggedIn()) {
-                try {
-                    $cart = $this->cartFacade->getCartByUser($user->getId());
-                } catch (\Exception $e) {
-                    // Cart doesn't exist yet
-                }
+            if (!isset($this->cartControl)) {
+                throw new \Exception('Cart control not set');
             }
 
-            if (!$cart) {
-                $cart = new Cart();
-                if ($user->isLoggedIn()) {
-                    $cart->userId = $user->getId();
-                }
-                $this->cartFacade->saveCart($cart);
-            }
-
-            // Load the PosterSize entity
-            $posterSize = $this->posterSizeRepository->find($values->size);
-            if (!$posterSize) {
-                throw new \Exception('Selected poster size not found');
-            }
-
-            // Check if item already exists in cart
-            $existingItem = null;
-            foreach ($cart->items as $item) {
-                if ($item->posterSize->posterSizeId == $posterSize->posterSizeId) {
-                    $existingItem = $item;
-                    break;
-                }
-            }
-
-            if ($existingItem) {
-                // Update existing item
-                $existingItem->count += $values->count;
-                $this->cartFacade->saveCartItem($existingItem);
-            } else {
-                // Create new cart item
-                $cartItem = new CartItem();
-                $cartItem->cart = $cart;
-                $cartItem->posterSize = $posterSize;
-                $cartItem->count = $values->count;
-                $this->cartFacade->saveCartItem($cartItem);
-            }
-
-            $cart->updateCartItems();
-            $this->cartFacade->saveCart($cart);
-
-            $this->getPresenter()->flashMessage('Item added to cart', 'success');
-            
-            if ($this->getPresenter()->isAjax()) {
-                $this->getPresenter()->redrawControl('flashes');
-                $this->getPresenter()->redrawControl('cartBadge');
-            }
+            // Let CartControl handle cart creation/retrieval
+            $this->cartControl->handleAddToCart(
+                $this->getPresenter()->getParameter('id'), // poster ID
+                $values->size,
+                $values->count
+            );
 
         } catch (\Exception $e) {
             $this->getPresenter()->flashMessage('Error adding item to cart: ' . $e->getMessage(), 'error');

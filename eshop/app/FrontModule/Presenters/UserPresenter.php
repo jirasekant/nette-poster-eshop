@@ -141,6 +141,12 @@ class UserPresenter extends BasePresenter{
         $this->user->login($values['email'],$values['password']);
         //po přihlášení uživatele smažeme jeho kódy na obnovu hesla
         $this->usersFacade->deleteForgottenPasswordsByUser($this->user->id);
+        
+        // Transfer guest cart to user after login
+        $cartControl = $this->getComponent('cart');
+        if ($cartControl instanceof CartControl) {
+            $cartControl->attachCartToUser($this->user->getId());
+        }
       }catch (\Exception $e){
         $this->flashMessage('Neplatná kombinace e-mailu a hesla!','error');
         $this->redirect('login');

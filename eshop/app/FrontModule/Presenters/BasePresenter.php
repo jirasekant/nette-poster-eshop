@@ -91,5 +91,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     
     // Add user info to template
     $this->template->user = $this->getUser();
+    
+    // Make cart data available in all templates
+    /** @var CartControl $cartControl */
+    $cartControl = $this->getComponent('cart');
+    $this->template->cart = $cartControl->getCurrentCart();
   }
 }

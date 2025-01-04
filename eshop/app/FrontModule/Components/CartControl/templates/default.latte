@@ -21,7 +21,7 @@
             <div class="cart-summary">
                 <p>Total Items: {$cart->getTotalCount()}</p>
                 <p>Total Price: ${$cart->getTotalPrice()}</p>
-                <a n:href=":Front:Cart:default" class="btn btn-primary">View Cart</a>
+                <a href="{plink Cart:default}" class="btn btn-primary">View Cart</a>
             </div>
         </div>
     {else}

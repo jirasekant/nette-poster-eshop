@@ -26,9 +26,8 @@ class CartControl extends Control {
         $this->user = $user;
         $this->cartSession = $session->getSection('cart');
         
-        // Debug session
-        bdump($session->getId(), 'Session ID');
-        bdump($this->cartSession->get('cartId'), 'Cart ID in session');
+        // Basic debug
+        file_put_contents(__DIR__ . '/debug.txt', 'CartControl constructor called at ' . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
     }
 
     /**
@@ -39,6 +38,8 @@ class CartControl extends Control {
         bdump($this->cartSession->get('cartId'), 'Cart ID before processing');
         
         if ($this->cart !== null) {
+            bdump($this->cart->cartId, 'Returning cached cart');
+            bdump($this->cart->items, 'Cached cart items');
             return $this->cart;
         }
 
@@ -77,6 +78,8 @@ class CartControl extends Control {
             $cart = $this->cartFacade->getCartById((int)$cartId);
             if ($cart && $cart->userId === null) {
                 bdump('Using existing guest cart');
+                bdump($cart->cartId, 'Guest cart ID');
+                bdump($cart->items, 'Guest cart items');
                 $this->cart = $cart;
                 return $this->cart;
             }
@@ -92,8 +95,9 @@ class CartControl extends Control {
         $cart = new Cart();
         $cart->userId = null;
         $this->cartFacade->saveCart($cart);
+        bdump($cart->cartId, 'New cart ID');
         $this->cartSession->set('cartId', $cart->cartId);
-        bdump($cart->cartId, 'New cart ID saved to session');
+        bdump($this->cartSession->get('cartId'), 'Cart ID in session after save');
         $this->cart = $cart;
         return $this->cart;
     }
@@ -109,11 +113,46 @@ class CartControl extends Control {
                     return;
                 }
 
-                $guestCart->userId = $userId;
-                $this->cartFacade->saveCart($guestCart);
+                // Try to find existing user cart
+                $userCart = $this->cartFacade->getCartByUser($userId);
+                
+                if ($userCart) {
+                    // Merge guest cart items into user cart
+                    foreach ($guestCart->items as $guestItem) {
+                        $existingItem = null;
+                        foreach ($userCart->items as $userItem) {
+                            if ($userItem->posterSize->posterSizeId === $guestItem->posterSize->posterSizeId) {
+                                $existingItem = $userItem;
+                                break;
+                            }
+                        }
+
+                        if ($existingItem) {
+                            // Update existing item count
+                            $existingItem->count += $guestItem->count;
+                            $this->cartFacade->saveCartItem($existingItem);
+                        } else {
+                            // Create new item in user cart
+                            $newItem = new CartItem();
+                            $newItem->cart = $userCart;
+                            $newItem->posterSize = $guestItem->posterSize;
+                            $newItem->count = $guestItem->count;
+                            $this->cartFacade->saveCartItem($newItem);
+                        }
+                    }
+                    
+                    // Delete guest cart after merging
+                    $this->cartFacade->deleteCart($guestCart);
+                } else {
+                    // No existing user cart, just assign the guest cart to user
+                    $guestCart->userId = $userId;
+                    $this->cartFacade->saveCart($guestCart);
+                }
+                
                 $this->cartSession->remove('cartId');
+                $this->cart = null; // Reset cached cart
             } catch (\Exception $e) {
-                // Guest cart not found, nothing to do
+                // Guest cart not found or other error, nothing to do
             }
         }
     }
@@ -163,9 +202,11 @@ class CartControl extends Control {
                 $cartItem->count = $count;
                 $this->cartFacade->saveCartItem($cartItem);
             }
-            
+
+            // Force reload cart to get updated items
             $cart->updateCartItems();
             $this->cartFacade->saveCart($cart);
+            $this->cart = null; // Clear cache to force reload
             
             $this->flashMessage('Item added to cart', 'success');
         } catch (\Exception $e) {
@@ -179,6 +220,105 @@ class CartControl extends Control {
             $this->presenter->redrawControl('flashes');
         } else {
             $this->redirect('this');
+        }
+    }
+
+    /**
+     * Handle increasing item quantity
+     */
+    public function handleIncrease(int $cartItemId): void {
+        try {
+            $cart = $this->getCurrentCart();
+            if (!$cart) {
+                throw new \Exception('Cart not found');
+            }
+
+            foreach ($cart->items as $item) {
+                if ($item->cartItemId === $cartItemId) {
+                    $item->count++;
+                    $this->cartFacade->saveCartItem($item);
+                    break;
+                }
+            }
+
+            $cart->updateCartItems();
+            $this->cartFacade->saveCart($cart);
+            $this->cart = null; // Clear cache to force reload
+
+            if ($this->presenter->isAjax()) {
+                $this->redrawControl();
+                $this->presenter->redrawControl('cartContent');
+                $this->presenter->redrawControl('cartBadge');
+            }
+        } catch (\Exception $e) {
+            $this->flashMessage('Error updating cart', 'error');
+        }
+    }
+
+    /**
+     * Handle decreasing item quantity
+     */
+    public function handleDecrease(int $cartItemId): void {
+        try {
+            $cart = $this->getCurrentCart();
+            if (!$cart) {
+                throw new \Exception('Cart not found');
+            }
+
+            foreach ($cart->items as $item) {
+                if ($item->cartItemId === $cartItemId) {
+                    if ($item->count > 1) {
+                        $item->count--;
+                        $this->cartFacade->saveCartItem($item);
+                    } else {
+                        $this->cartFacade->deleteCartItem($item);
+                    }
+                    break;
+                }
+            }
+
+            $cart->updateCartItems();
+            $this->cartFacade->saveCart($cart);
+            $this->cart = null; // Clear cache to force reload
+
+            if ($this->presenter->isAjax()) {
+                $this->redrawControl();
+                $this->presenter->redrawControl('cartContent');
+                $this->presenter->redrawControl('cartBadge');
+            }
+        } catch (\Exception $e) {
+            $this->flashMessage('Error updating cart', 'error');
+        }
+    }
+
+    /**
+     * Handle removing item from cart
+     */
+    public function handleRemove(int $cartItemId): void {
+        try {
+            $cart = $this->getCurrentCart();
+            if (!$cart) {
+                throw new \Exception('Cart not found');
+            }
+
+            foreach ($cart->items as $item) {
+                if ($item->cartItemId === $cartItemId) {
+                    $this->cartFacade->deleteCartItem($item);
+                    break;
+                }
+            }
+
+            $cart->updateCartItems();
+            $this->cartFacade->saveCart($cart);
+            $this->cart = null; // Clear cache to force reload
+
+            if ($this->presenter->isAjax()) {
+                $this->redrawControl();
+                $this->presenter->redrawControl('cartContent');
+                $this->presenter->redrawControl('cartBadge');
+            }
+        } catch (\Exception $e) {
+            $this->flashMessage('Error removing item from cart', 'error');
         }
     }
 }

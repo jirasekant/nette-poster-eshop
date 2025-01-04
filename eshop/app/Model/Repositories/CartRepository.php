@@ -14,31 +14,43 @@ class CartRepository extends BaseRepository {
      * Find cart by user ID with items
      */
     public function findByUser(int $userId): ?Cart {
-        $row = $this->connection->select('c.*')
-            ->from('[cart] c')
-            ->leftJoin('[cart_item] ci')->on('c.cart_id = ci.cart_id')
-            ->where('c.user_id = %i', $userId)
-            ->orderBy('c.last_modified DESC')
+        bdump('Finding cart by user ID: ' . $userId);
+        $row = $this->connection->select('*')
+            ->from($this->getTable())
+            ->where('user_id = %i', $userId)
+            ->orderBy('last_modified DESC')
             ->fetch();
 
-        return $row ? $this->createEntity($row) : null;
+        if (!$row) {
+            bdump('No cart found for user');
+            return null;
+        }
+
+        $cart = $this->createEntity($row);
+        bdump($cart->cartId, 'Found cart ID for user');
+        bdump($cart->items, 'Cart items for user');
+        return $cart;
     }
 
     /**
      * Find cart by ID with items
      */
     public function find($id): Cart {
-        $row = $this->connection->select('c.*')
-            ->from('[cart] c')
-            ->leftJoin('[cart_item] ci')->on('c.cart_id = ci.cart_id')
-            ->where('c.cart_id = %i', $id)
+        bdump('Finding cart by ID: ' . $id);
+        $row = $this->connection->select('*')
+            ->from($this->getTable())
+            ->where('cart_id = %i', $id)
             ->fetch();
 
         if (!$row) {
+            bdump('Cart not found by ID');
             throw new \Exception('Cart not found.');
         }
 
-        return $this->createEntity($row);
+        $cart = $this->createEntity($row);
+        bdump($cart->cartId, 'Found cart by ID');
+        bdump($cart->items, 'Cart items');
+        return $cart;
     }
 
     /**

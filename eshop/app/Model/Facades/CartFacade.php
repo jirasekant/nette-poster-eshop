@@ -76,4 +76,12 @@ class CartFacade {
             // Handle the error silently or log it if needed
         }
     }
+
+    public function deleteCart(Cart $cart): void {
+        try {
+            $this->cartRepository->delete($cart);
+        } catch (\Exception $e) {
+            // Handle the error silently or log it if needed
+        }
+    }
 }

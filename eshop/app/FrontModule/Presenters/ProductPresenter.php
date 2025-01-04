@@ -35,6 +35,9 @@ class ProductPresenter extends BasePresenter
         return new Multiplier(function (string $posterId) {
             $form = $this->posterCartFormFactory->create();
             
+            // Set the CartControl
+            $form->setCartControl($this->getComponent('cart'));
+            
             // Get the poster and set available sizes
             $poster = $this->posterRepository->find((int)$posterId);
             if ($poster && $poster->posterSizes) {
