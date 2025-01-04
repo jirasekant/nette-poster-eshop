@@ -84,4 +84,30 @@ class CartFacade {
             // Handle the error silently or log it if needed
         }
     }
+
+    /**
+     * Increase cart item quantity by 1
+     */
+    public function increaseCartItem(int $cartItemId): void {
+        $cartItem = $this->cartItemRepository->find($cartItemId);
+        if ($cartItem) {
+            $cartItem->count++;
+            $this->cartItemRepository->persist($cartItem);
+        }
+    }
+
+    /**
+     * Decrease cart item quantity by 1 or delete if count would be 0
+     */
+    public function decreaseCartItem(int $cartItemId): void {
+        $cartItem = $this->cartItemRepository->find($cartItemId);
+        if ($cartItem) {
+            if ($cartItem->count > 1) {
+                $cartItem->count--;
+                $this->cartItemRepository->persist($cartItem);
+            } else {
+                $this->deleteCartItem($cartItem);
+            }
+        }
+    }
 }

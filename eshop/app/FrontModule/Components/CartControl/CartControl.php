@@ -228,21 +228,7 @@ class CartControl extends Control {
      */
     public function handleIncrease(int $cartItemId): void {
         try {
-            $cart = $this->getCurrentCart();
-            if (!$cart) {
-                throw new \Exception('Cart not found');
-            }
-
-            foreach ($cart->items as $item) {
-                if ($item->cartItemId === $cartItemId) {
-                    $item->count++;
-                    $this->cartFacade->saveCartItem($item);
-                    break;
-                }
-            }
-
-            $cart->updateCartItems();
-            $this->cartFacade->saveCart($cart);
+            $this->cartFacade->increaseCartItem($cartItemId);
             $this->cart = null; // Clear cache to force reload
 
             if ($this->presenter->isAjax()) {
@@ -260,25 +246,7 @@ class CartControl extends Control {
      */
     public function handleDecrease(int $cartItemId): void {
         try {
-            $cart = $this->getCurrentCart();
-            if (!$cart) {
-                throw new \Exception('Cart not found');
-            }
-
-            foreach ($cart->items as $item) {
-                if ($item->cartItemId === $cartItemId) {
-                    if ($item->count > 1) {
-                        $item->count--;
-                        $this->cartFacade->saveCartItem($item);
-                    } else {
-                        $this->cartFacade->deleteCartItem($item);
-                    }
-                    break;
-                }
-            }
-
-            $cart->updateCartItems();
-            $this->cartFacade->saveCart($cart);
+            $this->cartFacade->decreaseCartItem($cartItemId);
             $this->cart = null; // Clear cache to force reload
 
             if ($this->presenter->isAjax()) {
