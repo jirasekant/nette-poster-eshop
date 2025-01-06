@@ -59,3 +59,5 @@ services:
 	- App\Model\Repositories\RoleRepository
 	- App\Model\Repositories\UserRepository
 	- App\Model\Repositories\PosterSizeRepository
+
+	- App\FrontModule\Components\OrderForm\OrderFormFactory
