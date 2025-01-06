@@ -5,7 +5,7 @@ namespace App\Model\Repositories;
 use LeanMapper\Repository;
 use LeanMapper\Entity;
 
-class PosterRepository extends Repository
+class PosterRepository extends BaseRepository
 {
     public function findAll(): array
     {
@@ -72,16 +72,6 @@ class PosterRepository extends Repository
         return $this->createEntities($result);
     }
 
-    public function find(int $posterId): ?Entity
-    {
-        $result = $this->connection->select('p.*')
-            ->from('[poster] p')
-            ->where('p.poster_id = %i', $posterId)
-            ->fetch();
-        
-        return $result ? $this->createEntity($result) : null;
-    }
-
     public function findByAuthor(int $authorId): array
     {
         $result = $this->connection->select('DISTINCT p.*')
@@ -90,5 +80,35 @@ class PosterRepository extends Repository
             ->fetchAll();
             
         return $this->createEntities($result);
+    }
+    public function getBestSellingPosters(): array
+    {
+        $result = $this->connection->select('p.title, SUM(oi.count) AS total_sold')
+            ->from('[order_item] oi')
+            ->innerJoin('[poster_size] ps ON oi.poster_size_id = ps.poster_size_id')
+            ->innerJoin('[poster] p ON ps.poster_id = p.poster_id')
+            ->groupBy('ps.poster_id')
+            ->orderBy('total_sold DESC')
+            ->limit(5)
+            ->fetchAll();
+
+        return $this->createEntities($result);
+    }
+
+    public function updatePosterCategories(\App\Model\Entities\Poster $poster, mixed $categoryIds): void
+    {
+        // First, delete the existing categories for this poster to avoid duplicates
+        $this->connection->delete('poster_category')
+            ->where('poster_id = ?', $poster->getPosterId())
+            ->execute();
+
+        // Now, insert the new categories for the poster
+        foreach ($categoryIds as $categoryId) {
+            $this->connection->insert('poster_category', [
+                'poster_id' => $poster->getPosterId(),
+                'category_id' => $categoryId
+            ])
+                ->execute();
+        }
     }
 } 

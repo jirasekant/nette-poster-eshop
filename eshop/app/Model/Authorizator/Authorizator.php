@@ -4,6 +4,7 @@ namespace App\Model\Authorization;
 
 use App\Model\Entities\Category;
 use App\Model\Entities\Permission;
+use App\Model\Entities\Poster;
 use App\Model\Facades\UsersFacade;
 use Nette\Security\Role;
 
@@ -26,6 +27,10 @@ class Authorizator extends \Nette\Security\Permission {
     if ($resource instanceof Category){
       return $this->categoryResourceIsAllowed($role, $resource, $privilege);
     }
+    if ($resource instanceof Poster){
+      return $this->posterResourceIsAllowed($role, $resource, $privilege);
+    }
+
 
     return parent::isAllowed($role, $resource, $privilege);
   }
@@ -37,6 +42,14 @@ class Authorizator extends \Nette\Security\Permission {
     }
     //když nebyl odchycen konkrétní stav, vrátíme výchozí hodnotu oprávnění (případně bychom se mohli ptát také na resource Front:Category či Admin:Category)
     return parent::isAllowed($role, 'Category', $privilege);
+  }
+  private function posterResourceIsAllowed($role, Poster $resource, $privilege):bool {
+      switch ($privilege){
+          case 'delete':
+              //TODO kontrola, jestli jsou v kategorii nějaké produkty - pokud ano, nesmažeme ji
+      }
+      //když nebyl odchycen konkrétní stav, vrátíme výchozí hodnotu oprávnění (případně bychom se mohli ptát také na resource Front:Category či Admin:Category)
+      return parent::isAllowed($role, 'Poster', $privilege);
   }
 
 

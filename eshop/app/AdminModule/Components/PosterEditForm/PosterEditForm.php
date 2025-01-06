@@ -51,7 +51,7 @@ class PosterEditForm extends Form {
 
     private function createSubcomponents(): void {
         $posterId = $this->addHidden('posterId');
-        
+
         $this->addText('title', 'Poster Title')
             ->setRequired('Please enter the poster title')
             ->setMaxLength(100);
@@ -67,12 +67,12 @@ class PosterEditForm extends Form {
 
         #region categories
         $categories = $this->categoriesFacade->findCategories(['order'=>'title']);
-        $categoriesArr = [''=>''];
+        $categoriesArr = [];
         foreach ($categories as $category){
-            $categoriesArr[$category->categoryId]=$category->title;
+            $categoriesArr[$category->categoryId] = $category->title;
         }
-        $this->addSelect('categoryId','Category',$categoriesArr)
-            ->setPrompt('Select category');
+        $this->addMultiSelect('categoryIds', 'Categories', $categoriesArr)
+            ->setRequired('Please select a category');
         #endregion categories
 
         $this->addInteger('stock', 'Stock')
@@ -83,40 +83,36 @@ class PosterEditForm extends Form {
             ->setDefaultValue(true);
 
         $this->addSubmit('ok', 'Save')
-            ->onClick[]=function(SubmitButton $button){
-                $values=$this->getValues('array');
-                if (!empty($values['posterId'])){
-                    try{
-                        $poster=$this->postersFacade->getPoster($values['posterId']);
-                    }catch (\Exception $e){
-                        $this->onFailed('Requested poster was not found.');
-                        return;
-                    }
-                }else{
-                    $poster=new Poster();
+            ->onClick[] = function(SubmitButton $button) {
+            $values = $this->getValues('array');
+
+            if (!empty($values['posterId'])) {
+                try {
+                    $poster = $this->postersFacade->getPoster($values['posterId']);
+                } catch (\Exception $e) {
+                    $this->onFailed('Requested poster was not found.');
+                    return;
                 }
-                
-                $poster->assign($values,['title','url','description','stock','available']);
-                
-                if (!empty($values['categoryId'])){
-                    try{
-                        $poster->category = $this->categoriesFacade->getCategory($values['categoryId']);
-                    }catch (\Exception $e){
-                        //ignore the error
-                    }
-                }else{
-                    $poster->category = null;
-                }
-                
-                $this->postersFacade->savePoster($poster);
-                $this->onFinished('Poster was saved.');
-            };
+            } else {
+                $poster = new Poster();
+            }
+
+            $poster->assign($values, ['title', 'url', 'description', 'stock', 'available']);
+
+            // Save the poster and its categories
+            $this->postersFacade->savePoster($poster);
+
+            // Update the categories mapping
+            $this->postersFacade->updatePosterCategories($poster, $values['categoryIds']);
+
+            $this->onFinished('Poster was saved.');
+        };
 
         $this->addSubmit('storno', 'Cancel')
             ->setValidationScope([])
-            ->onClick[]=function(SubmitButton $button){
-                $this->onCancel();
-            };
+            ->onClick[] = function(SubmitButton $button) {
+            $this->onCancel();
+        };
     }
 
     /**
@@ -126,10 +122,10 @@ class PosterEditForm extends Form {
      * @return $this
      */
     public function setDefaults($values, bool $erase = false): self {
-        if ($values instanceof Poster){
+        if ($values instanceof Poster) {
             $values = [
                 'posterId' => $values->posterId,
-                'categoryId' => $values->category ? $values->category->categoryId : null,
+                'categoryIds' => array_map(fn($category) => $category->categoryId, $values->categories),
                 'title' => $values->title,
                 'url' => $values->url,
                 'description' => $values->description,
@@ -140,4 +136,4 @@ class PosterEditForm extends Form {
         parent::setDefaults($values, $erase);
         return $this;
     }
-} 
+}

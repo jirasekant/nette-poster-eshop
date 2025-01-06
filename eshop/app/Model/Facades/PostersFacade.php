@@ -35,17 +35,6 @@ class PostersFacade {
     }
 
     /**
-     * Method for finding posters
-     * @param array|null $params = null
-     * @param int $offset = null
-     * @param int $limit = null
-     * @return Poster[]
-     */
-    public function findPosters(array $params = null, int $offset = null, int $limit = null): array {
-        return $this->posterRepository->findAllBy($params, $offset, $limit);
-    }
-
-    /**
      * Method for getting count of posters
      * @param array|null $params
      * @return int
@@ -85,7 +74,20 @@ class PostersFacade {
         $this->posterRepository->persist($poster);
     }
 
+    public function findPosters(): array {
+        return $this->posterRepository->findAll();
+    }
+
+
     public function __construct(PosterRepository $posterRepository) {
         $this->posterRepository = $posterRepository;
+    }
+
+    public function findAllBy(array $array): array {
+        return $this->posterRepository->findAllBy($array);
+    }
+
+    public function updatePosterCategories(Poster $poster, mixed $categoryIds) {
+        $this->posterRepository->updatePosterCategories($poster, $categoryIds);
     }
 } 

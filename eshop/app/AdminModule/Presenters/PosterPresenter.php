@@ -2,23 +2,23 @@
 
 namespace App\AdminModule\Presenters;
 
-use App\AdminModule\Components\ProductEditForm\ProductEditForm;
-use App\AdminModule\Components\ProductEditForm\ProductEditFormFactory;
-use App\Model\Facades\ProductsFacade;
+use App\AdminModule\Components\PosterEditForm\PosterEditForm;
+use App\AdminModule\Components\PosterEditForm\PosterEditFormFactory;
+use App\Model\Facades\PostersFacade;
 use Nette\Application\UI\Multiplier;
 /**
- * Class ProductPresenter
+ * Class PosterPresenter
  * @package App\AdminModule\Presenters
  */
-class ProductPresenter extends BasePresenter{
-  private ProductsFacade $productsFacade;
-  private ProductEditFormFactory $productEditFormFactory;
+class PosterPresenter extends BasePresenter{
+  private PostersFacade $postersFacade;
+  private PosterEditFormFactory $posterEditFormFactory;
 
   /**
    * Akce pro vykreslení seznamu produktů
    */
   public function renderDefault():void {
-    $this->template->products=$this->productsFacade->findProducts(['order'=>'title']);
+    $this->template->posters=$this->postersFacade->findAllBy(['order'=>'title']);
   }
 
   /**
@@ -28,27 +28,27 @@ class ProductPresenter extends BasePresenter{
    */
   public function renderEdit(int $id):void {
     try{
-      $product=$this->productsFacade->getProduct($id);
+      $poster=$this->postersFacade->getPoster($id);
     }catch (\Exception $e){
       $this->flashMessage('Požadovaný produkt nebyl nalezen.', 'error');
       $this->redirect('default');
     }
-    if (!$this->user->isAllowed($product,'edit')){
+    if (!$this->user->isAllowed($poster,'edit')){
       $this->flashMessage('Požadovaný produkt nemůžete upravovat.', 'error');
       $this->redirect('default');
     }
 
-    $form=$this->getComponent('productEditForm');
-    $form->setDefaults($product);
-    $this->template->product=$product;
+    $form=$this->getComponent('posterEditForm');
+    $form->setDefaults($poster);
+    $this->template->poster=$poster;
   }
 
   /**
    * Formulář na editaci produktů
-   * @return ProductEditForm
+   * @return PosterEditForm
    */
-  public function createComponentProductEditForm():ProductEditForm {
-    $form = $this->productEditFormFactory->create();
+  public function createComponentPosterEditForm():PosterEditForm {
+    $form = $this->posterEditFormFactory->create();
     $form->onCancel[]=function(){
       $this->redirect('default');
     };
@@ -68,11 +68,11 @@ class ProductPresenter extends BasePresenter{
   }
 
   #region injections
-  public function injectProductsFacade(ProductsFacade $productsFacade):void {
-    $this->productsFacade=$productsFacade;
+  public function injectPostersFacade(PostersFacade $postersFacade):void {
+    $this->postersFacade=$postersFacade;
   }
-  public function injectProductEditFormFactory(ProductEditFormFactory $productEditFormFactory):void {
-    $this->productEditFormFactory=$productEditFormFactory;
+  public function injectPosterEditFormFactory(PosterEditFormFactory $posterEditFormFactory):void {
+    $this->posterEditFormFactory=$posterEditFormFactory;
   }
   #endregion injections
 }

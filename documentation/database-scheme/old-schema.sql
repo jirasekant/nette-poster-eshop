@@ -146,6 +146,7 @@ INSERT INTO `resource` (`resource_id`) VALUES
 ('Admin:Dashboard'),
 ('Admin:Error4xx'),
 ('Admin:Product'),
+('Admin:Poster'),
 ('Category'),
 ('Front:Cart'),
 ('Front:Error'),

@@ -220,6 +220,7 @@ INSERT INTO `permission` (`role_id`, `resource_id`, `action`, `type`) VALUES
 ('admin', 'Admin:Product', '', 'allow'),
 ('admin', 'Category', '', 'allow'),
 ('admin', 'Product', '', 'allow'),
+('admin', 'Admin:Poster', '', 'allow'),
 ('authenticated', 'Front:Cart', '', 'allow'),
 ('authenticated', 'Front:Error', '', 'allow'),
 ('authenticated', 'Front:Error4xx', '', 'allow'),
