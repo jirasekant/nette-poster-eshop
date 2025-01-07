@@ -7,7 +7,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `cart_item`;
 DROP TABLE IF EXISTS `cart`;
 DROP TABLE IF EXISTS `order_item`;
-DROP TABLE IF EXISTS `order`;
+DROP TABLE IF EXISTS `shop_order`;
 DROP TABLE IF EXISTS `poster_size`;
 DROP TABLE IF EXISTS `poster_image`;
 DROP TABLE IF EXISTS `poster_category`;
@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS `resource`;
 DROP TABLE IF EXISTS `role`;
 DROP TABLE IF EXISTS `author`;
+DROP TABLE IF EXISTS `user_information`;
 
 -- Create role table
 CREATE TABLE `role` (
@@ -163,32 +164,51 @@ CREATE TABLE `cart_item` (
     CONSTRAINT `cart_item_ibfk_2` FOREIGN KEY (`poster_size_id`) REFERENCES `poster_size` (`poster_size_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
--- Create order table
-CREATE TABLE `order` (
-    `order_id` int(11) NOT NULL AUTO_INCREMENT,
+-- Create user_information table
+CREATE TABLE `user_information` (
+    `user_information_id` int(11) NOT NULL AUTO_INCREMENT,
     `user_id` int(11) NOT NULL,
-    `cart_id` int(11) NOT NULL,
+    `first_name` varchar(100) COLLATE utf8mb4_czech_ci NOT NULL,
+    `last_name` varchar(100) COLLATE utf8mb4_czech_ci NOT NULL,
+    `street` varchar(255) COLLATE utf8mb4_czech_ci NOT NULL,
+    `apartment` varchar(100) COLLATE utf8mb4_czech_ci DEFAULT NULL,
+    `city` varchar(100) COLLATE utf8mb4_czech_ci NOT NULL,
+    `postal_code` varchar(10) COLLATE utf8mb4_czech_ci NOT NULL,
+    `country` varchar(2) COLLATE utf8mb4_czech_ci NOT NULL,
+    `phone` varchar(20) COLLATE utf8mb4_czech_ci NOT NULL,
+    PRIMARY KEY (`user_information_id`),
+    KEY `user_id` (`user_id`),
+    CONSTRAINT `user_information_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
+
+-- Create shop_order table
+CREATE TABLE `shop_order` (
+    `shop_order_id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `user_information_id` int(11) NOT NULL,
     `total_amount` decimal(10,2) NOT NULL,
     `status` ENUM('pending','completed','cancelled') COLLATE utf8mb4_czech_ci DEFAULT 'pending',
     `created` timestamp NOT NULL DEFAULT current_timestamp(),
-    PRIMARY KEY (`order_id`),
+    `shipping_method` varchar(50) COLLATE utf8mb4_czech_ci NOT NULL,
+    `payment_method` varchar(50) COLLATE utf8mb4_czech_ci NOT NULL,
+    PRIMARY KEY (`shop_order_id`),
     KEY `user_id` (`user_id`),
-    KEY `cart_id` (`cart_id`),
-    CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
-    CONSTRAINT `order_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE CASCADE
+    KEY `user_information_id` (`user_information_id`),
+    CONSTRAINT `shop_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+    CONSTRAINT `shop_order_ibfk_3` FOREIGN KEY (`user_information_id`) REFERENCES `user_information` (`user_information_id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
 -- Create order_item table
 CREATE TABLE `order_item` (
     `order_item_id` int(11) NOT NULL AUTO_INCREMENT,
-    `order_id` int(11) NOT NULL,
+    `shop_order_id` int(11) NOT NULL,
     `poster_size_id` int(11) NOT NULL,
     `count` int(11) NOT NULL DEFAULT 1,
     `price` decimal(10,2) NOT NULL,
     PRIMARY KEY (`order_item_id`),
-    KEY `order_id` (`order_id`),
+    KEY `shop_order_id` (`shop_order_id`),
     KEY `poster_size_id` (`poster_size_id`),
-    CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`) ON DELETE CASCADE,
+    CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`shop_order_id`) REFERENCES `shop_order` (`shop_order_id`) ON DELETE CASCADE,
     CONSTRAINT `order_item_ibfk_2` FOREIGN KEY (`poster_size_id`) REFERENCES `poster_size` (`poster_size_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
@@ -204,6 +224,7 @@ INSERT INTO `resource` (`resource_id`) VALUES
 ('Admin:Dashboard'),
 ('Admin:Error4xx'),
 ('Admin:Product'),
+('Admin:Poster'),
 ('Category'),
 ('Front:Cart'),
 ('Front:Error'),
@@ -213,7 +234,7 @@ INSERT INTO `resource` (`resource_id`) VALUES
 ('Front:User'),
 ('Product');
 
--- Insert default permissions (similar to old schema)
+-- Insert default permissions
 INSERT INTO `permission` (`role_id`, `resource_id`, `action`, `type`) VALUES
 ('admin', 'Admin:Category', '', 'allow'),
 ('admin', 'Admin:Dashboard', '', 'allow'),

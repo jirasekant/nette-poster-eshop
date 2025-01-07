@@ -8,7 +8,7 @@ use LeanMapper\Entity;
  * Class OrderItem
  * @package App\Model\Entities
  * @property int $orderItemId
- * @property Order $order m:hasOne
+ * @property ShopOrder $order m:hasOne(shop_order_id)
  * @property PosterSize $posterSize m:hasOne
  * @property int $count = 1
  * @property float $price

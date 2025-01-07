@@ -14,7 +14,7 @@ class CartRepository extends BaseRepository {
      * Find cart by user ID with items
      */
     public function findByUser(int $userId): ?Cart {
-        bdump('Finding cart by user ID: ' . $userId);
+        
         $row = $this->connection->select('*')
             ->from($this->getTable())
             ->where('user_id = %i', $userId)
@@ -22,13 +22,11 @@ class CartRepository extends BaseRepository {
             ->fetch();
 
         if (!$row) {
-            bdump('No cart found for user');
+            
             return null;
         }
 
         $cart = $this->createEntity($row);
-        bdump($cart->cartId, 'Found cart ID for user');
-        bdump($cart->items, 'Cart items for user');
         return $cart;
     }
 
@@ -36,20 +34,17 @@ class CartRepository extends BaseRepository {
      * Find cart by ID with items
      */
     public function find($id): Cart {
-        bdump('Finding cart by ID: ' . $id);
+        
         $row = $this->connection->select('*')
             ->from($this->getTable())
             ->where('cart_id = %i', $id)
             ->fetch();
 
         if (!$row) {
-            bdump('Cart not found by ID');
             throw new \Exception('Cart not found.');
         }
 
         $cart = $this->createEntity($row);
-        bdump($cart->cartId, 'Found cart by ID');
-        bdump($cart->items, 'Cart items');
         return $cart;
     }
 

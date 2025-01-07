@@ -1,32 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\AdminModule\Presenters;
 
+use App\Model\Repositories\ShopOrderRepository;
+use App\Model\Repositories\UserRepository;
 use Nette;
-use App\Model\Repositories\OrderRepository;
-use App\Model\Repositories\PosterRepository;
 
-class DashboardPresenter extends Nette\Application\UI\Presenter
-{
-    private OrderRepository $orderRepository;
-    private PosterRepository $posterRepository;
+class DashboardPresenter extends BasePresenter {
+    private ShopOrderRepository $shopOrderRepository;
+    private UserRepository $userRepository;
 
-    public function __construct(OrderRepository $orderRepository, PosterRepository $posterRepository)
-    {
+    public function __construct(
+        ShopOrderRepository $shopOrderRepository,
+        UserRepository $userRepository
+    ) {
         parent::__construct();
-        $this->orderRepository = $orderRepository;
-        $this->posterRepository = $posterRepository;
+        $this->shopOrderRepository = $shopOrderRepository;
+        $this->userRepository = $userRepository;
     }
 
-    public function renderDefault(): void
-    {
-        // Sales in the last month
-        $this->template->salesLastMonth = $this->orderRepository->getSalesForLastMonth();
-
-        // Best-selling posters
-        $this->template->bestSellingPosters = $this->posterRepository->getBestSellingPosters();
-
-        // Open orders
-        $this->template->openOrdersCount = $this->orderRepository->getOpenOrdersCount();
+    public function renderDefault(): void {
+        $this->template->salesLastMonth = $this->shopOrderRepository->getSalesForLastMonth();
+        $this->template->openOrdersCount = $this->shopOrderRepository->getOpenOrdersCount();
+        $this->template->usersCount = $this->userRepository->findCountBy();
     }
 }

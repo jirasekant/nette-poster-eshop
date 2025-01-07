@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\FrontModule\Components\OrderForm;
 
 use App\Model\Facades\CartFacade;
+use App\Model\Facades\OrderFacade;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use Nette\Security\User;
@@ -12,10 +13,16 @@ use Nette\Security\User;
 class OrderForm extends Control {
     private User $user;
     private CartFacade $cartFacade;
+    private OrderFacade $orderFacade;
 
-    public function __construct(User $user, CartFacade $cartFacade) {
+    public function __construct(
+        User $user, 
+        CartFacade $cartFacade,
+        OrderFacade $orderFacade
+    ) {
         $this->user = $user;
         $this->cartFacade = $cartFacade;
+        $this->orderFacade = $orderFacade;
     }
 
     protected function createComponentForm(): Form {
@@ -57,10 +64,8 @@ class OrderForm extends Control {
 
         // Shipping Method
         $form->addGroup('Shipping method');
-        $form->addText('shipping_method', '')
-            ->setDefaultValue('Dedicated Line')
-            ->setDisabled(true)
-            ->setHtmlAttribute('data-price', '20.00');
+        $form->addHidden('shipping_method')
+            ->setDefaultValue('Dedicated Line');
 
         // Payment
         $form->addGroup('Payment');
@@ -81,24 +86,52 @@ class OrderForm extends Control {
     }
 
     public function processForm(Form $form, \stdClass $values): void {
-        // Store form data in session
-        $session = $this->getPresenter()->getSession('orderForm');
-        $session->orderData = $values;
+        try {
+            if (!$this->user->isLoggedIn()) {
+                $form->addError('You must be logged in to create an order.');
+                return;
+            }
 
-        // Redirect directly to confirmation
-        $this->getPresenter()->redirect('Order:confirmed');
+            $cart = $this->cartFacade->getCartByUser($this->user->getId());
+            if (!$cart || empty($cart->items)) {
+                $form->addError('Your cart is empty.');
+                return;
+            }
+
+            $order = $this->orderFacade->createOrder(
+                (array)$values, 
+                $this->user->getId(),
+                $values->remember_me
+            );
+
+            $this->getPresenter()->redirect(':Front:Order:confirmed', ['id' => $order->shopOrderId]);
+        } catch (\Nette\Application\AbortException $e) {
+            throw $e;
+        } catch (\Exception $e) {
+            $form->addError('Failed to create order: ' . $e->getMessage());
+        }
     }
 
     public function render(): void {
         $form = $this['form'];
         
         if (!$form->isSubmitted()) {
-            // First try to load data from session if available
-            $session = $this->getPresenter()->getSession('orderForm');
-            if (isset($session->orderData)) {
-                $form->setDefaults((array)$session->orderData);
+            // First try to load data from saved user information
+            $userInfo = $this->orderFacade->getUserInformation($this->user->getId());
+            if ($userInfo) {
+                $form->setDefaults([
+                    'email' => $this->user->getIdentity()->email,
+                    'first_name' => $userInfo->firstName,
+                    'last_name' => $userInfo->lastName,
+                    'street' => $userInfo->street,
+                    'apartment' => $userInfo->apartment,
+                    'city' => $userInfo->city,
+                    'postal_code' => $userInfo->postalCode,
+                    'country' => $userInfo->country,
+                    'phone' => $userInfo->phone,
+                ]);
             }
-            // If no session data and user is logged in, pre-fill with user data
+            // If no saved info and user is logged in, pre-fill with user data
             elseif ($this->user->isLoggedIn()) {
                 $identity = $this->user->getIdentity();
                 $form->setDefaults([

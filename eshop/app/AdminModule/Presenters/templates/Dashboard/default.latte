@@ -1,33 +1,61 @@
 {block content}
-    <h1>Admin Dashboard</h1>
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
 
-    <section>
-        <h2>Sales</h2>
-        <p>Total Sales Last Month: {$salesLastMonth}</p>
-    </section>
+    <div class="row">
+        <!-- Sales Card -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Sales (Last Month)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${$salesLastMonth}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <section>
-        <h2>Best-Selling Posters</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Poster</th>
-                    <th>Total Sold</th>
-                </tr>
-            </thead>
-            <tbody>
-                {foreach $bestSellingPosters as $poster}
-                    <tr>
-                        <td>{$poster->title}</td>
-                        <td>{$poster->total_sold}</td>
-                    </tr>
-                {/foreach}
-            </tbody>
-        </table>
-    </section>
+        <!-- Open Orders Card -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Open Orders</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{$openOrdersCount}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <section>
-        <h2>Open Orders</h2>
-        <p>Total Open Orders: {$openOrdersCount}</p>
-    </section>
+        <!-- Users Card -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Total Users</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{$usersCount}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {/block}
