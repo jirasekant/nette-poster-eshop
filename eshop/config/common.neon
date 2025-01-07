@@ -61,3 +61,7 @@ services:
 	- App\Model\Repositories\PosterSizeRepository
 
 	- App\FrontModule\Components\OrderForm\OrderFormFactory
+	- App\Model\Facades\OrderFacade
+	- App\Model\Repositories\ShopOrderRepository
+	- App\Model\Repositories\OrderItemRepository
+	- App\Model\Repositories\UserInformationRepository
