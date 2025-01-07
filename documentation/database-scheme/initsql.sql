@@ -219,45 +219,50 @@ INSERT INTO `role` (`role_id`) VALUES
 ('guest');
 
 -- Insert default resources
-INSERT INTO `resource` (`resource_id`) VALUES
-('Admin:Category'),
-('Admin:Dashboard'),
-('Admin:Error4xx'),
-('Admin:Product'),
-('Admin:Poster'),
-('Category'),
-('Front:Cart'),
-('Front:Error'),
-('Front:Error4xx'),
-('Front:Homepage'),
-('Front:Product'),
-('Front:User'),
-('Product');
+INSERT INTO `resource` (`resource_id`)
+VALUES ('Admin:Category'),
+       ('Admin:Dashboard'),
+       ('Admin:Error4xx'),
+       ('Admin:Poster'),
+       ('Admin:Poster:Edit'),
+       ('Admin:Product'),
+       ('Category'),
+       ('Front:Cart'),
+       ('Front:Error'),
+       ('Front:Error4xx'),
+       ('Front:Homepage'),
+       ('Front:Product'),
+       ('Front:User'),
+       ('Poster'),
+       ('Product');
 
--- Insert default permissions
-INSERT INTO `permission` (`role_id`, `resource_id`, `action`, `type`) VALUES
-('admin', 'Admin:Category', '', 'allow'),
-('admin', 'Admin:Dashboard', '', 'allow'),
-('admin', 'Admin:Product', '', 'allow'),
-('admin', 'Category', '', 'allow'),
-('admin', 'Product', '', 'allow'),
-('admin', 'Admin:Poster', '', 'allow'),
-('authenticated', 'Front:Cart', '', 'allow'),
-('authenticated', 'Front:Error', '', 'allow'),
-('authenticated', 'Front:Error4xx', '', 'allow'),
-('authenticated', 'Front:Homepage', '', 'allow'),
-('authenticated', 'Front:Product', '', 'allow'),
-('authenticated', 'Front:User', 'login', 'allow'),
-('authenticated', 'Front:User', 'logout', 'allow'),
-('guest', 'Front:Cart', '', 'allow'),
-('guest', 'Front:Error', '', 'allow'),
-('guest', 'Front:Error4xx', '', 'allow'),
-('guest', 'Front:Homepage', '', 'allow'),
-('guest', 'Front:Product', '', 'allow'),
-('guest', 'Front:User', 'login', 'allow'),
-('guest', 'Front:User', 'register', 'allow'),
-('guest', 'Front:User', 'forgottenPassword', 'allow'),
-('guest', 'Front:User', 'renewPassword', 'allow'),
-('guest', 'Front:User', 'facebookLogin', 'allow');
+-- Insert default permissions (similar to old schema)
+INSERT INTO `permission` (`permission_id`, `role_id`, `resource_id`, `action`, `type`)
+VALUES (1, 'admin', 'Admin:Category', '', 'allow'),
+       (2, 'admin', 'Admin:Dashboard', '', 'allow'),
+       (25, 'admin', 'Admin:Poster', '', 'allow'),
+       (26, 'admin', 'Admin:Poster:Edit', '', 'allow'),
+       (3, 'admin', 'Admin:Product', '', 'allow'),
+       (4, 'admin', 'Category', '', 'allow'),
+       (28, 'admin', 'Poster', '', 'allow'),
+       (5, 'admin', 'Product', '', 'allow'),
+       (6, 'authenticated', 'Front:Cart', '', 'allow'),
+       (7, 'authenticated', 'Front:Error', '', 'allow'),
+       (8, 'authenticated', 'Front:Error4xx', '', 'allow'),
+       (9, 'authenticated', 'Front:Homepage', '', 'allow'),
+       (10, 'authenticated', 'Front:Product', '', 'allow'),
+       (11, 'authenticated', 'Front:User', 'login', 'allow'),
+       (12, 'authenticated', 'Front:User', 'logout', 'allow'),
+       (13, 'guest', 'Front:Cart', '', 'allow'),
+       (14, 'guest', 'Front:Error', '', 'allow'),
+       (15, 'guest', 'Front:Error4xx', '', 'allow'),
+       (16, 'guest', 'Front:Homepage', '', 'allow'),
+       (17, 'guest', 'Front:Product', '', 'allow'),
+       (22, 'guest', 'Front:User', 'facebookLogin', 'allow'),
+       (20, 'guest', 'Front:User', 'forgottenPassword', 'allow'),
+       (18, 'guest', 'Front:User', 'login', 'allow'),
+       (19, 'guest', 'Front:User', 'register', 'allow'),
+       (21, 'guest', 'Front:User', 'renewPassword', 'allow');
+
 
 COMMIT;
