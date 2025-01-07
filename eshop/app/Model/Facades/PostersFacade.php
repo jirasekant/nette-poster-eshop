@@ -3,6 +3,8 @@
 namespace App\Model\Facades;
 
 use App\Model\Entities\Poster;
+use App\Model\Entities\PosterImage;
+use App\Model\Repositories\PosterImageRepository;
 use App\Model\Repositories\PosterRepository;
 use Nette\Http\FileUpload;
 use Nette\Utils\Strings;
@@ -13,6 +15,7 @@ use Nette\Utils\Strings;
  */
 class PostersFacade {
     private PosterRepository $posterRepository;
+    private PosterImageRepository $posterImageRepository;
 
     /**
      * Method for getting one poster
@@ -79,8 +82,9 @@ class PostersFacade {
     }
 
 
-    public function __construct(PosterRepository $posterRepository) {
+    public function __construct(PosterRepository $posterRepository, \App\Model\Repositories\PosterImageRepository $posterImageRepository) {
         $this->posterRepository = $posterRepository;
+        $this->posterImageRepository = $posterImageRepository;
     }
 
     public function findAllBy(array $array): array {
@@ -89,5 +93,17 @@ class PostersFacade {
 
     public function updatePosterCategories(Poster $poster, mixed $categoryIds) {
         $this->posterRepository->updatePosterCategories($poster, $categoryIds);
+    }
+
+    public function savePosterImage(Poster $poster, string $imageUrl): void {
+        // Create a new PosterImage entity
+        $posterImage = new PosterImage();
+
+        // Set the image URL
+        $posterImage->imageUrl = $imageUrl;
+
+        // Associate the PosterImage with the Poster entity
+        $posterImage->posterId = $poster->posterId;
+        $this->posterImageRepository->persist($posterImage); // Save to database
     }
 } 

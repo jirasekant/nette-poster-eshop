@@ -1,0 +1,22 @@
+{block content}
+{foreach $categoryTree as $node}
+    <ul>
+        <li>
+            <a href="{link Category:edit, id=>$node['category']->categoryId}">
+                <strong>{$node['category']->getTitle()}</strong> <!-- Display category name -->
+            </a>
+            {if $node['children']} <!-- Check if there are children -->
+                <ul>
+                    {foreach $node['children'] as $child}
+                        <li>
+                            <a href="{link Category:edit, id=>$child->categoryId}">
+                                <span>{$child->getTitle()}</span> <!-- Display child category name -->
+                            </a>
+                        </li>
+                    {/foreach}
+                </ul>
+            {/if}
+        </li>
+    </ul>
+{/foreach}
+{/block}

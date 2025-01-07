@@ -82,6 +82,13 @@ class PosterEditForm extends Form {
         $this->addCheckbox('available', 'Available')
             ->setDefaultValue(true);
 
+        // Add file upload field
+        $this->addUpload('image', 'Poster Image')
+            ->setRequired(false)
+            ->addCondition(Form::FILLED)
+            ->addRule(Form::IMAGE, 'Only images are allowed.') // Validates the file type
+            ->addRule(Form::MAX_FILE_SIZE, 'Max file size is 5MB.', 5 * 1024 * 1024);
+
         $this->addSubmit('ok', 'Save')
             ->onClick[] = function(SubmitButton $button) {
             $values = $this->getValues('array');
@@ -99,21 +106,34 @@ class PosterEditForm extends Form {
 
             $poster->assign($values, ['title', 'url', 'description', 'stock', 'available']);
 
-            // Save the poster and its categories
+            // Save the poster
             $this->postersFacade->savePoster($poster);
+
+            // At this point, the posterId is set
+            $posterId = $poster->getPosterId();
+
+            // Handle image upload and save to poster_image table
+            $image = $values['image'];
+            if ($image && $image->isOk()) {
+                $imageName = Nette\Utils\Strings::webalize($values['title']) . '_' . time() . '.png';
+                $imagePath = __DIR__ . '/../../../../www/images/posters/' . $imageName;
+
+                try {
+                    $image->move($imagePath); // Save the image to the filesystem
+                    $this->postersFacade->savePosterImage($poster, "/images/posters/" . $imageName); // Save to poster_image table
+                } catch (\Exception $e) {
+                    $this->onFailed('Failed to save the image: ' . $e->getMessage());
+                    return;
+                }
+            }
 
             // Update the categories mapping
             $this->postersFacade->updatePosterCategories($poster, $values['categoryIds']);
 
             $this->onFinished('Poster was saved.');
         };
-
-        $this->addSubmit('storno', 'Cancel')
-            ->setValidationScope([])
-            ->onClick[] = function(SubmitButton $button) {
-            $this->onCancel();
-        };
     }
+
 
     /**
      * Method for setting default values
