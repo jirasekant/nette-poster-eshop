@@ -77,6 +77,7 @@ class OrderFacade {
             foreach ($cart->items as $cartItem) {
                 $orderItem = new OrderItem();
                 $orderItem->order = $order;
+                $orderItem->poster = $cartItem->getPoster();
                 $orderItem->posterSize = $cartItem->posterSize;
                 $orderItem->count = $cartItem->count;
                 $orderItem->price = $cartItem->posterSize->price;
@@ -107,10 +108,25 @@ class OrderFacade {
         }
     }
 
+    public function getOrderItems(int $order): array
+    {
+        try {
+            return $this->orderItemRepository->findAllBy(['order' => $order]);
+        } catch (\Exception $e) {
+            throw new \InvalidArgumentException('Order not found', 0, $e);
+        }
+    }
+
     public function updateOrderStatus(ShopOrder $order, string $status): void {
         $order->status = $status;
         $this->shopOrderRepository->persist($order);
     }
+
+    public function findOrders(?array $params=null,?int $offset=null,?int $limit=null):array
+    {
+        return $this->shopOrderRepository->findAllBy($params,$offset,$limit);
+    }
+
 
     public function getUserInformation(int $userId): ?UserInformation {
         try {

@@ -1,0 +1,50 @@
+{block content}
+<div class="container mt-4">
+    <h1 class="mb-4">Detail objednávky číslo {$order->shopOrderId}</h1>
+
+    <div class="card shadow-sm p-4">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>ID Zákazníka:</strong> {$order->user->userId}</li>
+            <li class="list-group-item"><strong>Jméno Zákazníka:</strong> {$order->user->name}</li>
+            <li class="list-group-item"><strong>Celková částka:</strong> {$order->totalAmount|number:2} Kč</li>
+            <li class="list-group-item"><strong>Status:</strong> <span class="badge badge-info">{$order->status}</span></li>
+            <li class="list-group-item"><strong>Vytvořeno:</strong> {$order->created|date:'d.m.Y H:i'}</li>
+            <li class="list-group-item"><strong>Způsob zaslání:</strong> {$order->shippingMethod}</li>
+            <li class="list-group-item"><strong>Způsob zaplacení:</strong> {$order->paymentMethod}</li>
+        </ul>
+    </div>
+
+    <!-- Table for Order Items -->
+    <div class="mt-4">
+        <h3>Seznam položek objednávky</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Název</th>
+                    <th>Velikost</th>
+                    <th>Počet</th>
+                    <th>Cena za kus</th>
+                    <th>Celková cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach $orderItems as $item}
+                <tr>
+                    <td>{$item->orderItemId}</td>
+                    <td>{$item->poster->title}</td>
+                    <td>{$item->posterSize->size}</td>
+                    <td>{$item->count}</td>
+                    <td>{$item->price|number:2} Kč</td>
+                    <td>{($item->price * $item->count)|number:2} Kč</td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-3">
+        <a href="{link default}" class="btn btn-outline-primary">Zpět na výpis</a>
+    </div>
+</div>
+{/block}
