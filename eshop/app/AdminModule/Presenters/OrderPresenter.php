@@ -32,7 +32,6 @@ class OrderPresenter extends BasePresenter
             $orderItems = $this->orderFacade->getOrderItems($id);
             $this->template->order = $order;
             $this->template->orderItems = $orderItems;
-            dump($orderItems);
         } catch (\Exception $e) {
             $this->flashMessage('Order not found.', 'error');
             $this->redirect('default');
