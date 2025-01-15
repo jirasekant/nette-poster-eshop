@@ -2,6 +2,7 @@
 
 namespace App\FrontModule\Presenters;
 
+use App\Model\Facades\CategoriesFacade;
 use App\Model\Repositories\PosterRepository;
 use App\Model\Repositories\CategoryRepository;
 use App\Model\Repositories\AuthorRepository;
@@ -15,16 +16,19 @@ class ProductPresenter extends BasePresenter
     private CategoryRepository $categoryRepository;
     private AuthorRepository $authorRepository;
     private PosterCartFormFactory $posterCartFormFactory;
+    private CategoriesFacade $categoryFacade;
 
     public function __construct(
         PosterRepository $posterRepository,
         CategoryRepository $categoryRepository,
-        AuthorRepository $authorRepository
+        AuthorRepository $authorRepository,
+        CategoriesFacade $categoryFacade
     ) {
         parent::__construct();
         $this->posterRepository = $posterRepository;
         $this->categoryRepository = $categoryRepository;
         $this->authorRepository = $authorRepository;
+        $this->categoryFacade = $categoryFacade;
     }
 
     public function injectPosterCartFormFactory(PosterCartFormFactory $posterCartFormFactory): void {
@@ -103,6 +107,11 @@ class ProductPresenter extends BasePresenter
         $this->template->currentCategoryId = $categoryId;
         $this->template->currentAuthorId = $authorId;
         $this->template->filter = $filter;
+
+        // Build category tree structure
+        $categoryTree = $this->categoryFacade->buildCategoryTree();
+        // Pass the tree to the template
+        $this->template->categoryTree = $categoryTree;
     }
 
     public function renderShow(int $id): void
@@ -116,5 +125,10 @@ class ProductPresenter extends BasePresenter
         $this->template->relatedPosters = $this->posterRepository->findRelated($id, 4);
         
         $this->template->poster = $poster;
+
+        // Build category tree structure
+        $categoryTree = $this->categoryFacade->buildCategoryTree();
+        // Pass the tree to the template
+        $this->template->categoryTree = $categoryTree;
     }
 }

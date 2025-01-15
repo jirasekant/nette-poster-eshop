@@ -67,5 +67,53 @@ class CategoriesFacade{
       return false;
     }
   }
+    /**
+     * Builds a nested tree structure of categories without modifying the Category entity.
+     *
+     * @return array
+     */
+    public function buildCategoryTree(): array {
+        // Initialize a structure to hold the tree and a map for category references
+        $tree = [];
+        $categoryMap = [];
+        $categoryChildren = [];
+
+        $categories = $this->categoryRepository->findAll();
+        // Map categories by their ID and ensure an array to hold child references
+        foreach ($categories as $category) {
+            $categoryMap[$category->categoryId] = $category;
+            $categoryChildren[$category->categoryId] = [];
+        }
+
+        // Build the children mapping by associating categories with their parents
+        foreach ($categories as $category) {
+            if ($category->parentCategory) {
+                $parentId = $category->parentCategory->categoryId;
+                $categoryChildren[$parentId][] = $category;
+            } else {
+                $tree[] = ['category' => $category, 'children' => []];
+            }
+        }
+
+        // Attach children to the correct parent node in the tree
+        foreach ($tree as &$node) {
+            $node['children'] = $this->populateChildren($node['category'], $categoryChildren);
+        }
+
+        return $tree;
+    }
+
+    private function populateChildren($parent, $categoryChildren): array {
+        $childrenList = [];
+
+        foreach ($categoryChildren[$parent->categoryId] as $childCategory) {
+            $childrenList[] = [
+                'category' => $childCategory,
+                'children' => $this->populateChildren($childCategory, $categoryChildren)
+            ];
+        }
+
+        return $childrenList;
+    }
 
 }
