@@ -365,17 +365,47 @@
 				</div>
 			</div>
 
-			<!-- Categories Section -->
-			<div class="mb-4">
-				<h6 class="text-uppercase mb-3">Categories</h6>
-				<div class="list-group list-group-flush">
-					<a n:foreach="$categories as $category" 
-					   class="list-group-item list-group-item-action"
-					   n:href="Product:list, categoryId => $category->categoryId">
-						{$category->title}
-					</a>
-				</div>
-			</div>
+<!-- Categories Section with Hierarchy -->
+<div class="mb-4">
+    <h6 class="text-uppercase mb-3">Categories</h6>
+    <div class="list-group list-group-flush">
+        <ul class="list-unstyled">
+            {foreach $categoryTree as $node}
+                <li>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <a class="flex-grow-1 text-decoration-none text-dark"
+                           href="{link Product:list, categoryId => $node['category']->categoryId}">
+                           <strong>{$node['category']->getTitle()}</strong>
+                        </a>
+                        {if $node['children']}
+                            <button class="btn p-0 text-secondary"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#mobileSubcategory{$node['category']->categoryId}"
+                                    aria-expanded="false"
+                                    aria-label="Toggle Subcategories">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        {/if}
+                    </div>
+                    {if $node['children']}
+                        <div class="collapse" id="mobileSubcategory{$node['category']->categoryId}">
+                            <ul class="list-unstyled ps-3">
+                                {foreach $node['children'] as $child}
+                                    <li>
+                                        <a class="list-group-item list-group-item-action"
+                                           href="{link Product:list, categoryId => $child->categoryId}">
+                                           <span>{$child['category']->getTitle()}</span>
+                                        </a>
+                                    </li>
+                                {/foreach}
+                            </ul>
+                        </div>
+                    {/if}
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+</div>
 
 			<!-- Authors Section -->
 			<div class="mb-4">
