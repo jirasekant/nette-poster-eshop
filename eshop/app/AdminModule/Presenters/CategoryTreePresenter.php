@@ -33,42 +33,46 @@ class CategoryTreePresenter extends Presenter {
      * @return array
      */
     private function buildCategoryTree(array $categories): array {
-        $categoryMap = [];
-
-        // Map categories by their ID
-        foreach ($categories as $category) {
-            $categoryMap[$category->categoryId] = $category;
-        }
-
-        // Initialize the tree structure
+        // Initialize a structure to hold the tree and a map for category references
         $tree = [];
-
-        // Initialize a structure to keep track of children
+        $categoryMap = [];
         $categoryChildren = [];
 
-        // Loop through categories and assign them to their parents
+        // Map categories by their ID and ensure an array to hold child references
         foreach ($categories as $category) {
-            // Initialize children array for each category in the structure
+            $categoryMap[$category->categoryId] = $category;
             $categoryChildren[$category->categoryId] = [];
+        }
 
+        // Build the children mapping by associating categories with their parents
+        foreach ($categories as $category) {
             if ($category->parentCategory) {
-                // If category has a parent, add it as a child to its parent in the structure
-                $categoryChildren[$category->parentCategory->categoryId][] = $category;
+                $parentId = $category->parentCategory->categoryId;
+                $categoryChildren[$parentId][] = $category;
             } else {
-                // If the category has no parent, it's a root category, add it to the tree
-                // This allows for multiple root categories
-                $tree[] = [
-                    'category' => $category,
-                    'children' => [] // Placeholder for children
-                ];
+                $tree[] = ['category' => $category, 'children' => []];
             }
         }
 
-        // Now attach the children structure back to the categories
+        // Attach children to the correct parent node in the tree
         foreach ($tree as &$node) {
-            $node['children'] = $categoryChildren[$node['category']->categoryId]; // Populate children
+            $node['children'] = $this->populateChildren($node['category'], $categoryChildren);
         }
 
         return $tree;
     }
+
+    private function populateChildren($parent, $categoryChildren): array {
+        $childrenList = [];
+
+        foreach ($categoryChildren[$parent->categoryId] as $childCategory) {
+            $childrenList[] = [
+                'category' => $childCategory,
+                'children' => $this->populateChildren($childCategory, $categoryChildren)
+            ];
+        }
+
+        return $childrenList;
+    }
+
 }

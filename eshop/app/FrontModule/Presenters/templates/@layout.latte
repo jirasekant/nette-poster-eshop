@@ -209,82 +209,112 @@
 </head>
 <body>
 
-	<!-- Main Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
-		<div class="container-fluid px-lg-4">
-			<!-- Logo/Brand -->
-			<a class="navbar-brand" n:href="Homepage:default">Art Poster Shop</a>
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+    <div class="container-fluid px-lg-4">
+        <!-- Logo/Brand -->
+        <a class="navbar-brand" n:href="Homepage:default">Art Poster Shop</a>
 
-			<!-- Mobile Menu Button -->
-			<button class="navbar-toggler border-0" 
-					type="button" 
-					data-bs-toggle="offcanvas" 
-					data-bs-target="#navbarOffcanvas">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+        <!-- Mobile Menu Button -->
+        <button class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#navbarOffcanvas">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-			<!-- Desktop Navigation -->
-			<div class="collapse navbar-collapse justify-content-center">
-				<ul class="navbar-nav position-relative">
-					<li class="nav-item">
-						<a class="nav-link" n:href="Homepage:default">Home</a>
-					</li>
-					<li class="nav-item dropdown position-static">
-						<a class="nav-link dropdown-toggle" 
-						   href="#" 
-						   role="button"
-						   data-bs-toggle="dropdown" 
-						   data-bs-auto-close="outside"
-						   aria-expanded="false">
-							Shop
-						</a>
-						<div class="dropdown-menu w-100 position-fixed start-0">
-							<div class="container-fluid px-lg-4">
-								<div class="mx-auto" style="max-width: 1000px;">
-									<div class="row justify-content-center g-0">
-										<!-- Posters Section -->
-										<div class="col-lg-3 text-center">
-											<h6 class="dropdown-header text-uppercase mb-3">Posters</h6>
-											<div class="d-flex flex-column gap-2">
-												<a class="dropdown-item" n:href="Product:list">All Posters</a>
-												<a class="dropdown-item" n:href="Product:list, filter => 'new'">New</a>
-												<a class="dropdown-item" n:href="Product:list, filter => 'popular'">Popular</a>
-											</div>
-										</div>
+        <!-- Desktop Navigation -->
+        <div class="collapse navbar-collapse justify-content-center">
+            <ul class="navbar-nav position-relative">
+                <li class="nav-item">
+                    <a class="nav-link" n:href="Homepage:default">Home</a>
+                </li>
+                <li class="nav-item dropdown position-static">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Shop
+                    </a>
+                    <div class="dropdown-menu w-100 position-fixed start-0">
+                        <div class="container-fluid px-lg-4">
+                            <div class="mx-auto" style="max-width: 1000px;">
+                                <div class="row justify-content-center g-0">
+                                    <!-- Posters Section -->
+                                    <div class="col-lg-3 text-center">
+                                        <h6 class="dropdown-header text-uppercase mb-3">Posters</h6>
+                                        <div class="d-flex flex-column gap-2">
+                                            <a class="dropdown-item" n:href="Product:list">All Posters</a>
+                                            <a class="dropdown-item" n:href="Product:list, filter => 'new'">New</a>
+                                            <a class="dropdown-item" n:href="Product:list, filter => 'popular'">Popular</a>
+                                        </div>
+                                    </div>
 
-										<!-- Categories Section -->
-										<div class="col-lg-3 text-center">
-											<h6 class="dropdown-header text-uppercase mb-3">Categories</h6>
-											<div class="d-flex flex-column gap-2">
-												<a n:foreach="$categories as $category" 
-												   class="dropdown-item" 
-												   n:href="Product:list, categoryId => $category->categoryId">
-													{$category->title}
-												</a>
-											</div>
-										</div>
+                                    <!-- Categories Section -->
+                                    <div class="col-lg-3 text-center">
+                                        <h6 class="dropdown-header text-uppercase mb-3">Categories</h6>
+                                        <div class="d-flex flex-column gap-2">
+                                            <ul class="list-unstyled">
+                                                {foreach $categoryTree as $node}
+                                                    <li class="dropdown">
+                                                        <div class="d-flex align-items-center justify-content-between">
+                                                            <a class="dropdown-item"
+                                                               href="{link Product:list, categoryId => $node['category']->categoryId}">
+                                                                <strong>{$node['category']->getTitle()}</strong>
+                                                            </a>
+                                                            {if $node['children']}
+                                                                <button class="btn btn-link p-0 dropdown-toggle"
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#subcategoryDropdown{$node['category']->categoryId}"
+                                                                        aria-expanded="false"
+                                                                        aria-label="Toggle Subcategories">
+                                                                </button>
+                                                            {/if}
+                                                        </div>
+                                                        {if $node['children']}
+                                                            <ul class="collapse list-unstyled" id="subcategoryDropdown{$node['category']->categoryId}">
+                                                                {foreach $node['children'] as $child}
+                                                                    <li>
+                                                                        <a class="dropdown-item"
+                                                                           href="{link Product:list, categoryId => $child->categoryId}">
+                                                                            <span>{$child[category]->getTitle()}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                {/foreach}
+                                                            </ul>
+                                                        {/if}
+                                                    </li>
+                                                {/foreach}
+                                            </ul>
+                                        </div>
+                                    </div>
 
-										<!-- Authors Section -->
-										<div class="col-lg-3 text-center">
-											<h6 class="dropdown-header text-uppercase mb-3">Authors</h6>
-											<div class="d-flex flex-column gap-2">
-												<a n:foreach="$authors as $author" 
-												   class="dropdown-item" 
-												   n:href="Product:list, authorId => $author->authorId">
-													{$author->name}
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" n:href="Homepage:about">About</a>
-					</li>
-				</ul>
-			</div>
+                                    <!-- Authors Section -->
+                                    <div class="col-lg-3 text-center">
+                                        <h6 class="dropdown-header text-uppercase mb-3">Authors</h6>
+                                        <div class="d-flex flex-column gap-2">
+                                            <a n:foreach="$authors as $author"
+                                               class="dropdown-item"
+                                               n:href="Product:list, authorId => $author->authorId">
+                                                {$author->name}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" n:href="Homepage:about">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
 
 			<!-- User Controls -->
 			<div class="d-flex align-items-center ms-lg-4">

@@ -11,7 +11,7 @@
                     {foreach $node['children'] as $child}
                         <li>
                             <a href="{link Category:edit, id=>$child->categoryId}">
-                                <span>{$child->getTitle()}</span> <!-- Display child category name -->
+                                <span>{$child[category]->getTitle()}</span> <!-- Display child category name -->
                             </a>
                         </li>
                     {/foreach}
